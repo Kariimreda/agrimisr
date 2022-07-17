@@ -9,6 +9,10 @@
             "SignUp1":"مستهلك جديد؟ ",
             "SignUp2":"إنشاء حساب",
             "ContinueAsGuest":"تصفح كضيف"
+        },
+        "validate":{
+            "InvalidEmail": "رقم الهاتف أو البريد الإلكتروني غير صحيح",
+            "InvalidPassword": "كلمة المرور غير صحيحة"
         }
     }
 }

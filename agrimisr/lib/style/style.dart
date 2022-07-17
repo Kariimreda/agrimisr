@@ -34,7 +34,9 @@ class MyColors {
   static const Color primary = Color.fromARGB(255, 93, 158, 55);
   static const Color primaryDark = Color.fromARGB(255, 66, 87, 72);
   static const Color secondary = Color.fromARGB(255, 182, 138, 34);
+  static const Color white = Color.fromARGB(255, 255, 255, 255);
   static final Color? grey = Colors.grey[600];
+
   static final CustomMaterialColor primaryMaterialColor =
       CustomMaterialColor(93, 158, 55);
 }
