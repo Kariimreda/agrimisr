@@ -1,4 +1,5 @@
 import 'package:agrimisr/auth/screens/login_screen.dart';
+import 'package:agrimisr/style/style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        primarySwatch: MyColors.primaryMaterialColor.mdColor,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

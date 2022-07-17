@@ -6,7 +6,8 @@
             "Password":"كلمة المرور",
             "Login":"دخول",
             "ForgotPassword":"نسيت كلمة المرور؟", 
-            "SignUp":"مستهلك جديد؟ إنشاء حساب ",
+            "SignUp1":"مستهلك جديد؟ ",
+            "SignUp2":"إنشاء حساب",
             "ContinueAsGuest":"تصفح كضيف"
         }
     }

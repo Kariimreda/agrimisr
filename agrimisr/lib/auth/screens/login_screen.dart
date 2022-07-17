@@ -1,5 +1,6 @@
+import 'package:agrimisr/auth/widgets/login_form.dart';
+import 'package:agrimisr/auth/widgets/signup_text.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,12 +14,15 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
           width: width,
+          height: height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,11 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * 0.2,
                 child: Image.asset('assets/images/logo.png'),
               ),
-              SizedBox(height: height * 0.05),
-              Text(
-                "Auth.Login.ContinueAsGuest".tr(),
-                style: Theme.of(context).textTheme.headline5,
-              ),
+              SizedBox(height: height * 0.01),
+              const SignUpText(),
+              SizedBox(height: height * 0.01),
+              LoginForm(emailController: emailController),
             ],
           ),
         ),
