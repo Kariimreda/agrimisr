@@ -1,4 +1,5 @@
 import 'package:agrimisr/auth/screens/login_screen.dart';
+import 'package:agrimisr/home/homeScreen.dart';
 import 'package:agrimisr/style/style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         primarySwatch: MyColors.primaryMaterialColor.mdColor,
+        primaryColor: MyColors.primaryDark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       localizationsDelegates: context.localizationDelegates,
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: LoginScreen.routeName,
       getPages: [
-        GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
+        GetPage(name: LoginScreen.routeName, page: () => HomePage()),
       ],
     );
   }
