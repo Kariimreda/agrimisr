@@ -1,0 +1,13 @@
+
+{
+    "Auth":{
+        "Login":{
+            "Email": "Phone Number or Email",
+            "Password": "Password",
+            "Login": "Login",
+            "ForgotPassword": "Forgot Password",
+            "SignUp": "Don't have an account? Sign Up",
+            "ContinueAsGuest": "Continue As Guest"
+        }
+    }
+}
