@@ -1,5 +1,7 @@
 import 'package:agrimisr/auth/widgets/login_form.dart';
+import 'package:agrimisr/core/locales.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final localeController = Get.put(MyLocales());
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -29,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * 0.2,
                 child: Image.asset('assets/images/logo.png'),
               ),
-              LoginForm(),
+               LoginForm(localeController: localeController),
             ],
           ),
         ),

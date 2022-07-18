@@ -1,5 +1,7 @@
 import 'package:agrimisr/auth/screens/login_screen.dart';
-import 'package:agrimisr/style/style.dart';
+import 'package:agrimisr/core/locales.dart';
+
+import 'package:agrimisr/style/my_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,11 +12,11 @@ void main() async {
 
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
+        supportedLocales: MyLocales.supportedLocales,
         path:
             'assets/translations', // <-- change the path of the translation files
-        fallbackLocale: const Locale('ar', 'EG'),
-        startLocale: const Locale('ar', 'EG'),
+        fallbackLocale: MyLocales.supportedLocales[0],
+        startLocale: MyLocales.supportedLocales[0],
         child: const MyApp()),
   );
 }

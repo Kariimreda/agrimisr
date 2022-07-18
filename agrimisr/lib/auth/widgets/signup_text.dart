@@ -1,4 +1,5 @@
-import 'package:agrimisr/style/style.dart';
+import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 
