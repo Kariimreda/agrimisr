@@ -16,8 +16,8 @@ class MyLocales extends GetxController {
 
   //list of supported locales
   static const supportedLocales = [
-    Locale('en', 'US'),
     Locale('ar', 'EG'),
+    Locale('en', 'US'),
   ];
 
   //list of supported locales names

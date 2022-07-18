@@ -1,5 +1,7 @@
+import 'package:agrimisr/auth/controllers/login_controller.dart';
 import 'package:agrimisr/auth/widgets/login_form.dart';
-import 'package:agrimisr/core/locales.dart';
+import 'package:agrimisr/style/my_strings.dart';
+import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,26 +15,24 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final localeController = Get.put(MyLocales());
+  final loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          height: height * 0.95,
+          height: MySize.height * 0.95,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: height * 0.02),
+              SizedBox(height: MySize.height * 0.02),
               SizedBox(
-                width: width * 0.6,
-                height: height * 0.2,
-                child: Image.asset('assets/images/logo.png'),
+                width: MySize.width * 0.6,
+                height: MySize.height * 0.2,
+                child: Image.asset(MyStrings.logoPath),
               ),
-               LoginForm(localeController: localeController),
+              LoginForm(loginController: loginController),
             ],
           ),
         ),

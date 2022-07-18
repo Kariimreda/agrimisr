@@ -1,4 +1,5 @@
 import 'package:agrimisr/auth/screens/login_screen.dart';
+import 'package:agrimisr/auth/screens/signup_screen.dart';
 import 'package:agrimisr/core/locales.dart';
 
 import 'package:agrimisr/style/my_colors.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
       initialRoute: LoginScreen.routeName,
       getPages: [
         GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
+        GetPage(name: SignupScreen.routeName, page: () => const SignupScreen()),
       ],
     );
   }
