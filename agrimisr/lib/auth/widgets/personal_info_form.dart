@@ -1,5 +1,4 @@
 import 'package:agrimisr/auth/controllers/signup_controler.dart';
-import 'package:agrimisr/auth/widgets/signup_text.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/style/size_config.dart';
@@ -25,57 +24,60 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
     SizeConfig().init(context);
     final signupController = widget.signupController;
 
+    //create 3 form keys, one for each form field except email as it is optional
+    final formKeyFirstName = GlobalKey<FormFieldState>();
+    final formKeyLastName = GlobalKey<FormFieldState>();
+    final formKeyPhone = GlobalKey<FormFieldState>();
+
     return ListView(
       physics: const NeverScrollableScrollPhysics(),
-      reverse: true,
       children: [
         Column(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const SignUpText(),
             SizedBox(height: MySize.height * 0.02),
             TextControllers().customTextFormField(
               context,
+              formKey: formKeyFirstName,
               padding: MyPadding.hPadding,
-              keyboardType: TextInputType.emailAddress,
-              controller: signupController.emailController,
+              controller: signupController.firstNameController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: signupController.getEmailValidator().build(),
-              prefixWidget: const Icon(Icons.email_outlined),
-              hintText: 'Auth.Login.Email'.tr(),
+              hintText: 'Auth.Signup.FirstName'.tr(),
+              validator: signupController.getNameValidator().build(),
+              contentPadding: const EdgeInsets.only(bottom: 5),
+            ),
+            SizedBox(height: MySize.height * 0.01),
+            TextControllers().customTextFormField(
+              context,
+              formKey: formKeyLastName,
+              padding: MyPadding.hPadding,
+              controller: signupController.lastNameController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              hintText: 'Auth.Signup.LastName'.tr(),
+              validator: signupController.getNameValidator().build(),
               contentPadding: const EdgeInsets.only(bottom: 5),
             ),
             SizedBox(height: MySize.height * 0.01),
             TextControllers().customTextFormField(
               context,
               padding: MyPadding.hPadding,
-              isObscureText: true,
+              controller: signupController.emailController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              keyboardType: TextInputType.visiblePassword,
-              controller: signupController.passwordController,
-              validator: signupController.getPasswordValidator().build(),
-              prefixWidget: const Icon(Icons.lock_outline_rounded),
-              hintText: 'Auth.Login.Password'.tr(),
+              validator: signupController.getEmailValidator().build(),
+              hintText: 'Auth.Signup.Email'.tr(),
               contentPadding: const EdgeInsets.only(bottom: 5),
             ),
-            InkWell(
-              borderRadius: MyRadius.mCircularRadius,
-              onTap: () {
-                print('Forgot Password');
-              },
-              child: Padding(
-                padding: MyPadding.hPadding,
-                child: Text(
-                  'Auth.Login.ForgotPassword'.tr(),
-                  style: TextStyle(
-                    fontSize: MySize.width * 0.04,
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.primaryDark,
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: MySize.height * 0.01),
+            TextControllers().customTextFormField(
+              context,
+              formKey: formKeyPhone,
+              padding: MyPadding.hPadding,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              controller: signupController.phoneController,
+              validator: signupController.getPhoneValidator().build(),
+              hintText: 'Auth.Signup.Phone'.tr(),
+              contentPadding: const EdgeInsets.only(bottom: 5),
+            ),
+            SizedBox(height: MySize.height * 0.03),
             Padding(
               padding: MyPadding.hPadding,
               child: SizedBox(
@@ -88,20 +90,15 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                     ),
                   ),
                   onPressed: () {
-                    //validate all
-                    if (signupController
-                                .getEmailValidator()
-                                .test(signupController.emailController.text) ==
-                            null &&
-                        signupController.getPasswordValidator().test(
-                                signupController.passwordController.text) ==
-                            null) {
+                    //validate all forms using thier keys
+                    if (formKeyFirstName.currentState!.validate() &&
+                        formKeyLastName.currentState!.validate() &&
+                        formKeyPhone.currentState!.validate()) {
                       signupController.setLoginState(LoginState.password);
-                      print('valid');
                     }
                   },
                   child: Text(
-                    'Auth.Login.Login'.tr(),
+                    'Auth.Signup.Next'.tr(),
                     style: TextStyle(
                       fontSize: MySize.width * 0.05,
                       fontWeight: FontWeight.bold,
@@ -111,25 +108,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                 ),
               ),
             ),
-            SizedBox(height: MySize.height * 0.01),
-            InkWell(
-              borderRadius: MyRadius.mCircularRadius,
-              onTap: () {
-                print('Guest');
-              },
-              child: Padding(
-                padding: MyPadding.hPadding,
-                child: Text(
-                  'Auth.Login.ContinueAsGuest'.tr(),
-                  style: TextStyle(
-                    fontSize: MySize.width * 0.04,
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.primaryDark,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: MySize.height * 0.02),
+            SizedBox(height: MySize.height * 0.05),
           ],
         ),
       ],

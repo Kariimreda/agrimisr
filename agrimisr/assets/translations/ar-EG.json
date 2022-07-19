@@ -9,6 +9,18 @@
             "SignUp1":"مستهلك جديد؟ ",
             "SignUp2":"إنشاء حساب",
             "ContinueAsGuest":"تصفح كضيف"
+        },
+        "Signup":{
+            "Email":"البريد الإلكتروني",
+            "Phone":"رقم الهاتف",
+            "FirstName":"الاسم الأول",
+            "LastName":"الاسم الأخير",
+            "Next":"التالي",
+            "Signup":"إنشاء حساب",
+            "Password":"كلمة المرور",
+            "ConfirmPassword":"تأكيد كلمة المرور",
+            "Pin":"الرمز التعريفي",
+            "PasswordMismatch":"كلمة المرور غير متطابقة"
         }
         
     }

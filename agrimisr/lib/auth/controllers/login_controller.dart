@@ -31,7 +31,6 @@ class LoginController extends GetxController {
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
 
-  
   //functions that return validators for the form fields
   ValidationBuilder getEmailValidator() {
     return ValidationBuilder(
@@ -39,9 +38,10 @@ class LoginController extends GetxController {
         .or(
       (builder) => builder.email(),
       (builder) => builder.phone(
-          localeController.currentLocale.value.languageCode != 'ar'
-              ? 'Phone or Email not correct'
-              : null),
+        localeController.currentLocale.value.languageCode != 'ar'
+            ? 'Phone or Email not correct'
+            : validationLocale!.phoneEmail(''),
+      ),
     );
   }
 
@@ -51,5 +51,15 @@ class LoginController extends GetxController {
     return ValidationBuilder(
             localeName: validationLocaleName, locale: validationLocale)
         .password(validationLocale: validationLocale);
+  }
+
+  // Login methods and variables
+  final loading = false.obs;
+
+  Future<void> login() async {
+    loading.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    loading.value = false;
+    print('Login Success');
   }
 }

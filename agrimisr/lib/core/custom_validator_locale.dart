@@ -17,7 +17,7 @@ class MyValidationLocale extends FormValidatorLocale {
   String email(String v) => 'البريد إلكتروني غير صحيح';
 
   @override
-  String phoneNumber(String v) => 'رقم الهاتف او البريد الإلكتروني غير صحيح';
+  String phoneNumber(String v) => 'رقم الهاتف غير صحيح';
 
   @override
   String ip(String v) => 'عنوان بروتوكول الشبكة غير صحيح';
@@ -30,4 +30,6 @@ class MyValidationLocale extends FormValidatorLocale {
 
   String password(String v) =>
       'كلمة المرور يجب أن تحتوي على القل علي \nرقم\nحرف كبير\nرمز خاص مثل @#\$%';
+
+  String phoneEmail(String V) => 'رقم الهاتف أو البريد الإلكتروني غير صحيح';
 }

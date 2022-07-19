@@ -57,14 +57,10 @@ class SignupController extends GetxController {
   //functions that return validators for the form fields
   ValidationBuilder getEmailValidator() {
     return ValidationBuilder(
-            localeName: validationLocaleName, locale: validationLocale)
-        .or(
-      (builder) => builder.email(),
-      (builder) => builder.phone(
-          localeController.currentLocale.value.languageCode != 'ar'
-              ? 'Phone or Email not correct'
-              : null),
-    );
+      localeName: validationLocaleName,
+      locale: validationLocale,
+      optional: true,
+    ).email();
   }
 
   ValidationBuilder getPasswordValidator() {
@@ -72,6 +68,33 @@ class SignupController extends GetxController {
 
     return ValidationBuilder(
             localeName: validationLocaleName, locale: validationLocale)
+        .required()
         .password(validationLocale: validationLocale);
+  }
+
+  ValidationBuilder getPhoneValidator() {
+    return ValidationBuilder(
+            localeName: validationLocaleName, locale: validationLocale)
+        .phone()
+        .required();
+  }
+
+  //Name validator
+  ValidationBuilder getNameValidator() {
+    return ValidationBuilder(
+            localeName: validationLocaleName, locale: validationLocale)
+        .required();
+  }
+
+  //signup methods and variables
+
+  // Login methods and variables
+  final isLoading = false.obs;
+
+  Future<void> signUp() async {
+    isLoading.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    isLoading.value = false;
+    print('Signup Success');
   }
 }

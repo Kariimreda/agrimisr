@@ -25,6 +25,10 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final loginController = widget.loginController;
+    //create 2 keys for the form
+    final formKeyEmail = GlobalKey<FormFieldState>();
+    final formKeyPassword = GlobalKey<FormFieldState>();
+
     return Obx(
       () {
         return Expanded(
@@ -39,6 +43,7 @@ class _LoginFormState extends State<LoginForm> {
                   SizedBox(height: MySize.height * 0.02),
                   TextControllers().customTextFormField(
                     context,
+                    formKey: formKeyEmail,
                     padding: MyPadding.hPadding,
                     keyboardType: TextInputType.emailAddress,
                     controller: loginController.emailController,
@@ -51,6 +56,7 @@ class _LoginFormState extends State<LoginForm> {
                   SizedBox(height: MySize.height * 0.01),
                   TextControllers().customTextFormField(
                     context,
+                    formKey: formKeyPassword,
                     padding: MyPadding.hPadding,
                     isObscureText: true,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -91,25 +97,24 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                         ),
                         onPressed: () {
-                          //validate all
-                          if (loginController.getEmailValidator().test(
-                                      loginController.emailController.text) ==
-                                  null &&
-                              loginController.getPasswordValidator().test(
-                                      loginController
-                                          .passwordController.text) ==
-                                  null) {
-                            print('valid');
+                          //validate all using form keys
+                          if (formKeyEmail.currentState!.validate() &&
+                              formKeyPassword.currentState!.validate()) {
+                            loginController.login();
                           }
                         },
-                        child: Text(
-                          'Auth.Login.Login'.tr(),
-                          style: TextStyle(
-                            fontSize: MySize.width * 0.05,
-                            fontWeight: FontWeight.bold,
-                            color: MyColors.white,
-                          ),
-                        ),
+                        child: loginController.loading.value
+                            ? const CircularProgressIndicator(
+                                color: MyColors.white,
+                              )
+                            : Text(
+                                'Auth.Login.Login'.tr(),
+                                style: TextStyle(
+                                  fontSize: MySize.width * 0.05,
+                                  fontWeight: FontWeight.bold,
+                                  color: MyColors.white,
+                                ),
+                              ),
                       ),
                     ),
                   ),

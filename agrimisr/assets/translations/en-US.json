@@ -9,6 +9,18 @@
             "SignUp1": "Don't have an account? ",
             "SignUp2": "Sign Up",
             "ContinueAsGuest": "Continue As Guest"
+        },
+        "Signup":{
+            "Email": "Email",
+            "Phone": "Phone Number",
+            "FirstName": "First Name",
+            "LastName": "Last Name",
+            "Next": "Next",
+            "Signup": "Sign Up",
+            "Password": "Password",
+            "ConfirmPassword": "Confirm Password",
+            "Pin": "PIN",
+            "PasswordMismatch": "Password Mismatch"
         }
     }
 }
