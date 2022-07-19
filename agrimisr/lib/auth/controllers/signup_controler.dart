@@ -56,7 +56,7 @@ class SignupController extends GetxController {
         isDismissible: true,
         duration: const Duration(milliseconds: 1250),
         icon: const Icon(
-          Icons.error,
+          Icons.error_outline_rounded,
           color: Colors.white,
         ),
       );
