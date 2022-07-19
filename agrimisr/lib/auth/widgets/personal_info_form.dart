@@ -2,8 +2,8 @@ import 'package:agrimisr/auth/controllers/signup_controler.dart';
 import 'package:agrimisr/core/custom_validator.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/style/size_config.dart';
-import 'package:agrimisr/widgets/ButtonControllers.dart';
-import 'package:agrimisr/widgets/TextControllers.dart';
+import 'package:agrimisr/widgets/button_controllers.dart';
+import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
