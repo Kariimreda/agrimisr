@@ -8,6 +8,8 @@
             "ForgotPassword":"نسيت كلمة المرور؟", 
             "SignUp1":"مستهلك جديد؟ ",
             "SignUp2":"إنشاء حساب",
+            "Success":"تم بنجاح",
+            "CheckEmail":"تحقق من بريدك الإلكتروني",
             "ContinueAsGuest":"تصفح كضيف"
         },
         "Signup":{

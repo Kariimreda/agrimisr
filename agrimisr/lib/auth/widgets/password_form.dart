@@ -2,7 +2,7 @@ import 'package:agrimisr/auth/controllers/signup_controler.dart';
 import 'package:agrimisr/auth/widgets/policy_text.dart';
 import 'package:agrimisr/core/custom_validator.dart';
 import 'package:agrimisr/style/my_size.dart';
-import 'package:agrimisr/style/size_config.dart';
+
 import 'package:agrimisr/widgets/button_controllers.dart';
 import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class PasswordForm extends StatefulWidget {
 class _PasswordFormState extends State<PasswordForm> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+
     final signupController = widget.signupController;
 
     //create 3 form keys, one for each form field except pin as it is optional

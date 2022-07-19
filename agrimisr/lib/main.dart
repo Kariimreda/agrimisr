@@ -1,3 +1,4 @@
+import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
 import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/auth/screens/signup_screen.dart';
 import 'package:agrimisr/core/locales.dart';
@@ -42,9 +43,18 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: LoginScreen.routeName,
         getPages: [
-          GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
           GetPage(
-              name: SignupScreen.routeName, page: () => const SignupScreen()),
+            name: LoginScreen.routeName,
+            page: () => const LoginScreen(),
+          ),
+          GetPage(
+            name: SignupScreen.routeName,
+            page: () => const SignupScreen(),
+          ),
+          GetPage(
+            name: ForgotPasswordScreen.routeName,
+            page: () => const ForgotPasswordScreen(),
+          ),
         ],
       ),
     );

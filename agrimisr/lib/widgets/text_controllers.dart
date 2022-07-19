@@ -1,6 +1,5 @@
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
-import 'package:agrimisr/style/size_config.dart';
 import 'package:flutter/material.dart';
 // import 'package:visit_egypt/CommonWidgets/CustomTextWidget.dart';
 // import 'package:visit_egypt/Resources/Colors.dart';
@@ -52,7 +51,7 @@ class TextControllers {
       Container(
         padding: padding ?? EdgeInsets.zero,
         height: fixedHeight!
-            ? fieldHeight ?? SizeConfig().safeBlockVertical * 6
+            ? fieldHeight ??  MySize.height * 0.02
             : null,
         width: fieldWidth ?? MySize.width * 0.9,
         decoration: BoxDecoration(

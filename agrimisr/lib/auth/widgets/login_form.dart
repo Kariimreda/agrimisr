@@ -72,7 +72,7 @@ class _LoginFormState extends State<LoginForm> {
                     InkWell(
                       borderRadius: MyRadius.mCircularRadius,
                       onTap: () {
-                        print('Forgot Password');
+                        loginController.forgotPassword();
                       },
                       child: Padding(
                         padding: MyPadding.hPadding,
