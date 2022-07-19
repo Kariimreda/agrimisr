@@ -52,63 +52,67 @@ class TextControllers {
       Container(
         padding: padding ?? EdgeInsets.zero,
         height: fixedHeight!
-            ? fieldHeight ?? SizeConfig().safeBlockVertical * 7
+            ? fieldHeight ?? SizeConfig().safeBlockVertical * 6
             : null,
-        width: fieldWidth ?? MySize.width,
+        width: fieldWidth ?? MySize.width * 0.9,
         decoration: BoxDecoration(
           color: fillColor ?? MyColors.transparent,
-          border: Border.all(color: borderColor ?? MyColors.transparent),
-          borderRadius: borderRadius ?? BorderRadius.zero,
+          border: Border.all(color: borderColor ?? MyColors.grey!),
+          borderRadius: borderRadius ?? MyRadius.mCircularRadius,
           // Border(
           //     bottom: BorderSide(
           //         color: AppRepoColors().appGreyColor,
           //         width: SizeConfig.safeBlockHorizontal * 0.5)
           // ),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          textBaseline: TextBaseline.ideographic,
-          verticalDirection: VerticalDirection.up,
-          children: [
-            prefixWidget ?? Container(),
-            if (prefixWidget != null) SizedBox(width: MySize.width / 60),
-            Expanded(
-              child: TextFormField(
-                key: formKey,
-                readOnly: readOnly,
-                textInputAction: textInputAction ?? TextInputAction.done,
-                focusNode: focusNode,
-                obscureText: isObscureText,
-                controller: controller,
-                maxLines: maxLines ?? 1,
-                textAlign: TextAlign.start,
-                style: TextStyle(color: textColor, fontSize: fontSize),
-                keyboardType: keyboardType,
-                onTap: onTap ?? () {},
-                onEditingComplete: onEditingComplete ?? () {},
-                validator: validator,
-                decoration: InputDecoration(
-                  // labelText: titleText ?? '',
-                  counterText: '',
-                  isDense: true,
-                  counterStyle: const TextStyle(fontSize: 0),
-                  contentPadding: contentPadding ?? EdgeInsets.zero,
-                  border: InputBorder.none,
-                  hintText: hintText,
+        child: Padding(
+          padding: MyPadding.svPadding,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.ideographic,
+            verticalDirection: VerticalDirection.up,
+            children: [
+              prefixWidget ?? Container(),
+              if (prefixWidget != null) SizedBox(width: MySize.width / 60),
+              Expanded(
+                child: TextFormField(
+                  key: formKey,
+                  readOnly: readOnly,
+                  textInputAction: textInputAction ?? TextInputAction.done,
+                  focusNode: focusNode,
+                  obscureText: isObscureText,
+                  controller: controller,
+                  maxLines: maxLines ?? 1,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(color: textColor, fontSize: fontSize),
+                  keyboardType: keyboardType,
+                  onTap: onTap ?? () {},
+                  onEditingComplete: onEditingComplete ?? () {},
+                  validator: validator,
+                  decoration: InputDecoration(
+                    // labelText: titleText ?? '',
+                    counterText: '',
+                    isDense: true,
+                    counterStyle: const TextStyle(fontSize: 0),
+                    contentPadding: contentPadding ?? EdgeInsets.zero,
+                    border: InputBorder.none,
+                    hintText: hintText,
 
-                  hintStyle: TextStyle(
-                    color: hintTextColor,
-                    fontSize: hintFontSize,
+                    hintStyle: TextStyle(
+                      color: hintTextColor,
+                      fontSize: hintFontSize,
+                    ),
+
+                    errorStyle: TextStyle(
+                        color: MyColors.error, fontSize: hintFontSize),
                   ),
-
-                  errorStyle:
-                      TextStyle(color: MyColors.error, fontSize: hintFontSize),
+                  autovalidateMode:
+                      autovalidateMode ?? AutovalidateMode.disabled,
                 ),
-                autovalidateMode: autovalidateMode ?? AutovalidateMode.disabled,
               ),
-            ),
-            endPrefixWidget ?? Container(),
-          ],
+              endPrefixWidget ?? Container(),
+            ],
+          ),
         ),
       );
 

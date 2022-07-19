@@ -1,8 +1,10 @@
 import 'package:agrimisr/auth/controllers/login_controller.dart';
 import 'package:agrimisr/auth/widgets/signup_text.dart';
+import 'package:agrimisr/core/custom_validator.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/style/size_config.dart';
+import 'package:agrimisr/widgets/ButtonControllers.dart';
 import 'package:agrimisr/widgets/TextControllers.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -26,123 +28,111 @@ class _LoginFormState extends State<LoginForm> {
     SizeConfig().init(context);
     final loginController = widget.loginController;
     //create 2 keys for the form
-    final formKeyEmail = GlobalKey<FormFieldState>();
-    final formKeyPassword = GlobalKey<FormFieldState>();
+    final formKey = GlobalKey<FormState>();
 
     return Obx(
       () {
         return Expanded(
           child: ListView(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             reverse: true,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const SignUpText(),
-                  SizedBox(height: MySize.height * 0.02),
-                  TextControllers().customTextFormField(
-                    context,
-                    formKey: formKeyEmail,
-                    padding: MyPadding.hPadding,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: loginController.emailController,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: loginController.getEmailValidator().build(),
-                    prefixWidget: const Icon(Icons.email_outlined),
-                    hintText: 'Auth.Login.Email'.tr(),
-                    contentPadding: const EdgeInsets.only(bottom: 5),
-                  ),
-                  SizedBox(height: MySize.height * 0.01),
-                  TextControllers().customTextFormField(
-                    context,
-                    formKey: formKeyPassword,
-                    padding: MyPadding.hPadding,
-                    isObscureText: true,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: loginController.passwordController,
-                    validator: loginController.getPasswordValidator().build(),
-                    prefixWidget: const Icon(Icons.lock_outline_rounded),
-                    hintText: 'Auth.Login.Password'.tr(),
-                    contentPadding: const EdgeInsets.only(bottom: 5),
-                  ),
-                  InkWell(
-                    borderRadius: MyRadius.mCircularRadius,
-                    onTap: () {
-                      print('Forgot Password');
-                    },
-                    child: Padding(
+              Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const SignUpText(),
+                    SizedBox(height: MySize.height * 0.02),
+                    TextControllers().customTextFormField(
+                      context,
                       padding: MyPadding.hPadding,
-                      child: Text(
-                        'Auth.Login.ForgotPassword'.tr(),
-                        style: TextStyle(
-                          fontSize: MySize.width * 0.04,
-                          fontWeight: FontWeight.bold,
-                          color: MyColors.primaryDark,
-                        ),
-                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      controller: loginController.emailController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: MyValidators.instance
+                          .getEmailOrPhoneValidator()
+                          .build(),
+                      prefixWidget: const Icon(Icons.email_outlined),
+                      hintText: 'Auth.Login.Email'.tr(),
+                      contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
-                  ),
-                  SizedBox(height: MySize.height * 0.01),
-                  Padding(
-                    padding: MyPadding.hPadding,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: MySize.height * 0.06,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                    SizedBox(height: MySize.height * 0.01),
+                    TextControllers().customTextFormField(
+                      context,
+                      padding: MyPadding.hPadding,
+                      isObscureText: true,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: loginController.passwordController,
+                      validator:
+                          MyValidators.instance.getPasswordValidator().build(),
+                      prefixWidget: const Icon(Icons.lock_outline_rounded),
+                      hintText: 'Auth.Login.Password'.tr(),
+                      contentPadding: const EdgeInsets.only(bottom: 5),
+                    ),
+                    InkWell(
+                      borderRadius: MyRadius.mCircularRadius,
+                      onTap: () {
+                        print('Forgot Password');
+                      },
+                      child: Padding(
+                        padding: MyPadding.hPadding,
+                        child: Text(
+                          'Auth.Login.ForgotPassword'.tr(),
+                          style: TextStyle(
+                            fontSize: MySize.width * 0.04,
+                            fontWeight: FontWeight.bold,
+                            color: MyColors.primaryDark,
                           ),
                         ),
-                        onPressed: () {
-                          //validate all using form keys
-                          if (formKeyEmail.currentState!.validate() &&
-                              formKeyPassword.currentState!.validate()) {
-                            loginController.login();
-                          }
-                        },
-                        child: loginController.loading.value
-                            ? const CircularProgressIndicator(
-                                color: MyColors.white,
-                              )
-                            : Text(
-                                'Auth.Login.Login'.tr(),
-                                style: TextStyle(
-                                  fontSize: MySize.width * 0.05,
-                                  fontWeight: FontWeight.bold,
-                                  color: MyColors.white,
-                                ),
-                              ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: MySize.height * 0.01),
-                  InkWell(
-                    borderRadius: MyRadius.mCircularRadius,
-                    onTap: () {
-                      print('Guest');
-                    },
-                    child: Padding(
-                      padding: MyPadding.hPadding,
-                      child: Text(
-                        'Auth.Login.ContinueAsGuest'.tr(),
-                        style: TextStyle(
-                          fontSize: MySize.width * 0.04,
-                          fontWeight: FontWeight.bold,
-                          color: MyColors.primaryDark,
+                    SizedBox(height: MySize.height * 0.01),
+                    ButtonControllers().customRoundedLoaderButton(
+                      context,
+                      text: 'Auth.Login.Login'.tr(),
+                      controller: loginController,
+                      onPressed: () => login(formKey, loginController),
+                      isLoading: loginController.isLoading,
+                    ),
+                    SizedBox(height: MySize.height * 0.01),
+                    InkWell(
+                      borderRadius: MyRadius.mCircularRadius,
+                      onTap: () {
+                        print('Guest');
+                      },
+                      child: Padding(
+                        padding: MyPadding.hPadding,
+                        child: Text(
+                          'Auth.Login.ContinueAsGuest'.tr(),
+                          style: TextStyle(
+                            fontSize: MySize.width * 0.04,
+                            fontWeight: FontWeight.bold,
+                            color: MyColors.primaryDark,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: MySize.height * 0.02),
-                ],
+                    SizedBox(height: MySize.height * 0.02),
+                  ],
+                ),
               ),
             ],
           ),
         );
       },
     );
+  }
+
+  //on pressed function for login button
+  void login(
+    final formKey,
+    final loginController,
+  ) {
+    //validate all using form keys
+    if (formKey.currentState!.validate()) {
+      loginController.login();
+    }
   }
 }

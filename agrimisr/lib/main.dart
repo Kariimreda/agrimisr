@@ -27,20 +27,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        primarySwatch: MyColors.primaryMaterialColor.mdColor,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: GetMaterialApp(
+        theme: ThemeData(
+          primarySwatch: MyColors.primaryMaterialColor.mdColor,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        initialRoute: LoginScreen.routeName,
+        getPages: [
+          GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
+          GetPage(
+              name: SignupScreen.routeName, page: () => const SignupScreen()),
+        ],
       ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreen.routeName,
-      getPages: [
-        GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
-        GetPage(name: SignupScreen.routeName, page: () => const SignupScreen()),
-      ],
     );
   }
 }
