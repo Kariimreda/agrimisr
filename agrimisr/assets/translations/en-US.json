@@ -20,6 +20,10 @@
             "Password": "Password",
             "ConfirmPassword": "Confirm Password",
             "Pin": "PIN",
+            "Policy1":"I agree to the ",
+            "Policy2":"Privacy Policy",
+            "Error": "Error",
+            "AgreePolicy": "Must agree to Privacy Policy",
             "PasswordMismatch": "Password Mismatch"
         }
     }

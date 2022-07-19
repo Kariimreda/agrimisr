@@ -1,4 +1,5 @@
 import 'package:agrimisr/auth/controllers/signup_controler.dart';
+import 'package:agrimisr/auth/widgets/policy_text.dart';
 import 'package:agrimisr/core/custom_validator.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/style/size_config.dart';
@@ -78,6 +79,8 @@ class _PasswordFormState extends State<PasswordForm> {
                   hintText: 'Auth.Signup.Pin'.tr(),
                   contentPadding: const EdgeInsets.only(bottom: 5),
                 ),
+                SizedBox(height: MySize.height * 0.01),
+                PolicyText(signupController: signupController),
                 SizedBox(height: MySize.height * 0.03),
                 ButtonControllers().customRoundedLoaderButton(
                   context,

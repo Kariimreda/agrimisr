@@ -1,7 +1,7 @@
 import 'package:agrimisr/auth/controllers/signup_controler.dart';
 import 'package:agrimisr/auth/widgets/password_form.dart';
 import 'package:agrimisr/auth/widgets/personal_info_form.dart';
-import 'package:agrimisr/style/my_strings.dart';
+import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

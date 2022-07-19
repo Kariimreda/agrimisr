@@ -1,6 +1,6 @@
 import 'package:agrimisr/auth/controllers/login_controller.dart';
 import 'package:agrimisr/auth/widgets/login_form.dart';
-import 'package:agrimisr/style/my_strings.dart';
+import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

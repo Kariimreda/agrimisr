@@ -1,5 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/style/my_size.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Trans hide StringExtension;
+
+import 'package:easy_localization/easy_localization.dart';
 
 enum LoginState {
   personalInfo,
@@ -37,8 +41,27 @@ class SignupController extends GetxController {
 
   // Login methods and variables
   final isLoading = false.obs;
+  final agreePolicyController = false.obs;
 
   Future<void> signUp() async {
+    //if user didnt agree to the policy, show error
+    if (!agreePolicyController.value) {
+      Get.snackbar(
+        'Auth.Signup.Error'.tr(),
+        'Auth.Signup.AgreePolicy'.tr(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: MyColors.primaryDark,
+        colorText: MyColors.white,
+        borderRadius: MyPadding.mPadding,
+        isDismissible: true,
+        duration: const Duration(milliseconds: 1250),
+        icon: const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+      );
+      return;
+    }
     isLoading.value = true;
     await Future.delayed(const Duration(seconds: 2));
     isLoading.value = false;
