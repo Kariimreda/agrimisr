@@ -3,7 +3,6 @@ import 'package:agrimisr/auth/widgets/signup_text.dart';
 import 'package:agrimisr/core/custom_validator.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
-import 'package:agrimisr/style/size_config.dart';
 import 'package:agrimisr/widgets/button_controllers.dart';
 import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,6 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     final loginController = widget.loginController;
     //create 2 keys for the form
     final formKey = GlobalKey<FormState>();
