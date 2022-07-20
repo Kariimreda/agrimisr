@@ -1,3 +1,4 @@
+import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
 import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/auth/screens/signup_screen.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         debugShowCheckedModeBanner: false,
-        initialRoute: LoginScreen.routeName,
+        initialRoute: Layout.routeName,
         getPages: [
           GetPage(
             name: LoginScreen.routeName,
@@ -54,6 +55,10 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: ForgotPasswordScreen.routeName,
             page: () => const ForgotPasswordScreen(),
+          ),
+          GetPage(
+            name: Layout.routeName,
+            page: () => const Layout(),
           ),
         ],
       ),

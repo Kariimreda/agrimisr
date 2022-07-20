@@ -7,7 +7,7 @@ import 'package:multilevel_drawer/multilevel_drawer.dart';
 
 class Layout extends StatefulWidget {
   const Layout({Key? key}) : super(key: key);
-
+  static const String routeName = '/layout';
   @override
   State<Layout> createState() => _LayoutState();
 }
@@ -24,53 +24,62 @@ class _LayoutState extends State<Layout> {
               subMenuBackgroundColor: Colors.grey.shade100,
               children: [
                 MLMenuItem(
-                    leading: Icon(Icons.person),
-                    trailing: Icon(Icons.arrow_left),
-                    content: Text(
+                    leading: const Icon(Icons.person),
+                    trailing: const Icon(Icons.arrow_left),
+                    content: const Text(
                       "My Profile",
                     ),
                     subMenuItems: [
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 1")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 1")),
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 2")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 2")),
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 3")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 3")),
                     ],
                     onClick: () {
                       print('object');
                     }),
                 MLMenuItem(
-                    leading: Icon(Icons.settings),
-                    trailing: Icon(Icons.arrow_right),
-                    content: Text("Settings"),
+                    leading: const Icon(Icons.settings),
+                    trailing: const Icon(Icons.arrow_right),
+                    content: const Text("Settings"),
                     onClick: () {},
                     subMenuItems: [
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 1")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 1")),
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 2"))
+                          onClick: () {},
+                          submenuContent: const Text("Option 2"))
                     ]),
                 MLMenuItem(
-                  leading: Icon(Icons.notifications),
-                  content: Text("Notifications"),
+                  leading: const Icon(Icons.notifications),
+                  content: const Text("Notifications"),
                   onClick: () {},
                 ),
                 MLMenuItem(
-                    leading: Icon(Icons.payment),
-                    trailing: Icon(Icons.arrow_right),
-                    content: Text(
+                    leading: const Icon(Icons.payment),
+                    trailing: const Icon(Icons.arrow_right),
+                    content: const Text(
                       "Payments",
                     ),
                     subMenuItems: [
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 1")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 1")),
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 2")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 2")),
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 3")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 3")),
                       MLSubmenu(
-                          onClick: () {}, submenuContent: Text("Option 4")),
+                          onClick: () {},
+                          submenuContent: const Text("Option 4")),
                     ],
                     onClick: () {}),
               ],
@@ -82,7 +91,7 @@ class _LayoutState extends State<Layout> {
               backgroundColor: Colors.transparent,
               actions: [
                 IconButton(
-                    onPressed: () => Get.to(Search()),
+                    onPressed: () => Get.to(const Search()),
                     icon: const Icon(Icons.search)),
               ],
               // leading:

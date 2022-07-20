@@ -28,5 +28,12 @@
             "AgreePolicy": "Must agree to Privacy Policy",
             "PasswordMismatch": "Password Mismatch"
         }
+    },
+    "Cart" :{
+        "Cart": "Cart",
+        "Checkout": "Checkout",
+        "Empty": "Your cart is empty",
+        "Error": "an error occured, please try again",
+        "ShopNow": "Shop Now"
     }
 }
