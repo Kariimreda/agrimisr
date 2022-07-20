@@ -1,7 +1,8 @@
 import 'package:agrimisr/core/custom_validator_locale.dart';
 import 'package:agrimisr/core/locales.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans hide StringExtension;
+import 'package:easy_localization/easy_localization.dart';
 
 extension CustomValidationBuilder on ValidationBuilder {
   password({String? message, MyValidationLocale? validationLocale}) =>
@@ -106,5 +107,18 @@ class MyValidators {
     return ValidationBuilder(
             localeName: validationLocaleName, locale: validationLocale)
         .required();
+  }
+
+  String? getConfirmPasswordValidator(String? value, final signupController) {
+    if (value == null) {
+      return '';
+    }
+    if (value.isEmpty) {
+      return '';
+    }
+    if (value != signupController.passwordController.text) {
+      return 'Auth.Signup.PasswordMismatch'.tr();
+    }
+    return null;
   }
 }

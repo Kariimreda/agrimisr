@@ -24,7 +24,6 @@ class PasswordForm extends StatefulWidget {
 class _PasswordFormState extends State<PasswordForm> {
   @override
   Widget build(BuildContext context) {
-
     final signupController = widget.signupController;
 
     //create 3 form keys, one for each form field except pin as it is optional
@@ -58,16 +57,8 @@ class _PasswordFormState extends State<PasswordForm> {
                   hintText: 'Auth.Signup.ConfirmPassword'.tr(),
                   isObscureText: true,
                   validator: ((value) {
-                    if (value == null) {
-                      return '';
-                    }
-                    if (value.isEmpty) {
-                      return '';
-                    }
-                    if (value != signupController.passwordController.text) {
-                      return 'Auth.Signup.PasswordMismatch'.tr();
-                    }
-                    return null;
+                    return MyValidators.instance
+                        .getConfirmPasswordValidator(value, signupController);
                   }),
                   contentPadding: const EdgeInsets.only(bottom: 5),
                 ),
