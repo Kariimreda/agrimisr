@@ -1,6 +1,9 @@
-import 'package:agrimisr/Layout/Ui/Layout.dart';
+import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
 import 'package:agrimisr/auth/screens/login_screen.dart';
-import 'package:agrimisr/style/style.dart';
+import 'package:agrimisr/auth/screens/signup_screen.dart';
+import 'package:agrimisr/core/locales.dart';
+
+import 'package:agrimisr/style/my_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,11 +14,11 @@ void main() async {
 
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
+        supportedLocales: MyLocales.supportedLocales,
         path:
             'assets/translations', // <-- change the path of the translation files
-        fallbackLocale: const Locale('ar', 'EG'),
-        startLocale: const Locale('ar', 'EG'),
+        fallbackLocale: MyLocales.supportedLocales[0],
+        startLocale: MyLocales.supportedLocales[0],
         child: const MyApp()),
   );
 }
@@ -25,20 +28,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        primarySwatch: MyColors.primaryMaterialColor.mdColor,
-        primaryColor: MyColors.primaryDark,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: GetMaterialApp(
+        theme: ThemeData(
+          primarySwatch: MyColors.primaryMaterialColor.mdColor,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        initialRoute: LoginScreen.routeName,
+        getPages: [
+          GetPage(
+            name: LoginScreen.routeName,
+            page: () => const LoginScreen(),
+          ),
+          GetPage(
+            name: SignupScreen.routeName,
+            page: () => const SignupScreen(),
+          ),
+          GetPage(
+            name: ForgotPasswordScreen.routeName,
+            page: () => const ForgotPasswordScreen(),
+          ),
+        ],
       ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreen.routeName,
-      getPages: [
-        GetPage(name: LoginScreen.routeName, page: () => Layout()),
-      ],
     );
   }
 }

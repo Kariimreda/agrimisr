@@ -1,6 +1,9 @@
-import 'package:agrimisr/style/style.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:agrimisr/auth/screens/signup_screen.dart';
+import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/style/my_size.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class SignUpText extends StatelessWidget {
   const SignUpText({
@@ -20,12 +23,21 @@ class SignUpText extends StatelessWidget {
             color: MyColors.grey,
           ),
         ),
-        Text(
-          "Auth.Login.SignUp2".tr(),
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: MyColors.primary,
+        InkWell(
+          borderRadius: MyRadius.mCircularRadius,
+          onTap: () {
+            Get.toNamed(SignupScreen.routeName);
+          },
+          child: Padding(
+            padding: MyPadding.shPadding,
+            child: Text(
+              "Auth.Login.SignUp2".tr(),
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: MyColors.primaryDark,
+              ),
+            ),
           ),
         ),
       ],

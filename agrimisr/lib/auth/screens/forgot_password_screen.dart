@@ -1,20 +1,21 @@
 import 'package:agrimisr/auth/controllers/login_controller.dart';
+import 'package:agrimisr/auth/widgets/forgot_password_form.dart';
 import 'package:agrimisr/auth/widgets/login_form.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
 
-  static const String routeName = '/login';
+  static const String routeName = '/forgot_password';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: MySize.height * 0.2,
                 child: Image.asset(MyStrings.logoPath),
               ),
-              LoginForm(loginController: loginController),
+              ForgotPasswordForm(loginController: loginController),
             ],
           ),
         ),
