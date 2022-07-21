@@ -17,7 +17,36 @@ class CartTile extends StatefulWidget {
   State<CartTile> createState() => _CartTileState();
 }
 
-class _CartTileState extends State<CartTile> {
+class _CartTileState extends State<CartTile>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller = AnimationController(
+    duration: const Duration(seconds: 3),
+    vsync: this,
+  );
+  late final Animation<Offset> offsetAnimation = Tween<Offset>(
+    begin: const Offset(5, 0),
+    end: const Offset(0, 0),
+  ).animate(CurvedAnimation(
+    parent: controller,
+    curve: Curves.easeInOut,
+  ));
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.index == 0 ? repeatOnce() : null;
+  }
+
+  void repeatOnce() async {
+    await controller.forward();
+    await controller.reverse();
+  }
+
   @override
   Widget build(BuildContext context) {
     final cartController = widget.cartController;
@@ -64,160 +93,185 @@ class _CartTileState extends State<CartTile> {
         ],
       ),
 
-      child: Obx(
-        () => Padding(
-          padding: MyPadding.hvPadding,
-          child: Container(
-            height: MySize.height * 0.3,
-            decoration: BoxDecoration(
-              color: MyColors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: MyColors.black.withOpacity(0.1),
-                  blurRadius: 2,
-                  spreadRadius: 3,
-                ),
-              ],
-              borderRadius: MyRadius.mCircularRadius,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: MySize.width * 0.35,
-                  height: double.infinity,
-                  child: ClipRRect(
-                    clipBehavior: Clip.hardEdge,
-                    borderRadius: MyRadius.mCircularRadius,
-                    child: Image.network(
-                      cartController.cartItems[index].imageUrl,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: MyColors.primaryDark,
-                          ),
-                        );
-                      },
-                      fit: BoxFit.cover,
+      child: Stack(
+        children: [
+          Obx(
+            () => Padding(
+              padding: MyPadding.hvPadding,
+              child: Container(
+                height: MySize.height * 0.3,
+                decoration: BoxDecoration(
+                  color: MyColors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: MyColors.black.withOpacity(0.1),
+                      blurRadius: 2,
+                      spreadRadius: 3,
                     ),
-                  ),
+                  ],
+                  borderRadius: MyRadius.mCircularRadius,
                 ),
-                Expanded(
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: MyPadding.mPadding,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MySize.width * 0.35,
+                      height: double.infinity,
+                      child: ClipRRect(
+                        clipBehavior: Clip.hardEdge,
+                        borderRadius: MyRadius.mCircularRadius,
+                        child: Image.network(
+                          cartController.cartItems[index].imageUrl,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: MyColors.primaryDark,
+                              ),
+                            );
+                          },
+                          fit: BoxFit.cover,
                         ),
-                        Padding(
-                          padding: MyPadding.hPadding,
-                          child: Text(
-                            cartController.cartItems[index].title,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: MyColors.primary,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Expanded(
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: MyPadding.mPadding,
                             ),
-                          ),
-                        ),
-                        const Spacer(),
-                        Padding(
-                          padding: MyPadding.shPadding,
-                          child: TextControllers().customTextFormField(
-                            context,
-                            onChanged: (value) {
-                              //if parsed value is not null and a positive integer set qunat by it
-                              if (value == null) return;
-                              if (int.tryParse(value) != null &&
-                                  int.tryParse(value)! > 0) {
-                                quant.value = int.tryParse(value)!;
-                              }
-                            },
-                            controller: qunatTextEditingController,
-                            prefixWidget: Padding(
+                            Padding(
+                              padding: MyPadding.hPadding,
+                              child: Text(
+                                cartController.cartItems[index].title,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  color: MyColors.primary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            Padding(
                               padding: MyPadding.shPadding,
-                              child: Text('${'Cart.Quantity'.tr()}: '),
-                            ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            hintText: 'Cart.Quantity'.tr(),
-                            maxLines: 1,
-                            keyboardType: TextInputType.number,
-                            fixedHeight: false,
-                            validator: (value) {
-                              if (value == null ||
-                                  int.tryParse(value) == null) {
-                                return 'Cart.Validation.Quantity'.tr();
-                              }
+                              child: TextControllers().customTextFormField(
+                                context,
+                                onChanged: (value) {
+                                  //if parsed value is not null and a positive integer set qunat by it
+                                  if (value == null) return;
+                                  if (int.tryParse(value) != null &&
+                                      int.tryParse(value)! > 0) {
+                                    quant.value = int.tryParse(value)!;
+                                  }
+                                },
+                                controller: qunatTextEditingController,
+                                prefixWidget: Padding(
+                                  padding: MyPadding.shPadding,
+                                  child: Text('${'Cart.Quantity'.tr()}: '),
+                                ),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                hintText: 'Cart.Quantity'.tr(),
+                                maxLines: 1,
+                                keyboardType: TextInputType.number,
+                                fixedHeight: false,
+                                validator: (value) {
+                                  if (value == null ||
+                                      int.tryParse(value) == null) {
+                                    return 'Cart.Validation.Quantity'.tr();
+                                  }
 
-                              final parsedInt = int.tryParse(value);
+                                  final parsedInt = int.tryParse(value);
 
-                              if (parsedInt == null) {
-                                return 'Cart.Validation.Quantity'.tr();
-                              }
-                              //make sure that the value contains only the 1-9 digits
-                              //and the parsed value is not null
-                              //and the parsed value is >= cartController.cartItems[index].minQuant
-                              //and the parsed value is <= cartController.cartItems[index].maxQuant
-                              if (RegExp(r'^[1-9]\d*$').hasMatch(value) &&
-                                  int.tryParse(value)! >=
+                                  if (parsedInt == null) {
+                                    return 'Cart.Validation.Quantity'.tr();
+                                  }
+                                  //make sure that the value contains only the 1-9 digits
+                                  //and the parsed value is not null
+                                  //and the parsed value is >= cartController.cartItems[index].minQuant
+                                  //and the parsed value is <= cartController.cartItems[index].maxQuant
+                                  if (RegExp(r'^[1-9]\d*$').hasMatch(value) &&
+                                      int.tryParse(value)! >=
+                                          cartController
+                                              .cartItems[index].minQuant &&
+                                      int.tryParse(value)! <=
+                                          cartController
+                                              .cartItems[index].maxQuant) {
+                                    return null;
+                                  }
+
+                                  if (parsedInt <
                                       cartController
-                                          .cartItems[index].minQuant &&
-                                  int.tryParse(value)! <=
+                                          .cartItems[index].minQuant) {
+                                    return 'Cart.Validation.QuantMustBeEqualOrGreaterThan'
+                                            .tr() +
+                                        cartController.cartItems[index].minQuant
+                                            .toString();
+                                  }
+                                  if (parsedInt >
                                       cartController
                                           .cartItems[index].maxQuant) {
-                                return null;
-                              }
+                                    return 'Cart.Validation.QuantMustBeEqualOrLessThan'
+                                            .tr() +
+                                        cartController.cartItems[index].maxQuant
+                                            .toString();
+                                  }
 
-                              if (parsedInt <
-                                  cartController.cartItems[index].minQuant) {
-                                return 'Cart.Validation.QuantMustBeEqualOrGreaterThan'
-                                        .tr() +
-                                    cartController.cartItems[index].minQuant
-                                        .toString();
-                              }
-                              if (parsedInt >
-                                  cartController.cartItems[index].maxQuant) {
-                                return 'Cart.Validation.QuantMustBeEqualOrLessThan'
-                                        .tr() +
-                                    cartController.cartItems[index].maxQuant
-                                        .toString();
-                              }
-
-                              return 'Cart.Validation.Quantity'.tr();
-                            },
-                          ),
+                                  return 'Cart.Validation.Quantity'.tr();
+                                },
+                              ),
+                            ),
+                            const Spacer(),
+                            TextControllers().customThreeTextRow(
+                              text: cartController.cartItems[index].pricePerItem
+                                  .toString(),
+                              titleText: 'Cart.PricePerItem'.tr(),
+                              suffixText: 'Cart.Currency'.tr(),
+                            ),
+                            TextControllers().customThreeTextRow(
+                              text: (cartController
+                                          .cartItems[index].pricePerItem *
+                                      quant.value)
+                                  .toString(),
+                              titleText: 'Cart.Total'.tr(),
+                              suffixText: 'Cart.Currency'.tr(),
+                            ),
+                            const Spacer(),
+                          ],
                         ),
-                        const Spacer(),
-                        TextControllers().customThreeTextRow(
-                          text: cartController.cartItems[index].pricePerItem
-                              .toString(),
-                          titleText: 'Cart.PricePerItem'.tr(),
-                          suffixText: 'Cart.Currency'.tr(),
-                        ),
-                        TextControllers().customThreeTextRow(
-                          text: (cartController.cartItems[index].pricePerItem *
-                                  quant.value)
-                              .toString(),
-                          titleText: 'Cart.Total'.tr(),
-                          suffixText: 'Cart.Currency'.tr(),
-                        ),
-                        const Spacer(),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
+          SlideTransition(
+            position: offsetAnimation,
+            child: Padding(
+              padding: MyPadding.svPadding,
+              child: Container(
+                height: MySize.height * 0.3,
+                width: MySize.width * 0.25,
+                decoration: BoxDecoration(
+                  color: MyColors.error,
+                  borderRadius: MyRadius.mCircularRadius,
+                ),
+                child: const Icon(
+                  Icons.delete_outline_rounded,
+                  color: MyColors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
