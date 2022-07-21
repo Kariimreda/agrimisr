@@ -1,6 +1,7 @@
 import 'package:agrimisr/Modules/Controllers/cart_controller.dart';
 import 'package:agrimisr/Modules/Ui/widgets/empty_cart.dart';
 import 'package:agrimisr/Modules/Ui/widgets/error_cart.dart';
+import 'package:agrimisr/Modules/Ui/widgets/items_cart.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,8 +53,6 @@ class _CartState extends State<Cart> {
             ? const EmptyCart()
             : cartController.cartState.value == CartState.error
                 ? const ErrorCart()
-                : const Center(
-                    child: Text('Cart contains items'),
-                  );
+                : CartItems(cartController: cartController);
   }
 }

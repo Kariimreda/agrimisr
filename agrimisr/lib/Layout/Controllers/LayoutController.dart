@@ -16,7 +16,7 @@ class HomeController extends GetxController {
         icon: Icon(Icons.settings), label: 'Settings'),
   ];
 
-  List<Widget> screens = [HomePage(), Cart(), Settings()];
+  List<Widget> screens = [const HomePage(), const Cart(), const Settings()];
 
   void ChangeBottomNav(int index) {
     currentIndex.value = index;

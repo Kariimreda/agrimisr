@@ -36,6 +36,7 @@ class TextControllers {
           Widget? prefixWidget,
           Widget? endPrefixWidget,
           Widget? titlePrefixWidget,
+          Function(String?)? onChanged,
           int? maxLines,
           FocusNode? focusNode,
           VoidCallback? onTap,
@@ -50,9 +51,7 @@ class TextControllers {
           GlobalKey<FormFieldState>? formKey}) =>
       Container(
         padding: padding ?? EdgeInsets.zero,
-        height: fixedHeight!
-            ? fieldHeight ??  MySize.height * 0.02
-            : null,
+        height: fixedHeight! ? fieldHeight ?? MySize.height * 0.02 : null,
         width: fieldWidth ?? MySize.width * 0.9,
         decoration: BoxDecoration(
           color: fillColor ?? MyColors.transparent,
@@ -88,6 +87,7 @@ class TextControllers {
                   onTap: onTap ?? () {},
                   onEditingComplete: onEditingComplete ?? () {},
                   validator: validator,
+                  onChanged: onChanged ?? (value) {},
                   decoration: InputDecoration(
                     // labelText: titleText ?? '',
                     counterText: '',
@@ -112,6 +112,77 @@ class TextControllers {
               endPrefixWidget ?? Container(),
             ],
           ),
+        ),
+      );
+
+  Widget customTwoTextRow({
+    String? titleText,
+    String? text,
+  }) =>
+      Padding(
+        padding: MyPadding.hPadding,
+        child: Row(
+          children: [
+            Text(
+              '${titleText ?? ''}${titleText != null ? ': ' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                text ?? '',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+  Widget customThreeTextRow({
+    String? titleText,
+    String? text,
+    String? suffixText,
+  }) =>
+      Padding(
+        padding: MyPadding.hPadding,
+        child: Row(
+          children: [
+            Text(
+              '${titleText ?? ''}${titleText != null ? ': ' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Flexible(
+              child: Text(
+                text ?? '',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Text(
+              suffixText ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       );
 

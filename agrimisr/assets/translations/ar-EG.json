@@ -35,7 +35,18 @@
         "Checkout":"الدفع",
         "Error":"حدث خطأ ما, الرجاء المحاولة مرة أخرى",
         "Empty":"السلة فارغة",
-        "ShopNow":"تسوق الآن"
+        "ShopNow":"تسوق الآن",
+        "PricePerItem":"سعر الوحدة",
+        "Total":"المجموع",
+        "Quantity":"الكمية",
+        "Currency":"جم",
+        "Validation":{
+            "Quantity":"الكمية غير صحيحة",
+            "QuantMustBeEqualOrGreaterThan": " أكبر أو مساوية ل ",
+            "QuantMustBeEqualOrLessThan": " أقل أو مساوية ل "
+        }
+
+        
         
     }
 }

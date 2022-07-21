@@ -14,8 +14,8 @@ class MyPadding {
   static final svPadding = EdgeInsets.symmetric(vertical: MySize.height * 0.01);
 
   static final hvPadding = EdgeInsets.symmetric(
-    horizontal: MySize.width * 0.1,
-    vertical: MySize.height * 0.05,
+    horizontal: MySize.width * 0.05,
+    vertical: MySize.height * 0.01,
   );
   static final sPadding = MySize.width * 0.01;
   static final mPadding = MySize.width * 0.03;

@@ -34,6 +34,15 @@
         "Checkout": "Checkout",
         "Empty": "Your cart is empty",
         "Error": "an error occured, please try again",
-        "ShopNow": "Shop Now"
+        "ShopNow": "Shop Now",
+        "PricePerItem": "Price Per Item",
+        "Total": "Total",
+        "Quantity": "Quantity",
+        "Currency":"$",
+        "Validation":{
+            "Quantity": "Quantity not correct",
+            "QuantMustBeEqualOrGreaterThan": "equal or greater than ",
+            "QuantMustBeEqualOrLessThan": "equal or less than "
+        }
     }
 }

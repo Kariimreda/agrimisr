@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               CarouselSlider(
@@ -102,17 +102,17 @@ class _HomePageState extends State<HomePage> {
                     crossAxisSpacing: 20,
                     childAspectRatio: 0.6,
                   ),
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return Container(
+                    return SizedBox(
                       height: Get.height * 0.4,
                       //  width: Get.width * 0.25,
                       child: Column(
                         children: [
                           Expanded(
-                            child: (Image.asset(
-                              'assets/images/0.20824100 1656946916-242x297.jpg',
+                            child: (Image.network(
+                              'https://picsum.photos/100/100?random=$index',
                               fit: BoxFit.cover,
                             )),
                           ),
