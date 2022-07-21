@@ -1,5 +1,4 @@
 import 'package:agrimisr/Modules/Models/cart_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 
 enum CartState {
@@ -13,9 +12,6 @@ class CartController extends GetxController {
   final cartState = CartState.loading.obs;
 
   final cartItems = <CartItem>[].obs;
-
-
-
 
   //request to get the cart items
   Future<void> getCartItems() async {
@@ -72,7 +68,14 @@ class CartController extends GetxController {
 
   //request to get the cart items
   Future<void> refreshCartItems() async {
-    await Future.delayed(const Duration(seconds: 2));
-    cartState.value = CartState.empty;
+    await getCartItems();
+  }
+
+  //remove item of index from cart
+  void removeItem(int index) {
+    cartItems.removeAt(index);
+    if (cartItems.isEmpty) {
+      cartState.value = CartState.empty;
+    }
   }
 }

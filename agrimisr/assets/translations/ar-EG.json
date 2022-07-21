@@ -40,6 +40,7 @@
         "Total":"المجموع",
         "Quantity":"الكمية",
         "Currency":"جم",
+        "Remove":"إزالة",
         "Validation":{
             "Quantity":"الكمية غير صحيحة",
             "QuantMustBeEqualOrGreaterThan": " أكبر أو مساوية ل ",

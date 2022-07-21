@@ -39,6 +39,7 @@
         "Total": "Total",
         "Quantity": "Quantity",
         "Currency":"$",
+        "Remove" : "Remove",
         "Validation":{
             "Quantity": "Quantity not correct",
             "QuantMustBeEqualOrGreaterThan": "equal or greater than ",
