@@ -1,8 +1,8 @@
 import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
-import 'package:easy_localization/easy_localization.dart';
 
 class LoginController extends GetxController {
   //controllers for the form fields

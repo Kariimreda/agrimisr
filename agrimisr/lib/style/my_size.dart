@@ -19,6 +19,7 @@ class MyPadding {
   );
   static final sPadding = MySize.width * 0.01;
   static final mPadding = MySize.width * 0.03;
+  static final m2Padding = MySize.width * 0.02;
   static final lPadding = MySize.width * 0.05;
   static final xlPadding = MySize.width * 0.1;
 }

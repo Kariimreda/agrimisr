@@ -45,5 +45,18 @@
             "QuantMustBeEqualOrGreaterThan": "equal or greater than ",
             "QuantMustBeEqualOrLessThan": "equal or less than "
         }
+
+
+    },
+    "Home": {
+        "Home": "Home",
+        "Cart": "Cart",
+        "Settings": "Settings",
+        "L.E": "L.E",
+        "Search": "Search"
+    },
+    "Settings": {
+        "English": "العربيه",
+        "Choose your preferred language": "Tap to change the language"
     }
 }

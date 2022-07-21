@@ -1,98 +1,148 @@
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
 import 'package:agrimisr/Modules/Ui/searchScreen.dart';
 import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/widgets/button_controllers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
-import 'package:multilevel_drawer/multilevel_drawer.dart';
 
 class Layout extends StatefulWidget {
   const Layout({Key? key}) : super(key: key);
   static const String routeName = '/layout';
+ 
+
   @override
   State<Layout> createState() => _LayoutState();
 }
 
 class _LayoutState extends State<Layout> {
   final controller = Get.put(HomeController());
+  var darwertext = ButtonControllers().drawerTextButton;
+
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('go!');
+    FlutterNativeSplash.remove();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => SafeArea(
           child: Scaffold(
-            drawer: MultiLevelDrawer(
-              backgroundColor: Colors.white,
-              rippleColor: Colors.white,
-              subMenuBackgroundColor: Colors.grey.shade100,
-              children: [
-                MLMenuItem(
-                    leading: const Icon(Icons.person),
-                    trailing: const Icon(Icons.arrow_left),
-                    content: const Text(
-                      "My Profile",
-                    ),
-                    subMenuItems: [
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 1")),
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 2")),
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 3")),
-                    ],
-                    onClick: () {
-                      print('object');
-                    }),
-                MLMenuItem(
-                    leading: const Icon(Icons.settings),
-                    trailing: const Icon(Icons.arrow_right),
-                    content: const Text("Settings"),
-                    onClick: () {},
-                    subMenuItems: [
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 1")),
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 2"))
-                    ]),
-                MLMenuItem(
-                  leading: const Icon(Icons.notifications),
-                  content: const Text("Notifications"),
-                  onClick: () {},
-                ),
-                MLMenuItem(
-                    leading: const Icon(Icons.payment),
-                    trailing: const Icon(Icons.arrow_right),
-                    content: const Text(
-                      "Payments",
-                    ),
-                    subMenuItems: [
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 1")),
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 2")),
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 3")),
-                      MLSubmenu(
-                          onClick: () {},
-                          submenuContent: const Text("Option 4")),
-                    ],
-                    onClick: () {}),
-              ],
-              header:
+            drawer: Drawer(
+              backgroundColor: MyColors.primaryDark,
+              child: ListView(
+                children: [
                   DrawerHeader(child: Image.asset('assets/images/logo.png')),
+                  Divider(
+                    color: MyColors.background,
+                  ),
+                  Container(
+                    color: MyColors.background,
+                    child: ExpansionTile(
+                      title: Text('أقسام السوق الزراعي'),
+                      collapsedBackgroundColor: MyColors.background,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text('أضافات الأعلاف'),
+                              Divider(
+                                color: MyColors.background,
+                              ),
+                              ExpansionTile(
+                                title: Text('الأسمدة و المخصبات'),
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Text('الأسمدة البوتاسية (90)'),
+                                          Divider(
+                                            color: MyColors.background,
+                                          ),
+                                          Text('الأسمدة الفوسفاتية (57)')
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(),
+                  Container(
+                    color: MyColors.background,
+                    child: ExpansionTile(
+                      title: Text('شركات و خدمات'),
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(' تسجيل بائعين'),
+                                Divider(
+                                  color: MyColors.background,
+                                ),
+                                Text("تسجيل مقدمى الخدمات")
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(),
+                  darwertext(context, text: 'الجماعيات الاهليه'),
+                  Divider(),
+                  darwertext(context, text: 'خدمات الجماعيات الاهليه'),
+                  Divider(),
+                  darwertext(context, text: 'الارشاد')
+                ],
+              ),
             ),
-            backgroundColor: MyColors.background,
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              foregroundColor: MyColors.primaryDark,
+              backgroundColor: Colors.white,
               actions: [
                 IconButton(
-                    onPressed: () => Get.to(const Search()),
-                    icon: const Icon(Icons.search)),
+                    onPressed: () => Get.to(Search()),
+                    icon: const Icon(
+                      Icons.search,
+                      color: MyColors.primaryDark,
+                    )),
               ],
               // leading:
               //     IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
@@ -109,92 +159,3 @@ class _LayoutState extends State<Layout> {
         ));
   }
 }
-
-// child: ListView(
-// children: <Widget>[
-// Divider(),
-// InkWell(
-// onTap: () {
-// print('Clicked');
-// Drawer(
-// child: ListTile(
-// title: Text('jvhvhgvghcg'),
-// ),
-// );
-// },
-// child: Container(
-// padding: EdgeInsets.all(8),
-// color: MyColors.background,
-// child: Row(
-// children: [
-// Text('أقسام السوق الزراعي'),
-// Spacer(),
-// Icon(Icons.arrow_forward)
-// ],
-// ),
-// ),
-// ),
-// Divider(),
-// InkWell(
-// onTap: () {
-// print('Clicked');
-// },
-// child: Container(
-// padding: EdgeInsets.all(8),
-// color: MyColors.background,
-// child: Row(
-// children: [
-// Text('شركات و خدمات'),
-// Spacer(),
-// Icon(Icons.arrow_forward)
-// ],
-// ),
-// ),
-// ),
-// Divider(),
-// InkWell(
-// onTap: () {
-// print('Clicked');
-// },
-// child: Container(
-// padding: EdgeInsets.all(8),
-// color: MyColors.background,
-// child: Row(
-// children: [
-// Text('الجماعيات الاهليه'),
-// ],
-// ),
-// ),
-// ),
-// Divider(),
-// InkWell(
-// onTap: () {
-// print('Clicked');
-// },
-// child: Container(
-// padding: EdgeInsets.all(8),
-// color: MyColors.background,
-// child: Row(
-// children: [
-// Text('خدمات الجماعيات الاهليه'),
-// ],
-// ),
-// ),
-// ),
-// Divider(),
-// InkWell(
-// onTap: () {
-// print('Clicked');
-// },
-// child: Container(
-// padding: EdgeInsets.all(8),
-// color: MyColors.background,s
-// child: Row(
-// children: [
-// Text('الارشاد'),
-// ],
-// ),
-// ),
-// ),
-// ],
-// ),
