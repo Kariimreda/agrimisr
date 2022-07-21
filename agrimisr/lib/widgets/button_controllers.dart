@@ -60,4 +60,21 @@ class ButtonControllers {
       ),
     );
   }
+
+  Widget drawerTextButton(
+    BuildContext context, {
+    required String? text,
+    void Function()? onPressed,
+    // Color? color,
+    Icon? Icons,
+    EdgeInsets? padding,
+  }) {
+    return Container(
+      padding: padding ?? EdgeInsets.all(10.0),
+      color: MyColors.background,
+      child: Row(
+        children: [Text(text!), Spacer(), Icons ?? SizedBox.shrink()],
+      ),
+    );
+  }
 }

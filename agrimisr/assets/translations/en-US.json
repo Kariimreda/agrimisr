@@ -28,5 +28,18 @@
             "AgreePolicy": "Must agree to Privacy Policy",
             "PasswordMismatch": "Password Mismatch"
         }
+
+
+    },
+    "Home": {
+        "Home": "Home",
+        "Cart": "Cart",
+        "Settings": "Settings",
+        "L.E": "L.E",
+        "Search": "Search"
+    },
+    "Settings": {
+        "English": "العربيه",
+        "Choose your preferred language": "Tap to change the language"
     }
 }

@@ -28,6 +28,22 @@
             "AgreePolicy":"يجب أن توافق على الخصوصية",
             "PasswordMismatch":"كلمة المرور غير متطابقة"
         }
+
+
+
         
-    }
+    },
+  "Home": {
+    "Home": "الرئيسيه",
+    "Cart": "عربه التسوق",
+    "Settings": "الاعدادات",
+    "L.E": "ج.م",
+    "Search": " بحث"
+  },
+
+  "Settings": {
+    "English": "English",
+    "Choose your preferred language": "اضغط لتغير اللغه"
+
+  }
 }
