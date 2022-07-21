@@ -49,7 +49,7 @@ class _PasswordFormState extends State<PasswordForm> {
                       MyValidators.instance.getPasswordValidator().build(),
                   contentPadding: const EdgeInsets.only(bottom: 5),
                 ),
-                SizedBox(height: MySize.height * 0.01),
+                SizedBox(height: MySize.height * 0.025),
                 TextControllers().customTextFormField(
                   context,
                   padding: MyPadding.hPadding,
@@ -62,7 +62,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   }),
                   contentPadding: const EdgeInsets.only(bottom: 5),
                 ),
-                SizedBox(height: MySize.height * 0.01),
+                SizedBox(height: MySize.height * 0.025),
                 TextControllers().customTextFormField(
                   context,
                   padding: MyPadding.hPadding,
@@ -70,7 +70,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   hintText: 'Auth.Signup.Pin'.tr(),
                   contentPadding: const EdgeInsets.only(bottom: 5),
                 ),
-                SizedBox(height: MySize.height * 0.01),
+                SizedBox(height: MySize.height * 0.025),
                 PolicyText(signupController: signupController),
                 SizedBox(height: MySize.height * 0.03),
                 ButtonControllers().customRoundedLoaderButton(

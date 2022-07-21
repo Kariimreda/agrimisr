@@ -59,7 +59,7 @@ flutter_icons:
   image_path: "assets/images/add-cat.png"
 
 flutter_native_splash:
-  color: "#425748"
+  color: "#FFFFFF"
   image: assets/images/logo2.png
 
 

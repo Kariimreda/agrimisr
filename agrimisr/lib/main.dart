@@ -15,7 +15,8 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
-
+  // whenever your initialization is completed, remove the splash screen:
+  FlutterNativeSplash.remove();
   runApp(
     EasyLocalization(
       supportedLocales: MyLocales.supportedLocales,
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          initialRoute: Layout.routeName,
+          initialRoute: LoginScreen.routeName,
           getPages: [
             GetPage(
               name: LoginScreen.routeName,

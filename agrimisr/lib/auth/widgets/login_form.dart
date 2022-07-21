@@ -33,13 +33,13 @@ class _LoginFormState extends State<LoginForm> {
         return Expanded(
           child: ListView(
             physics: const ClampingScrollPhysics(),
-      
             children: [
               Form(
                 key: formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    SizedBox(height: MySize.height * 0.02),
                     const SignUpText(),
                     SizedBox(height: MySize.height * 0.02),
                     TextControllers().customTextFormField(
@@ -55,7 +55,7 @@ class _LoginFormState extends State<LoginForm> {
                       hintText: 'Auth.Login.Email'.tr(),
                       contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
-                    SizedBox(height: MySize.height * 0.01),
+                    SizedBox(height: MySize.height * 0.025),
                     TextControllers().customTextFormField(
                       context,
                       padding: MyPadding.hPadding,
@@ -69,6 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                       hintText: 'Auth.Login.Password'.tr(),
                       contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
+                    SizedBox(height: MySize.height * 0.02),
                     InkWell(
                       borderRadius: MyRadius.mCircularRadius,
                       onTap: () {
@@ -94,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
                       onPressed: () => login(formKey, loginController),
                       isLoading: loginController.isLoading,
                     ),
-                    SizedBox(height: MySize.height * 0.01),
+                    SizedBox(height: MySize.height * 0.03),
                     InkWell(
                       borderRadius: MyRadius.mCircularRadius,
                       onTap: () {

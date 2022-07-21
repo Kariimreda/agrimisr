@@ -44,7 +44,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                 validator: MyValidators.instance.getNameValidator().build(),
                 contentPadding: const EdgeInsets.only(bottom: 5),
               ),
-              SizedBox(height: MySize.height * 0.01),
+              SizedBox(height: MySize.height * 0.025),
               TextControllers().customTextFormField(
                 context,
                 padding: MyPadding.hPadding,
@@ -54,7 +54,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                 validator: MyValidators.instance.getNameValidator().build(),
                 contentPadding: const EdgeInsets.only(bottom: 5),
               ),
-              SizedBox(height: MySize.height * 0.01),
+              SizedBox(height: MySize.height * 0.025),
               TextControllers().customTextFormField(
                 context,
                 padding: MyPadding.hPadding,
@@ -64,7 +64,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                 hintText: 'Auth.Signup.Email'.tr(),
                 contentPadding: const EdgeInsets.only(bottom: 5),
               ),
-              SizedBox(height: MySize.height * 0.01),
+              SizedBox(height: MySize.height * 0.025),
               TextControllers().customTextFormField(
                 context,
                 padding: MyPadding.hPadding,
