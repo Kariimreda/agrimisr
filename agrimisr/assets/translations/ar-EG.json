@@ -63,7 +63,20 @@
 
   "Settings": {
     "English": "English",
-    "Choose your preferred language": "اضغط لتغير اللغه"
+    "Choose your preferred language": "اضغط هنا لتغير اللغه",
+    "Information": "معلومات",
+    "About": "من نحن",
+    "Privacy": "الخصوصية",
+    "Conditions": "شروط الاستخدام",
+    "Contact us": "اتصل بنا",
+    "Additions": "إضافات",
+    "corporation": "الشركات",
+    "Favorites": "قائمة رغباتي",
+    "Location": "خريطة الموقع",
+    "My account": "حسابي",
+    "Orders": "طلباتي",
+    "Loc": "القرية الذكية , الكيلو 28 طريق مصر/اسكندرية الصحراوي , مبني رقم A3-B82"
+
 
   }
 }

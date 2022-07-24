@@ -1,4 +1,5 @@
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
+import 'package:agrimisr/Modules/Ui/cartScreen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -139,7 +140,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Expanded(
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.to(Cart());
+                                    },
                                     child: const Icon(Icons.add_shopping_cart),
                                   ),
                                 ),
