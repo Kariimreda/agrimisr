@@ -171,6 +171,7 @@ class _CartTileState extends State<CartTile>
                               text: (cartController
                                           .cartItems[index].pricePerItem *
                                       quant.value)
+                                  .toPrecision(2)
                                   .toString(),
                               titleText: 'Cart.Total'.tr(),
                               suffixText: 'Cart.Currency'.tr(),

@@ -20,8 +20,8 @@ class CartItem {
   String imageUrl;
   String title;
   int quantity;
-  int pricePerItem;
-  int total;
+  double pricePerItem;
+  double total;
   int minQuant;
   int maxQuant;
 

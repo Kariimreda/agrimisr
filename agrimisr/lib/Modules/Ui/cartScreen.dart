@@ -3,6 +3,7 @@ import 'package:agrimisr/Modules/Ui/widgets/empty_cart.dart';
 import 'package:agrimisr/Modules/Ui/widgets/error_cart.dart';
 import 'package:agrimisr/Modules/Ui/widgets/items_cart.dart';
 import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,22 +22,24 @@ class _CartState extends State<Cart> {
       await cartController.refreshCartItems();
     }
 
-    return Scaffold(
-      body: FutureBuilder(
-        future: cartController.getCartItems(),
-        builder: (context, snapshot) {
-          return RefreshIndicator(
-            backgroundColor: MyColors.primary,
-            color: MyColors.white,
-            onRefresh: _pullRefresh,
-            child: Stack(
-              children: [
-                ListView(),
-                Obx(() => futureBuilderBody(snapshot, cartController)),
-              ],
-            ),
-          );
-        },
+    return SafeArea(
+      child: Scaffold(
+        body: FutureBuilder(
+          future: cartController.getCartItems(),
+          builder: (context, snapshot) {
+            return RefreshIndicator(
+              backgroundColor: MyColors.primary,
+              color: MyColors.white,
+              onRefresh: _pullRefresh,
+              child: Stack(
+                children: [
+                  ListView(),
+                  Obx(() => futureBuilderBody(snapshot, cartController)),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -53,6 +56,9 @@ class _CartState extends State<Cart> {
             ? const EmptyCart()
             : cartController.cartState.value == CartState.error
                 ? const ErrorCart()
-                : CartItems(cartController: cartController);
+                : Padding(
+                    padding: EdgeInsets.only(top: MySize.height * 0.05),
+                    child: CartItems(cartController: cartController),
+                  );
   }
 }

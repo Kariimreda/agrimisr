@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 class Layout extends StatefulWidget {
   const Layout({Key? key}) : super(key: key);
   static const String routeName = '/layout';
- 
 
   @override
   State<Layout> createState() => _LayoutState();
@@ -133,20 +132,22 @@ class _LayoutState extends State<Layout> {
               ),
             ),
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              foregroundColor: MyColors.primaryDark,
-              backgroundColor: Colors.white,
-              actions: [
-                IconButton(
-                    onPressed: () => Get.to(Search()),
-                    icon: const Icon(
-                      Icons.search,
-                      color: MyColors.primaryDark,
-                    )),
-              ],
-              // leading:
-              //     IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-            ),
+            appBar: controller.currentIndex.value == 1
+                ? null
+                : AppBar(
+                    foregroundColor: MyColors.primaryDark,
+                    backgroundColor: Colors.white,
+                    actions: [
+                      IconButton(
+                          onPressed: () => Get.to(Search()),
+                          icon: const Icon(
+                            Icons.search,
+                            color: MyColors.primaryDark,
+                          )),
+                    ],
+                    // leading:
+                    //     IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+                  ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: controller.currentIndex.value,
               onTap: (index) {
