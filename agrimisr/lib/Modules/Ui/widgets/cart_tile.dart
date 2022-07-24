@@ -149,9 +149,9 @@ class _CartTileState extends State<CartTile>
                                 cartController.cartItems[index].title,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: MyColors.primaryDark,
-                                  fontSize: 16,
+                                  fontSize: MySize.width * 0.035,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

@@ -249,8 +249,8 @@ class TextControllers {
               '${titleText ?? ''}${titleText != null ? ': ' : ''}',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: MySize.width * 0.03,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -259,8 +259,8 @@ class TextControllers {
                 text ?? '',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: MySize.width * 0.03,
                 ),
               ),
             ),
@@ -268,8 +268,8 @@ class TextControllers {
               suffixText ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: MySize.width * 0.03,
                 fontWeight: FontWeight.bold,
               ),
             ),
