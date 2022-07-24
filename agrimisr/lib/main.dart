@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          initialRoute: LoginScreen.routeName,
+          initialRoute: Layout.routeName,
           getPages: [
             GetPage(
               name: LoginScreen.routeName,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'dart:ui' as ui;
 
 class CartTile extends StatefulWidget {
   const CartTile({Key? key, required this.index, required this.cartController})
@@ -24,8 +25,12 @@ class _CartTileState extends State<CartTile>
     vsync: this,
   );
   late final Animation<Offset> offsetAnimation = Tween<Offset>(
-    begin: const Offset(5, 0),
-    end: const Offset(0, 0),
+    begin: Directionality.of(context) == ui.TextDirection.rtl
+        ? const Offset(5, 0)
+        : Offset(8, 0),
+    end: Directionality.of(context) == ui.TextDirection.rtl
+        ? const Offset(0, 0)
+        : const Offset(3, 0),
   ).animate(CurvedAnimation(
     parent: controller,
     curve: Curves.easeInOut,
@@ -53,6 +58,7 @@ class _CartTileState extends State<CartTile>
     final index = widget.index;
 
     final formKey = GlobalKey<FormState>();
+
     final qunatTextEditingController = TextEditingController();
     qunatTextEditingController.text =
         cartController.cartItems[index].quantity.toString();
@@ -99,16 +105,9 @@ class _CartTileState extends State<CartTile>
             () => Padding(
               padding: MyPadding.hvPadding,
               child: Container(
-                height: MySize.height * 0.3,
+                height: MySize.height * 0.15,
                 decoration: BoxDecoration(
-                  color: MyColors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: MyColors.black.withOpacity(0.1),
-                      blurRadius: 2,
-                      spreadRadius: 3,
-                    ),
-                  ],
+                  color: MyColors.grey!.withOpacity(0.05),
                   borderRadius: MyRadius.mCircularRadius,
                 ),
                 child: Row(
@@ -123,14 +122,13 @@ class _CartTileState extends State<CartTile>
                         child: Image.network(
                           cartController.cartItems[index].imageUrl,
                           loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) {
-                              return child;
-                            }
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: MyColors.primaryDark,
-                              ),
-                            );
+                            return loadingProgress == null
+                                ? child
+                                : const Center(
+                                    child: CircularProgressIndicator(
+                                      color: MyColors.primaryDark,
+                                    ),
+                                  );
                           },
                           fit: BoxFit.cover,
                         ),
@@ -149,86 +147,20 @@ class _CartTileState extends State<CartTile>
                               padding: MyPadding.hPadding,
                               child: Text(
                                 cartController.cartItems[index].title,
-                                maxLines: 2,
+                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
-                                  color: MyColors.primary,
+                                  color: MyColors.primaryDark,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            const Spacer(),
                             Padding(
                               padding: MyPadding.shPadding,
-                              child: TextControllers().customTextFormField(
-                                context,
-                                onChanged: (value) {
-                                  //if parsed value is not null and a positive integer set qunat by it
-                                  if (value == null) return;
-                                  if (int.tryParse(value) != null &&
-                                      int.tryParse(value)! > 0) {
-                                    quant.value = int.tryParse(value)!;
-                                  }
-                                },
-                                controller: qunatTextEditingController,
-                                prefixWidget: Padding(
-                                  padding: MyPadding.shPadding,
-                                  child: Text('${'Cart.Quantity'.tr()}: '),
-                                ),
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                hintText: 'Cart.Quantity'.tr(),
-                                maxLines: 1,
-                                keyboardType: TextInputType.number,
-                                fixedHeight: false,
-                                validator: (value) {
-                                  if (value == null ||
-                                      int.tryParse(value) == null) {
-                                    return 'Cart.Validation.Quantity'.tr();
-                                  }
-
-                                  final parsedInt = int.tryParse(value);
-
-                                  if (parsedInt == null) {
-                                    return 'Cart.Validation.Quantity'.tr();
-                                  }
-                                  //make sure that the value contains only the 1-9 digits
-                                  //and the parsed value is not null
-                                  //and the parsed value is >= cartController.cartItems[index].minQuant
-                                  //and the parsed value is <= cartController.cartItems[index].maxQuant
-                                  if (RegExp(r'^[1-9]\d*$').hasMatch(value) &&
-                                      int.tryParse(value)! >=
-                                          cartController
-                                              .cartItems[index].minQuant &&
-                                      int.tryParse(value)! <=
-                                          cartController
-                                              .cartItems[index].maxQuant) {
-                                    return null;
-                                  }
-
-                                  if (parsedInt <
-                                      cartController
-                                          .cartItems[index].minQuant) {
-                                    return 'Cart.Validation.QuantMustBeEqualOrGreaterThan'
-                                            .tr() +
-                                        cartController.cartItems[index].minQuant
-                                            .toString();
-                                  }
-                                  if (parsedInt >
-                                      cartController
-                                          .cartItems[index].maxQuant) {
-                                    return 'Cart.Validation.QuantMustBeEqualOrLessThan'
-                                            .tr() +
-                                        cartController.cartItems[index].maxQuant
-                                            .toString();
-                                  }
-
-                                  return 'Cart.Validation.Quantity'.tr();
-                                },
-                              ),
+                              child: TextControllers().CustomPlusMinusFormField(
+                                  cartController, index, quant),
                             ),
-                            const Spacer(),
                             TextControllers().customThreeTextRow(
                               text: cartController.cartItems[index].pricePerItem
                                   .toString(),
@@ -243,7 +175,6 @@ class _CartTileState extends State<CartTile>
                               titleText: 'Cart.Total'.tr(),
                               suffixText: 'Cart.Currency'.tr(),
                             ),
-                            const Spacer(),
                           ],
                         ),
                       ),
@@ -258,7 +189,7 @@ class _CartTileState extends State<CartTile>
             child: Padding(
               padding: MyPadding.svPadding,
               child: Container(
-                height: MySize.height * 0.3,
+                height: MySize.height * 0.15,
                 width: MySize.width * 0.25,
                 decoration: BoxDecoration(
                   color: MyColors.error,

@@ -23,6 +23,7 @@ class _CartItemsState extends State<CartItems> {
         itemBuilder: (context, index) {
           return CartTile(index: index, cartController: cartController);
         },
+        
         itemCount: cartController.cartItems.length,
       ),
     );

@@ -56,7 +56,7 @@ class CartController extends GetxController {
         id: 4,
         title: 'Big Image item',
         pricePerItem: 100,
-        quantity: 1,
+        quantity: 5,
         total: 100,
         imageUrl: 'https://picsum.photos/2000/2000?random=4',
         minQuant: 5,

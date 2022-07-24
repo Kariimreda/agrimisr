@@ -1,6 +1,8 @@
+import 'package:agrimisr/Modules/Controllers/cart_controller.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:visit_egypt/CommonWidgets/CustomTextWidget.dart';
 // import 'package:visit_egypt/Resources/Colors.dart';
 // import 'package:visit_egypt/Resources/AppRepoSizes.dart';
@@ -13,6 +15,95 @@ class TextControllers {
   static final TextControllers _instance = TextControllers._internal();
 
   factory TextControllers() => _instance;
+
+  //Row with + and - buttons, and a text field to enter the number of items in between
+  Widget CustomPlusMinusFormField(
+      final CartController cartController, final int index, final quantity) {
+    final quant = cartController.cartItems[index].quantity.obs;
+    //keys for controlling Raw material buttons
+    final addGlobalKey = GlobalKey();
+    final removeGlobalKey = GlobalKey();
+
+    return Padding(
+      padding: MyPadding.xsvPadding,
+      child: SizedBox(
+        height: MySize.height * 0.035,
+        child: Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RawMaterialButton(
+                key: removeGlobalKey,
+                onPressed: quant.value ==
+                        cartController.cartItems[index].minQuant
+                    ? null
+                    : () {
+                        quant.value--;
+                        if (quant.value <=
+                            cartController.cartItems[index].minQuant) {
+                          quant.value =
+                              cartController.cartItems[index].minQuant;
+                        }
+                        cartController.cartItems[index].quantity = quant.value;
+                        quantity.value = quant.value;
+                      },
+                padding: MyPadding.shPadding,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                constraints: BoxConstraints(minWidth: 0),
+                fillColor:
+                    quant.value == cartController.cartItems[index].minQuant
+                        ? MyColors.grey!.withOpacity(0.15)
+                        : MyColors.white,
+                child: Icon(
+                  Icons.remove,
+                  color: MyColors.error,
+                ),
+                shape: CircleBorder(),
+                elevation: 0,
+              ),
+              Expanded(
+                child: Obx(
+                  () => Text(
+                    quant.value.toString(),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              RawMaterialButton(
+                key: addGlobalKey,
+                onPressed: quant.value ==
+                        cartController.cartItems[index].maxQuant
+                    ? null
+                    : () {
+                        quant.value++;
+                        if (quant.value >=
+                            cartController.cartItems[index].maxQuant) {
+                          quant.value =
+                              cartController.cartItems[index].maxQuant;
+                        }
+                        cartController.cartItems[index].quantity = quant.value;
+                        quantity.value = quant.value;
+                      },
+                fillColor:
+                    quant.value == cartController.cartItems[index].maxQuant
+                        ? MyColors.grey!.withOpacity(0.15)
+                        : MyColors.white,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: MyPadding.shPadding,
+                constraints: BoxConstraints(minWidth: 0),
+                child: Icon(
+                  Icons.add,
+                  color: MyColors.primary,
+                ),
+                shape: CircleBorder(),
+                elevation: 0,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget customTextFormField(BuildContext context,
           {TextEditingController? controller,
