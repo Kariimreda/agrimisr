@@ -15,7 +15,6 @@ void main() async {
 
   await EasyLocalization.ensureInitialized();
   // whenever your initialization is completed, remove the splash screen:
-  FlutterNativeSplash.remove();
   runApp(
     EasyLocalization(
       supportedLocales: MyLocales.supportedLocales,

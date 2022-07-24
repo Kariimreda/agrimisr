@@ -60,23 +60,35 @@ class _SettingsState extends State<Settings> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        InkWell(
-                            onTap: () {
-                              openLink(MyStrings.AboutUs);
-                            },
-                            child: Text('Settings.About'.tr())),
+                        SizedBox(
+                          width: double.infinity,
+                          child: InkWell(
+                              onTap: () {
+                                openLink(MyStrings.AboutUs);
+                              },
+                              child:
+                                  Center(child: Text('Settings.About'.tr()))),
+                        ),
                         Divider(),
-                        InkWell(
-                            onTap: () {
-                              openLink(MyStrings.privacyPolicyUri);
-                            },
-                            child: Text('Settings.Privacy'.tr())),
+                        SizedBox(
+                          width: double.infinity,
+                          child: InkWell(
+                              onTap: () {
+                                openLink(MyStrings.privacyPolicyUri);
+                              },
+                              child:
+                                  Center(child: Text('Settings.Privacy'.tr()))),
+                        ),
                         Divider(),
-                        InkWell(
-                            onTap: () {
-                              openLink(MyStrings.AboutUs);
-                            },
-                            child: Text('Settings.Conditions'.tr())),
+                        SizedBox(
+                          width: double.infinity,
+                          child: InkWell(
+                              onTap: () {
+                                openLink(MyStrings.AboutUs);
+                              },
+                              child: Center(
+                                  child: Text('Settings.Conditions'.tr()))),
+                        ),
                       ],
                     ),
                   ),
@@ -91,17 +103,24 @@ class _SettingsState extends State<Settings> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        InkWell(
-                            onTap: () {
-                              openLink(MyStrings.Companies);
-                            },
-                            child: Text('Settings.corporation'.tr())),
+                        SizedBox(
+                          width: double.infinity,
+                          child: InkWell(
+                              onTap: () {
+                                openLink(MyStrings.Companies);
+                              },
+                              child: Center(
+                                  child: Text('Settings.corporation'.tr()))),
+                        ),
                         Divider(),
-                        InkWell(
-                            onTap: () {
-                              openLink(MyStrings.Map);
-                            },
-                            child: Text('Settings.Location'.tr()))
+                        SizedBox(
+                            width: double.infinity,
+                            child: InkWell(
+                                onTap: () {
+                                  openLink(MyStrings.Map);
+                                },
+                                child: Center(
+                                    child: Text('Settings.Location'.tr())))),
                       ],
                     ),
                   ),
@@ -116,13 +135,17 @@ class _SettingsState extends State<Settings> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text('Settings.My account'.tr()),
+                        Center(child: Text('Settings.My account'.tr())),
                         Divider(),
-                        InkWell(
-                            onTap: () {
-                              Get.to(Cart());
-                            },
-                            child: Text('Settings.Orders'.tr())),
+                        SizedBox(
+                          width: double.infinity,
+                          child: InkWell(
+                              onTap: () {
+                                Get.to(Cart());
+                              },
+                              child:
+                                  Center(child: Text('Settings.Orders'.tr()))),
+                        ),
                       ],
                     ),
                   ),
@@ -137,13 +160,16 @@ class _SettingsState extends State<Settings> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text('Settings.Loc'.tr()),
+                        Center(child: Text('Settings.Loc'.tr())),
                         Divider(),
-                        InkWell(
-                            onTap: () {
-                              launchUrl(MyStrings.phone);
-                            },
-                            child: Text('15255')),
+                        SizedBox(
+                          width: double.infinity,
+                          child: InkWell(
+                              onTap: () {
+                                launchUrl(MyStrings.phone);
+                              },
+                              child: Center(child: Text('15255'))),
+                        ),
                       ],
                     ),
                   ),
