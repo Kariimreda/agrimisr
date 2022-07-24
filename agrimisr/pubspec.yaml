@@ -45,7 +45,6 @@ dependencies:
   
   flutter_launcher_icons: ^0.9.3
   slidable_button: ^2.0.0+1
-  flutter_native_splash: ^2.2.5
   flutter_phoenix: ^1.0.0
 
 
@@ -58,25 +57,6 @@ flutter_icons:
   ios: true
   image_path: "assets/images/add-cat.png"
 
-flutter_native_splash:
-  color: "#425748"
-  image: assets/images/logo2.png
-
-
-
-
-  android: true
-  ios: true
-  web: false
-
-
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

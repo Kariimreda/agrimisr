@@ -57,6 +57,18 @@
     },
     "Settings": {
         "English": "العربيه",
-        "Choose your preferred language": "Tap to change the language"
+        "Choose your preferred language": "Tap to change the language",
+        "Information": "Information",
+        "About": "About",
+        "Privacy": "Privacy",
+        "Conditions": "Conditions",
+        "Contact us": "Contact us",
+        "Additions": "Additions",
+        "corporation": "Corporation",
+        "Favorites": " Favorites",
+        "Location": "Website Map",
+        "My account": "My account",
+        "Orders": "Orders",
+        "Loc": "Smart Village,Km 28 Cairo/Alexandria Desert Road,Building No. A3-B82"
     }
 }
