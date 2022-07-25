@@ -1,6 +1,5 @@
 import 'package:agrimisr/account/controllers/account_controller.dart';
 import 'package:agrimisr/account/screens/edit_info_screen.dart';
-import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/widgets/button_controllers.dart';
@@ -24,41 +23,42 @@ class _AccountScreenState extends State<AccountScreen> {
     return Obx(
       () => SafeArea(
         child: Scaffold(
+            backgroundColor: MyColors.white,
             body: accountController.isLoading.value
                 ? const Center(
                     child: CircularProgressIndicator(
                     color: MyColors.primaryDark,
                   ))
                 : SingleChildScrollView(
-                    physics: const NeverScrollableScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     child: SizedBox(
-                      height: MySize.height * 0.95,
+                      height: MySize.height * 0.75,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: MySize.height * 0.02), //arrow back
-                          Padding(
-                            padding: MyPadding.shPadding,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.arrow_back_ios_rounded,
-                                size: MyPadding.lPadding * 1.5,
-                              ),
-                              onPressed: () => Get.back(),
-                              color: MyColors.primary,
-                            ),
-                          ),
-                          SizedBox(height: MySize.height * 0.02),
-                          Center(
-                            child: SizedBox(
-                              width: MySize.width * 0.6,
-                              height: MySize.height * 0.2,
-                              child: Image.asset(MyStrings.logoPath),
-                            ),
-                          ),
+                          // SizedBox(height: MySize.height * 0.02), //arrow back
+                          // Padding(
+                          //   padding: MyPadding.shPadding,
+                          //   child: IconButton(
+                          //     icon: Icon(
+                          //       Icons.arrow_back_ios_rounded,
+                          //       size: MyPadding.lPadding * 1.5,
+                          //     ),
+                          //     onPressed: () => Get.back(),
+                          //     color: MyColors.primary,
+                          //   ),
+                          // ),
+                          // SizedBox(height: MySize.height * 0.02),
+                          // Center(
+                          //   child: SizedBox(
+                          //     width: MySize.width * 0.6,
+                          //     height: MySize.height * 0.2,
+                          //     child: Image.asset(MyStrings.logoPath),
+                          //   ),
+                          // ),
 
-                          const Spacer(),
+                          // const Spacer(),
                           Padding(
                             padding: MyPadding.hPadding,
                             child: Row(
@@ -126,6 +126,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               text: 'Settings.Account.ChangeWishlist'.tr(),
                             ),
                           ),
+
                           const Spacer(),
                         ],
                       ),

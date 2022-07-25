@@ -70,12 +70,28 @@
         "My account": "My account",
         "Orders": "Orders",
         "Loc": "Smart Village,Km 28 Cairo/Alexandria Desert Road,Building No. A3-B82",
+        "Remove" : "Remove",
+        "AreYouSure": "Are you sure?",
+        "Cancel": "Cancel",
+        "AddAddress": "Add Address",
         "Account":{
             "Welcome": "Welcome",
             "EditAccountInfo":  "Edit Account Information",
             "ChangePassword":   "Change Password",
             "ChangeAdresses":   "Edit Addresses",           
             "ChangeWishlist":   "Edit Wishlist"
+          },
+          "Address":{
+            "FirstName": "First Name",
+            "LastName": "Last Name",
+            "Company":"Company",
+            "FirstAddress": "First Address",
+            "SecondAddress": "Second Address",
+            "City": "City",
+            "Country": "Country",
+            "PostalCode": "Postal Code",
+            "Governorate": "Governorate",
+            "VirtualAddress": "Virtual Address"
           }
     }
 }

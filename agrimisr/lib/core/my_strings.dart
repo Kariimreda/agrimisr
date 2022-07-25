@@ -13,5 +13,7 @@ class MyStrings {
 
   static Uri phone = Uri.parse('tel:15255');
 
+  static const String phoneString = '15255';
+
   static const String greenCartPath = 'assets/images/green_cart.png';
 }

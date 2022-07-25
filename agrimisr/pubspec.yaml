@@ -46,6 +46,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.3
   slidable_button: ^2.0.0+1
   flutter_phoenix: ^1.0.0
+  csc_picker: ^0.2.6
 
 
 dev_dependencies:

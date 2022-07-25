@@ -28,57 +28,56 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
 
     return Obx(
       () {
-        return Expanded(
-          child: ListView(
-            physics: const ClampingScrollPhysics(),
-            children: [
-              Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: accountController.passwordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      isObscureText: true,
-                      validator:
-                          MyValidators.instance.getPasswordValidator().build(),
-                      hintText: 'Auth.Signup.Password'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
+        return ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextControllers().customTextFormField(
+                    context,
+                    padding: MyPadding.hPadding,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: accountController.passwordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    isObscureText: true,
+                    validator:
+                        MyValidators.instance.getPasswordValidator().build(),
+                    hintText: 'Auth.Signup.Password'.tr(),
+                    contentPadding: const EdgeInsets.only(bottom: 5),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  TextControllers().customTextFormField(
+                    context,
+                    padding: MyPadding.hPadding,
+                    isObscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: accountController.confirmPasswordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                        MyValidators.instance.getConfirmPasswordValidator(
+                      value,
+                      accountController,
                     ),
-                    SizedBox(height: MySize.height * 0.05),
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      isObscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: accountController.confirmPasswordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          MyValidators.instance.getConfirmPasswordValidator(
-                        value,
-                        accountController,
-                      ),
-                      hintText: 'Auth.Signup.ConfirmPassword'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    ButtonControllers().customRoundedLoaderButton(
-                      context,
-                      text: 'Auth.Signup.Next'.tr(),
-                      controller: accountController,
-                      onPressed: () => editPassword(formKey, accountController),
-                      isLoading: accountController.isLoading,
-                    ),
-                    SizedBox(height: MySize.height * 0.01),
-                  ],
-                ),
+                    hintText: 'Auth.Signup.ConfirmPassword'.tr(),
+                    contentPadding: const EdgeInsets.only(bottom: 5),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  ButtonControllers().customRoundedLoaderButton(
+                    context,
+                    text: 'Auth.Signup.Next'.tr(),
+                    controller: accountController,
+                    onPressed: () => editPassword(formKey, accountController),
+                    isLoading: accountController.isLoading,
+                  ),
+                  SizedBox(height: MySize.height * 0.01),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

@@ -1,7 +1,7 @@
 import 'package:agrimisr/Modules/Controllers/cart_controller.dart';
-import 'package:agrimisr/Modules/Ui/widgets/empty_cart.dart';
-import 'package:agrimisr/Modules/Ui/widgets/error_cart.dart';
-import 'package:agrimisr/Modules/Ui/widgets/items_cart.dart';
+import 'package:agrimisr/Modules/Ui/widgets/cart/empty_cart.dart';
+import 'package:agrimisr/Modules/Ui/widgets/cart/error_cart.dart';
+import 'package:agrimisr/Modules/Ui/widgets/cart/items_cart.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';

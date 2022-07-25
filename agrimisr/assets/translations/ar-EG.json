@@ -76,12 +76,28 @@
     "My account": "حسابي",
     "Orders": "طلباتي",
     "Loc": "القرية الذكية , الكيلو 28 طريق مصر/اسكندرية الصحراوي , مبني رقم A3-B82",
+    "Remove":"إزالة",
+    "AreYouSure" : "هل أنت متأكد؟",
+    "Cancel" : "إلغاء",
+    "AddAddress" : "إضافة عنوان",
     "Account":{
       "Welcome":"مرحبا",
       "EditAccountInfo":"تحرير معلومات حسابك",
       "ChangePassword":"تعديل كلمة المرور",
       "ChangeAdresses":"تعديل العناوين",
       "ChangeWishlist":"تعديل قائمة رغباتي"
+    },
+    "Address":{
+      "FirstName":"الاسم الأول",
+      "LastName":"الاسم الأخير",
+      "Company":"الشركة",
+      "FirstAddress":"العنوان الأول",
+      "SecondAddress":"العنوان الثاني",
+      "City":"المدينة",
+      "Country":"الدولة",
+      "PostalCode":"الرمز البريدي",
+      "Governorate":"المحافظة",
+      "VirtualAddress":"العنوان الافتراضي"
     }
 
 

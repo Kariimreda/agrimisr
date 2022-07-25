@@ -3,11 +3,13 @@ import 'package:agrimisr/account/screens/my_account_screen.dart';
 import 'package:agrimisr/core/locales.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/main.dart';
+import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:ui' as ui;
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -67,6 +69,7 @@ class _SettingsState extends State<Settings> {
                         children: <Widget>[
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
                                 onTap: () {
                                   openLink(MyStrings.aboutUs);
@@ -77,6 +80,7 @@ class _SettingsState extends State<Settings> {
                           const Divider(),
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
                                 onTap: () {
                                   openLink(MyStrings.privacyPolicyUri);
@@ -87,6 +91,7 @@ class _SettingsState extends State<Settings> {
                           const Divider(),
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
                                 onTap: () {
                                   openLink(MyStrings.aboutUs);
@@ -110,6 +115,7 @@ class _SettingsState extends State<Settings> {
                         children: <Widget>[
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
                                 onTap: () {
                                   openLink(MyStrings.companies);
@@ -120,6 +126,7 @@ class _SettingsState extends State<Settings> {
                           const Divider(),
                           SizedBox(
                               width: double.infinity,
+                              height: MySize.height * 0.05,
                               child: InkWell(
                                   onTap: () {
                                     openLink(MyStrings.map);
@@ -142,9 +149,21 @@ class _SettingsState extends State<Settings> {
                         children: <Widget>[
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
                                 onTap: () {
-                                  Get.toNamed(AccountScreen.routeName);
+                                  //open a bottom sheet with Account Screen
+                                  Get.bottomSheet(
+                                    const AccountScreen(),
+                                    enableDrag: true,
+                                    ignoreSafeArea: false,
+                                    backgroundColor: MyColors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: MyRadius.mCircularRadius,
+                                    ),
+                                  );
+
+                                  // Get.toNamed(AccountScreen.routeName);
                                 },
                                 child: Center(
                                     child: Text('Settings.My account'.tr()))),
@@ -152,6 +171,7 @@ class _SettingsState extends State<Settings> {
                           const Divider(),
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
                                 onTap: () {
                                   Get.to(const Cart());
@@ -177,11 +197,36 @@ class _SettingsState extends State<Settings> {
                           const Divider(),
                           SizedBox(
                             width: double.infinity,
+                            height: MySize.height * 0.05,
                             child: InkWell(
-                                onTap: () {
-                                  launchUrl(MyStrings.phone);
-                                },
-                                child: const Center(child: Text('15255'))),
+                              onTap: () {
+                                launchUrl(MyStrings.phone);
+                              },
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  textDirection: ui.TextDirection.ltr,
+                                  children: [
+                                    Icon(
+                                      Icons.call_rounded,
+                                      textDirection: Directionality.of(context),
+                                      color: MyColors.primary,
+                                    ),
+                                    SizedBox(
+                                      width: MySize.width * 0.02,
+                                    ),
+                                    Text(
+                                      MyStrings.phoneString,
+                                      style: TextStyle(
+                                        fontSize: MySize.width * 0.05,
+                                        fontWeight: FontWeight.bold,
+                                        color: MyColors.primary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),

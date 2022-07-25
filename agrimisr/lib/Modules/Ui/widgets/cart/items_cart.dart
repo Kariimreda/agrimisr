@@ -1,5 +1,5 @@
 import 'package:agrimisr/Modules/Controllers/cart_controller.dart';
-import 'package:agrimisr/Modules/Ui/widgets/cart_tile.dart';
+import 'package:agrimisr/Modules/Ui/widgets/cart/cart_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

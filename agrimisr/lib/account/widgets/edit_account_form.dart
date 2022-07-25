@@ -28,76 +28,75 @@ class _EditAccountFormState extends State<EditAccountForm> {
 
     return Obx(
       () {
-        return Expanded(
-          child: ListView(
-            physics: const ClampingScrollPhysics(),
-            children: [
-              Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.name,
-                      controller: accountController.firstNameController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getNameValidator().build(),
-                      hintText: 'Auth.Signup.FirstName'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.name,
-                      controller: accountController.lastNameController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getNameValidator().build(),
-                      hintText: 'Auth.Signup.LastName'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.emailAddress,
-                      controller: accountController.emailController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getEmailValidator().build(),
-                      hintText: 'Auth.Signup.Email'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.phone,
-                      controller: accountController.phoneNumberController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getPhoneValidator().build(),
-                      hintText: 'Auth.Signup.Phone'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    ButtonControllers().customRoundedLoaderButton(
-                      context,
-                      text: 'Auth.Signup.Next'.tr(),
-                      controller: accountController,
-                      onPressed: () => editInfo(formKey, accountController),
-                      isLoading: accountController.isLoading,
-                    ),
-                    SizedBox(height: MySize.height * 0.01),
-                  ],
-                ),
+        return ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children: [
+            Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextControllers().customTextFormField(
+                    context,
+                    padding: MyPadding.hPadding,
+                    keyboardType: TextInputType.name,
+                    controller: accountController.firstNameController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator:
+                        MyValidators.instance.getNameValidator().build(),
+                    hintText: 'Auth.Signup.FirstName'.tr(),
+                    contentPadding: const EdgeInsets.only(bottom: 5),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  TextControllers().customTextFormField(
+                    context,
+                    padding: MyPadding.hPadding,
+                    keyboardType: TextInputType.name,
+                    controller: accountController.lastNameController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator:
+                        MyValidators.instance.getNameValidator().build(),
+                    hintText: 'Auth.Signup.LastName'.tr(),
+                    contentPadding: const EdgeInsets.only(bottom: 5),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  TextControllers().customTextFormField(
+                    context,
+                    padding: MyPadding.hPadding,
+                    keyboardType: TextInputType.emailAddress,
+                    controller: accountController.emailController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator:
+                        MyValidators.instance.getEmailValidator().build(),
+                    hintText: 'Auth.Signup.Email'.tr(),
+                    contentPadding: const EdgeInsets.only(bottom: 5),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  TextControllers().customTextFormField(
+                    context,
+                    padding: MyPadding.hPadding,
+                    keyboardType: TextInputType.phone,
+                    controller: accountController.phoneNumberController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator:
+                        MyValidators.instance.getPhoneValidator().build(),
+                    hintText: 'Auth.Signup.Phone'.tr(),
+                    contentPadding: const EdgeInsets.only(bottom: 5),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  ButtonControllers().customRoundedLoaderButton(
+                    context,
+                    text: 'Auth.Signup.Next'.tr(),
+                    controller: accountController,
+                    onPressed: () => editInfo(formKey, accountController),
+                    isLoading: accountController.isLoading,
+                  ),
+                  SizedBox(height: MySize.height * 0.01),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
