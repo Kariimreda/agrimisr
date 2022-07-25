@@ -1,5 +1,7 @@
 import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/Modules/Ui/splashScreen.dart';
+import 'package:agrimisr/account/screens/edit_info_screen.dart';
+import 'package:agrimisr/account/screens/my_account_screen.dart';
 import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
 import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/auth/screens/signup_screen.dart';
@@ -69,6 +71,14 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: SplashScreen.routeName,
               page: () => SplashScreen(),
+            ),
+            GetPage(
+              name: AccountScreen.routeName,
+              page: () => AccountScreen(),
+            ),
+            GetPage(
+              name: EditInfoScreen.routeName,
+              page: () => EditInfoScreen(),
             ),
           ],
         ),

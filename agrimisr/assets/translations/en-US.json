@@ -69,6 +69,13 @@
         "Location": "Website Map",
         "My account": "My account",
         "Orders": "Orders",
-        "Loc": "Smart Village,Km 28 Cairo/Alexandria Desert Road,Building No. A3-B82"
+        "Loc": "Smart Village,Km 28 Cairo/Alexandria Desert Road,Building No. A3-B82",
+        "Account":{
+            "Welcome": "Welcome",
+            "EditAccountInfo":  "Edit Account Information",
+            "ChangePassword":   "Change Password",
+            "ChangeAdresses":   "Edit Addresses",           
+            "ChangeWishlist":   "Edit Wishlist"
+          }
     }
 }

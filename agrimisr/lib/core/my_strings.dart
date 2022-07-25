@@ -2,13 +2,13 @@ class MyStrings {
   static const String logoPath = 'assets/images/logo.png';
   static Uri privacyPolicyUri = Uri.parse(
       'https://agrimisr.com/index.php?route=information/information&information_id=3');
-  static Uri AboutUs = Uri.parse(
+  static Uri aboutUs = Uri.parse(
       'https://agrimisr.com/index.php?route=information/information&information_id=4');
-  static Uri Conditions = Uri.parse(
+  static Uri conditions = Uri.parse(
       'https://agrimisr.com/index.php?route=information/information&information_id=5');
-  static Uri Companies =
+  static Uri companies =
       Uri.parse('https://agrimisr.com/index.php?route=product/manufacturer');
-  static Uri Map =
+  static Uri map =
       Uri.parse('https://agrimisr.com/index.php?route=information/sitemap');
 
   static Uri phone = Uri.parse('tel:15255');

@@ -1,4 +1,5 @@
 import 'package:agrimisr/Modules/Ui/cartScreen.dart';
+import 'package:agrimisr/account/screens/my_account_screen.dart';
 import 'package:agrimisr/core/locales.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/main.dart';
@@ -21,7 +22,7 @@ class _SettingsState extends State<Settings> {
       Url,
       mode: LaunchMode.externalApplication,
     )) {
-      throw 'Could not launch ${Url}';
+      throw 'Could not launch $Url';
     }
   }
 
@@ -68,7 +69,7 @@ class _SettingsState extends State<Settings> {
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  openLink(MyStrings.AboutUs);
+                                  openLink(MyStrings.aboutUs);
                                 },
                                 child:
                                     Center(child: Text('Settings.About'.tr()))),
@@ -88,7 +89,7 @@ class _SettingsState extends State<Settings> {
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  openLink(MyStrings.AboutUs);
+                                  openLink(MyStrings.aboutUs);
                                 },
                                 child: Center(
                                     child: Text('Settings.Conditions'.tr()))),
@@ -111,7 +112,7 @@ class _SettingsState extends State<Settings> {
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  openLink(MyStrings.Companies);
+                                  openLink(MyStrings.companies);
                                 },
                                 child: Center(
                                     child: Text('Settings.corporation'.tr()))),
@@ -121,7 +122,7 @@ class _SettingsState extends State<Settings> {
                               width: double.infinity,
                               child: InkWell(
                                   onTap: () {
-                                    openLink(MyStrings.Map);
+                                    openLink(MyStrings.map);
                                   },
                                   child: Center(
                                       child: Text('Settings.Location'.tr())))),
@@ -139,7 +140,15 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Center(child: Text('Settings.My account'.tr())),
+                          SizedBox(
+                            width: double.infinity,
+                            child: InkWell(
+                                onTap: () {
+                                  Get.toNamed(AccountScreen.routeName);
+                                },
+                                child: Center(
+                                    child: Text('Settings.My account'.tr()))),
+                          ),
                           Divider(),
                           SizedBox(
                             width: double.infinity,
