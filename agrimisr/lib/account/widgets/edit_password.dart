@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' show Obx;
 
-class EditAccountForm extends StatefulWidget {
-  const EditAccountForm({
+class EditPassword extends StatefulWidget {
+  const EditPassword({
     Key? key,
     required this.accountController,
   }) : super(key: key);
@@ -16,10 +16,10 @@ class EditAccountForm extends StatefulWidget {
   final AccountController accountController;
 
   @override
-  State<EditAccountForm> createState() => _EditAccountFormState();
+  State<EditPassword> createState() => _EditPasswordState();
 }
 
-class _EditAccountFormState extends State<EditAccountForm> {
+class _EditPasswordState extends State<EditPassword> {
   @override
   Widget build(BuildContext context) {
     final accountController = widget.accountController;
