@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' show Obx;
 
-class EditPassword extends StatefulWidget {
-  const EditPassword({
+class EditPasswordForm extends StatefulWidget {
+  const EditPasswordForm({
     Key? key,
     required this.accountController,
   }) : super(key: key);
@@ -16,10 +16,10 @@ class EditPassword extends StatefulWidget {
   final AccountController accountController;
 
   @override
-  State<EditPassword> createState() => _EditPasswordState();
+  State<EditPasswordForm> createState() => _EditPasswordFormState();
 }
 
-class _EditPasswordState extends State<EditPassword> {
+class _EditPasswordFormState extends State<EditPasswordForm> {
   @override
   Widget build(BuildContext context) {
     final accountController = widget.accountController;
@@ -40,48 +40,29 @@ class _EditPasswordState extends State<EditPassword> {
                     TextControllers().customTextFormField(
                       context,
                       padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.name,
-                      controller: accountController.firstNameController,
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: accountController.passwordController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      isObscureText: true,
                       validator:
-                          MyValidators.instance.getNameValidator().build(),
-                      hintText: 'Auth.Signup.FirstName'.tr(),
+                          MyValidators.instance.getPasswordValidator().build(),
+                      hintText: 'Auth.Signup.Password'.tr(),
                       contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
                     SizedBox(height: MySize.height * 0.05),
                     TextControllers().customTextFormField(
                       context,
                       padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.name,
-                      controller: accountController.lastNameController,
+                      isObscureText: true,
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: accountController.confirmPasswordController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getNameValidator().build(),
-                      hintText: 'Auth.Signup.LastName'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.emailAddress,
-                      controller: accountController.emailController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getEmailValidator().build(),
-                      hintText: 'Auth.Signup.Email'.tr(),
-                      contentPadding: const EdgeInsets.only(bottom: 5),
-                    ),
-                    SizedBox(height: MySize.height * 0.05),
-                    TextControllers().customTextFormField(
-                      context,
-                      padding: MyPadding.hPadding,
-                      keyboardType: TextInputType.phone,
-                      controller: accountController.phoneNumberController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          MyValidators.instance.getPhoneValidator().build(),
-                      hintText: 'Auth.Signup.Phone'.tr(),
+                      validator: (value) =>
+                          MyValidators.instance.getConfirmPasswordValidator(
+                        value,
+                        accountController,
+                      ),
+                      hintText: 'Auth.Signup.ConfirmPassword'.tr(),
                       contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
                     SizedBox(height: MySize.height * 0.05),
@@ -89,7 +70,7 @@ class _EditPasswordState extends State<EditPassword> {
                       context,
                       text: 'Auth.Signup.Next'.tr(),
                       controller: accountController,
-                      onPressed: () => editInfo(formKey, accountController),
+                      onPressed: () => editPassword(formKey, accountController),
                       isLoading: accountController.isLoading,
                     ),
                     SizedBox(height: MySize.height * 0.01),
@@ -104,13 +85,13 @@ class _EditPasswordState extends State<EditPassword> {
   }
 
   //on pressed function for login button
-  void editInfo(
+  void editPassword(
     final formKey,
     final AccountController accountController,
   ) {
     //validate all using form keys
     if (formKey.currentState!.validate()) {
-      accountController.editAccountInfo();
+      accountController.editPassword();
     }
   }
 }

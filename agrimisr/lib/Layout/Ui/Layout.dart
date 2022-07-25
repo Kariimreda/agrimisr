@@ -22,7 +22,7 @@ class _LayoutState extends State<Layout> {
     return Obx(() => SafeArea(
           child: Scaffold(
             drawer: Drawer(
-              backgroundColor: MyColors.primaryDark,
+              backgroundColor: MyColors.background,
               child: ListView(
                 children: [
                   DrawerHeader(child: Image.asset('assets/images/logo.png')),

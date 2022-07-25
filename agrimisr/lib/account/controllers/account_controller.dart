@@ -76,4 +76,25 @@ class AccountController extends GetxController {
       ],
     );
   }
+
+  
+  Future<void> editPassword() async {
+    isLoading.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    isLoading.value = false;
+    print('code sent');
+    Get.back();
+    //show a default get dialouge with a success message
+    Get.defaultDialog(
+      title: 'Auth.Login.Success'.tr(),
+      middleText: '',
+      middleTextStyle: const TextStyle(fontSize: 0),
+      actions: [
+        ElevatedButton(
+          child: const Text('OK'),
+          onPressed: () => Get.back(),
+        ),
+      ],
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:agrimisr/account/controllers/account_controller.dart';
 import 'package:agrimisr/account/widgets/edit_account_form.dart';
+import 'package:agrimisr/account/widgets/edit_password_form.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,9 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
               ),
               arguments == AccountFormType.editInfo
                   ? EditAccountForm(accountController: accountController)
-                  : Container(),
+                  : arguments == AccountFormType.editPassword
+                      ? EditPasswordForm(accountController: accountController)
+                      : Container(),
             ],
           ),
         ),
