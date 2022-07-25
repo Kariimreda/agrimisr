@@ -67,7 +67,7 @@ class _EmptyCartState extends State<EmptyCart>
             ),
             ButtonControllers().customRoundedLoaderButton(context,
                 text: 'Cart.ShopNow'.tr(),
-                onPressed: () => homeController.ChangeBottomNav(0)),
+                onPressed: () => homeController.changeBottomNav(0)),
           ],
         ),
       ),

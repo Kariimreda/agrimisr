@@ -25,7 +25,7 @@ void main() async {
       fallbackLocale: MyLocales.supportedLocales[0],
       startLocale: MyLocales.supportedLocales[0],
       child: Phoenix(
-        child: MyApp(),
+        child: const MyApp(),
       ),
     ),
   );
@@ -70,15 +70,15 @@ class MyApp extends StatelessWidget {
             ),
             GetPage(
               name: SplashScreen.routeName,
-              page: () => SplashScreen(),
+              page: () => const SplashScreen(),
             ),
             GetPage(
               name: AccountScreen.routeName,
-              page: () => AccountScreen(),
+              page: () => const AccountScreen(),
             ),
             GetPage(
               name: EditInfoScreen.routeName,
-              page: () => EditInfoScreen(),
+              page: () => const EditInfoScreen(),
             ),
           ],
         ),
@@ -88,19 +88,19 @@ class MyApp extends StatelessWidget {
 }
 
 class RestartWidget extends StatefulWidget {
-  RestartWidget({required this.child});
+  const RestartWidget({required this.child});
 
   final Widget child;
 
   static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_RestartWidgetState>()?.restartApp();
+    context.findAncestorStateOfType<RestartWidgetState>()?.restartApp();
   }
 
   @override
-  _RestartWidgetState createState() => _RestartWidgetState();
+  RestartWidgetState createState() => RestartWidgetState();
 }
 
-class _RestartWidgetState extends State<RestartWidget> {
+class RestartWidgetState extends State<RestartWidget> {
   Key key = UniqueKey();
 
   void restartApp() {

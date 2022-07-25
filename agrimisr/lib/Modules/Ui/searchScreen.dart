@@ -42,7 +42,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                       prefixIcon: Image.asset(
                         'assets/images/add-cat.png',
                       ),
-                      suffixIcon: Icon(Icons.search),
+                      suffixIcon: const Icon(Icons.search),
                       hintText: 'Home.Search'.tr()),
                 )),
             Expanded(

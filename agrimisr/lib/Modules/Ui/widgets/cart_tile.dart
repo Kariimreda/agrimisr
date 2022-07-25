@@ -27,7 +27,7 @@ class _CartTileState extends State<CartTile>
   late final Animation<Offset> offsetAnimation = Tween<Offset>(
     begin: Directionality.of(context) == ui.TextDirection.rtl
         ? const Offset(5, 0)
-        : Offset(8, 0),
+        : const Offset(8, 0),
     end: Directionality.of(context) == ui.TextDirection.rtl
         ? const Offset(0, 0)
         : const Offset(3, 0),
@@ -158,7 +158,7 @@ class _CartTileState extends State<CartTile>
                             ),
                             Padding(
                               padding: MyPadding.shPadding,
-                              child: TextControllers().CustomPlusMinusFormField(
+                              child: TextControllers().customPlusMinusFormField(
                                   cartController, index, quant),
                             ),
                             TextControllers().customThreeTextRow(

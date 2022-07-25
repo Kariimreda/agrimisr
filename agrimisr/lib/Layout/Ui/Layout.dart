@@ -53,7 +53,7 @@ class _LayoutState extends State<Layout> {
                   Container(
                     color: MyColors.background,
                     child: ExpansionTile(
-                      title: Text('أقسام السوق الزراعي'),
+                      title: const Text('أقسام السوق الزراعي'),
                       collapsedBackgroundColor: MyColors.background,
                       children: <Widget>[
                         Padding(
@@ -62,12 +62,12 @@ class _LayoutState extends State<Layout> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text('أضافات الأعلاف'),
+                              const Text('أضافات الأعلاف'),
                               Divider(
                                 color: MyColors.background,
                               ),
                               ExpansionTile(
-                                title: Text('الأسمدة و المخصبات'),
+                                title: const Text('الأسمدة و المخصبات'),
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
@@ -78,11 +78,11 @@ class _LayoutState extends State<Layout> {
                                             MainAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          Text('الأسمدة البوتاسية (90)'),
+                                          const Text('الأسمدة البوتاسية (90)'),
                                           Divider(
                                             color: MyColors.background,
                                           ),
-                                          Text('الأسمدة الفوسفاتية (57)')
+                                          const Text('الأسمدة الفوسفاتية (57)')
                                         ],
                                       ),
                                     ),
@@ -95,11 +95,11 @@ class _LayoutState extends State<Layout> {
                       ],
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   Container(
                     color: MyColors.background,
                     child: ExpansionTile(
-                      title: Text('شركات و خدمات'),
+                      title: const Text('شركات و خدمات'),
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -109,11 +109,11 @@ class _LayoutState extends State<Layout> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(' تسجيل بائعين'),
+                                const Text(' تسجيل بائعين'),
                                 Divider(
                                   color: MyColors.background,
                                 ),
-                                Text("تسجيل مقدمى الخدمات")
+                                const Text("تسجيل مقدمى الخدمات")
                               ],
                             ),
                           ),
@@ -121,11 +121,11 @@ class _LayoutState extends State<Layout> {
                       ],
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   darwertext(context, text: 'الجماعيات الاهليه'),
-                  Divider(),
+                  const Divider(),
                   darwertext(context, text: 'خدمات الجماعيات الاهليه'),
-                  Divider(),
+                  const Divider(),
                   darwertext(context, text: 'الارشاد')
                 ],
               ),
@@ -138,7 +138,7 @@ class _LayoutState extends State<Layout> {
                     backgroundColor: Colors.white,
                     actions: [
                       IconButton(
-                          onPressed: () => Get.to(Search()),
+                          onPressed: () => Get.to(const Search()),
                           icon: const Icon(
                             Icons.search,
                             color: MyColors.primaryDark,
@@ -150,7 +150,7 @@ class _LayoutState extends State<Layout> {
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: controller.currentIndex.value,
               onTap: (index) {
-                controller.ChangeBottomNav(index);
+                controller.changeBottomNav(index);
               },
               items: controller.bottomItems,
             ),
