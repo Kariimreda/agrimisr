@@ -17,7 +17,7 @@ class TextControllers {
   factory TextControllers() => _instance;
 
   //Row with + and - buttons, and a text field to enter the number of items in between
-  Widget CustomPlusMinusFormField(
+  Widget customPlusMinusFormField(
       final CartController cartController, final int index, final quantity) {
     final quant = cartController.cartItems[index].quantity.obs;
     //keys for controlling Raw material buttons
@@ -49,17 +49,17 @@ class TextControllers {
                       },
                 padding: MyPadding.shPadding,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                constraints: BoxConstraints(minWidth: 0),
+                constraints: const BoxConstraints(minWidth: 0),
                 fillColor:
                     quant.value == cartController.cartItems[index].minQuant
                         ? MyColors.grey!.withOpacity(0.15)
                         : MyColors.white,
-                child: Icon(
+                shape: const CircleBorder(),
+                elevation: 0,
+                child: const Icon(
                   Icons.remove,
                   color: MyColors.error,
                 ),
-                shape: CircleBorder(),
-                elevation: 0,
               ),
               Expanded(
                 child: Obx(
@@ -90,13 +90,13 @@ class TextControllers {
                         : MyColors.white,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 padding: MyPadding.shPadding,
-                constraints: BoxConstraints(minWidth: 0),
-                child: Icon(
+                constraints: const BoxConstraints(minWidth: 0),
+                shape: const CircleBorder(),
+                elevation: 0,
+                child: const Icon(
                   Icons.add,
                   color: MyColors.primary,
                 ),
-                shape: CircleBorder(),
-                elevation: 0,
               ),
             ],
           ),

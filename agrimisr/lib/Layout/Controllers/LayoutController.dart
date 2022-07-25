@@ -10,20 +10,22 @@ class HomeController extends GetxController {
 
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined), label: 'Home.Home'.tr()),
+        icon: const Icon(Icons.home_outlined), label: 'Home.Home'.tr()),
     BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_cart_outlined), label: 'Home.Cart'.tr()),
+        icon: const Icon(Icons.shopping_cart_outlined),
+        label: 'Home.Cart'.tr()),
     BottomNavigationBarItem(
-        icon: Icon(Icons.settings), label: 'Home.Settings'.tr()),
+        icon: const Icon(Icons.settings), label: 'Home.Settings'.tr()),
   ];
 
   List<Widget> screens = [const HomePage(), const Cart(), const Settings()];
 
-  void ChangeBottomNav(int index) {
+  void changeBottomNav(int index) {
     currentIndex.value = index;
   }
 
+  @override
   Future<void> refresh() {
-    return Future.delayed(Duration(seconds: 8));
+    return Future.delayed(const Duration(seconds: 8));
   }
 }

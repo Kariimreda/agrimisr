@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             await controller.refresh();
           },
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 CarouselSlider(
@@ -114,10 +114,10 @@ class _HomePageState extends State<HomePage> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.6,
                     ),
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Container(
+                      return SizedBox(
                         height: Get.height * 0.4,
                         child: Column(
                           children: [
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      Get.to(Cart());
+                                      Get.to(const Cart());
                                     },
                                     child: const Icon(Icons.add_shopping_cart),
                                   ),

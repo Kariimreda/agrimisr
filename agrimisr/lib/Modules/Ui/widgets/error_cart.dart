@@ -50,7 +50,7 @@ class _ErrorCartState extends State<ErrorCart>
                   child: Icon(
                     Icons.error_outline_rounded,
                     color: MyColors.primaryDark,
-                    size: MyPadding.xlPadding,
+                    size: MyPadding.xxlPadding,
                   ),
                 ),
               ),

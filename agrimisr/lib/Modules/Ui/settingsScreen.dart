@@ -1,4 +1,5 @@
 import 'package:agrimisr/Modules/Ui/cartScreen.dart';
+import 'package:agrimisr/account/screens/my_account_screen.dart';
 import 'package:agrimisr/core/locales.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/main.dart';
@@ -16,12 +17,12 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  void openLink(final Url) async {
+  void openLink(final url) async {
     if (!await launchUrl(
-      Url,
+      url,
       mode: LaunchMode.externalApplication,
     )) {
-      throw 'Could not launch ${Url}';
+      throw 'Could not launch $url';
     }
   }
 
@@ -52,7 +53,7 @@ class _SettingsState extends State<Settings> {
                   },
                   secondary: Image.asset('assets/images/add-cat.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ExpansionTile(
@@ -68,12 +69,12 @@ class _SettingsState extends State<Settings> {
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  openLink(MyStrings.AboutUs);
+                                  openLink(MyStrings.aboutUs);
                                 },
                                 child:
                                     Center(child: Text('Settings.About'.tr()))),
                           ),
-                          Divider(),
+                          const Divider(),
                           SizedBox(
                             width: double.infinity,
                             child: InkWell(
@@ -83,12 +84,12 @@ class _SettingsState extends State<Settings> {
                                 child: Center(
                                     child: Text('Settings.Privacy'.tr()))),
                           ),
-                          Divider(),
+                          const Divider(),
                           SizedBox(
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  openLink(MyStrings.AboutUs);
+                                  openLink(MyStrings.aboutUs);
                                 },
                                 child: Center(
                                     child: Text('Settings.Conditions'.tr()))),
@@ -111,17 +112,17 @@ class _SettingsState extends State<Settings> {
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  openLink(MyStrings.Companies);
+                                  openLink(MyStrings.companies);
                                 },
                                 child: Center(
                                     child: Text('Settings.corporation'.tr()))),
                           ),
-                          Divider(),
+                          const Divider(),
                           SizedBox(
                               width: double.infinity,
                               child: InkWell(
                                   onTap: () {
-                                    openLink(MyStrings.Map);
+                                    openLink(MyStrings.map);
                                   },
                                   child: Center(
                                       child: Text('Settings.Location'.tr())))),
@@ -139,13 +140,21 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Center(child: Text('Settings.My account'.tr())),
-                          Divider(),
                           SizedBox(
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
-                                  Get.to(Cart());
+                                  Get.toNamed(AccountScreen.routeName);
+                                },
+                                child: Center(
+                                    child: Text('Settings.My account'.tr()))),
+                          ),
+                          const Divider(),
+                          SizedBox(
+                            width: double.infinity,
+                            child: InkWell(
+                                onTap: () {
+                                  Get.to(const Cart());
                                 },
                                 child: Center(
                                     child: Text('Settings.Orders'.tr()))),
@@ -165,14 +174,14 @@ class _SettingsState extends State<Settings> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Center(child: Text('Settings.Loc'.tr())),
-                          Divider(),
+                          const Divider(),
                           SizedBox(
                             width: double.infinity,
                             child: InkWell(
                                 onTap: () {
                                   launchUrl(MyStrings.phone);
                                 },
-                                child: Center(child: Text('15255'))),
+                                child: const Center(child: Text('15255'))),
                           ),
                         ],
                       ),

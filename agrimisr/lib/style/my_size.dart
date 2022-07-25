@@ -22,7 +22,8 @@ class MyPadding {
   static final mPadding = MySize.width * 0.03;
   static final m2Padding = MySize.width * 0.02;
   static final lPadding = MySize.width * 0.05;
-  static final xlPadding = MySize.width * 0.1;
+  static final xlPadding = MySize.width * 0.075;
+  static final xxlPadding = MySize.width * 0.1;
 }
 
 class MyRadius {
@@ -31,5 +32,5 @@ class MyRadius {
   static final BorderRadius mCircularRadius =
       BorderRadius.circular(MyPadding.mPadding);
   static final BorderRadius lCircularRadius =
-      BorderRadius.circular(MyPadding.xlPadding);
+      BorderRadius.circular(MyPadding.xxlPadding);
 }

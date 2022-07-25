@@ -224,23 +224,26 @@ class ButtonControllers {
       btnOneClickReverseSlider: btnOneClickReverseSlider,
       btnTwoClickReverseSlider: btnTwoClickReverseSlider,
     );
-
   }
-  
-    Widget drawerTextButton(
-      BuildContext context, {
-      required String? text,
-      void Function()? onPressed,
-      // Color? color,
-      Icon? Icons,
-      EdgeInsets? padding,
-    }) {
-      return Container(
-        padding: padding ?? EdgeInsets.all(10.0),
-        color: MyColors.background,
-        child: Row(
-          children: [Text(text!), Spacer(), Icons ?? SizedBox.shrink()],
-        ),
-      );
-    }
+
+  Widget drawerTextButton(
+    BuildContext context, {
+    required String? text,
+    void Function()? onPressed,
+    // Color? color,
+    Icon? icons,
+    EdgeInsets? padding,
+  }) {
+    return Container(
+      padding: padding ?? const EdgeInsets.all(10.0),
+      color: MyColors.background,
+      child: Row(
+        children: [
+          Text(text!),
+          const Spacer(),
+          icons ?? const SizedBox.shrink()
+        ],
+      ),
+    );
+  }
 }
