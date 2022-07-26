@@ -6,6 +6,7 @@ import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
 import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/auth/screens/signup_screen.dart';
 import 'package:agrimisr/core/locales.dart';
+import 'package:agrimisr/product/screens/product_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,6 @@ class MyApp extends StatelessWidget {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           initialRoute: SplashScreen.routeName,
-          
           getPages: [
             GetPage(
               name: LoginScreen.routeName,
@@ -80,6 +80,10 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: EditInfoScreen.routeName,
               page: () => const EditInfoScreen(),
+            ),
+            GetPage(
+              name: ProductScreen.routeName,
+              page: () => const ProductScreen(),
             ),
           ],
         ),

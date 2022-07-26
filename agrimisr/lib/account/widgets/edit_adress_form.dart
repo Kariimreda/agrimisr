@@ -129,14 +129,11 @@ class _EditAdressFormState extends State<EditAdressForm> {
                             addressController.governorateController.value == ''
                                 ? null
                                 : addressController.governorateController.value,
-
                         defaultCountry: DefaultCountry.Egypt,
-
                         ///triggers once country selected in dropdown
                         onCountryChanged: onCountryChanged,
                         onCityChanged: onCityChanged,
                         flagState: CountryFlag.DISABLE,
-
                         ///triggers once state selected in dropdown
                         onStateChanged: onGovChanged,
                       ),

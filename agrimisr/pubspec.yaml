@@ -48,6 +48,7 @@ dependencies:
   flutter_phoenix: ^1.0.0
   csc_picker: ^0.2.6
   dio: ^4.0.6
+  like_button: ^2.0.4
 
 
 dev_dependencies:

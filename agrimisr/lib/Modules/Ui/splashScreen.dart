@@ -1,4 +1,5 @@
-import 'package:agrimisr/Layout/Ui/Layout.dart';
+import 'package:agrimisr/product/models/product.dart';
+import 'package:agrimisr/product/screens/product_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigaTo() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.offAndToNamed(Layout.routeName);
+    Get.offAndToNamed(ProductScreen.routeName,
+        arguments: Product(
+          id: 1,
+          imageUrl: 'https://picsum.photos/500',
+          min: 4,
+          price: 1023,
+          quantity: 1000,
+          rating: 4.5,
+          seller: ' شركة كفر الزيات للمبيدات و الكيماويات ',
+          title: 'مبيدات هيومازد ',
+          weight: '500g',
+          wishlisted: false,
+        ));
   }
 
   @override

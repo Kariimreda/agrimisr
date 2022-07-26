@@ -2,7 +2,7 @@ import 'package:agrimisr/account/controllers/account_controller.dart';
 import 'package:agrimisr/account/screens/adresses_screen.dart';
 import 'package:agrimisr/account/widgets/edit_account_form.dart';
 import 'package:agrimisr/account/widgets/edit_password_form.dart';
-import 'package:agrimisr/core/app_http_client/api_client.dart';
+import 'package:agrimisr/core/api_client.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/widgets/button_controllers.dart';
