@@ -1,4 +1,8 @@
 class MyStrings {
+
+  static const String baseUrl = 'https://www.google.com';
+
+
   static const String logoPath = 'assets/images/logo.png';
   static Uri privacyPolicyUri = Uri.parse(
       'https://agrimisr.com/index.php?route=information/information&information_id=3');
