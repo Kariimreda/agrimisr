@@ -60,13 +60,16 @@ class _AdressTileState extends State<AdressTile> {
                 //Reset the form
                 addressController.newAdressForm(address: address);
                 //open add/edit adress form in bottom sheet
-                Get.bottomSheet(
-                  EditAdressForm(addressController: addressController),
-                  isScrollControlled: true,
-                  enableDrag: true,
-                  isDismissible: true,
-                  ignoreSafeArea: false,
-                );
+                // Get.bottomSheet(
+                //   EditAdressForm(addressController: addressController),
+                //   isScrollControlled: true,
+                //   enableDrag: true,
+                //   isDismissible: true,
+                //   ignoreSafeArea: false,
+                // );
+                Get.to(
+                    () => EditAdressForm(addressController: addressController),
+                    transition: Transition.rightToLeft);
               },
             ),
             IconButton(

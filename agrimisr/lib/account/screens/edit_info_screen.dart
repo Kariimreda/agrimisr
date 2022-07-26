@@ -59,7 +59,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
 
                                       try {
                                         final response =
-                                            await Api().dio.get('');
+                                            await Api().dio.get('/sdkdjf');
                                         print(response);
                                       } catch (e) {
                                         print(e);
