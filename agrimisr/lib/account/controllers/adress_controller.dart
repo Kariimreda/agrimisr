@@ -20,11 +20,12 @@ class AddressController extends GetxController {
   final firstAdress = TextEditingController().obs;
   final secondAdress = TextEditingController().obs;
   final company = TextEditingController().obs;
-  final country = TextEditingController().obs;
-  final governorate = TextEditingController().obs;
   final city = TextEditingController().obs;
   final postalCode = TextEditingController().obs;
   final virtualAddress = false.obs;
+
+  final countryController = ''.obs;
+  final governorateController = ''.obs;
 
   //getters for the text editing controllers
   TextEditingController get firstNameController => firstName.value;
@@ -32,10 +33,24 @@ class AddressController extends GetxController {
   TextEditingController get firstAdressController => firstAdress.value;
   TextEditingController get secondAdressController => secondAdress.value;
   TextEditingController get companyController => company.value;
-  TextEditingController get countryController => country.value;
-  TextEditingController get governorateController => governorate.value;
+
   TextEditingController get cityController => city.value;
   TextEditingController get postalCodeController => postalCode.value;
+
+  void newAdressForm({Address? address}) {
+    editAdressMode.value =
+        address == null ? EditAdressMode.newAddress : EditAdressMode.editAdress;
+    firstName.value.text = address?.firstName ?? '';
+    lastName.value.text = address?.lastName ?? '';
+    firstAdress.value.text = address?.firstAdress ?? '';
+    secondAdress.value.text = address?.secondAdress ?? '';
+    company.value.text = address?.company ?? '';
+    city.value.text = address?.city ?? '';
+    postalCode.value.text = address?.postalCode ?? '';
+    virtualAddress.value = address?.virtualAdress ?? false;
+    countryController.value = address?.country ?? '';
+    governorateController.value = address?.governorate ?? '';
+  }
 
   Future<void> getAdresses() async {
     isLoading.value = true;

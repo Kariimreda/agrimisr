@@ -97,6 +97,7 @@
       "Country":"الدولة",
       "PostalCode":"الرمز البريدي",
       "Governorate":"المحافظة",
+      "GovernorateError":"يجب إختيار المحافظة",
       "VirtualAddress":"العنوان الافتراضي"
     }
 

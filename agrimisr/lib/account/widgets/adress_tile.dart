@@ -1,5 +1,6 @@
 import 'package:agrimisr/account/controllers/adress_controller.dart';
 import 'package:agrimisr/account/models/address.dart';
+import 'package:agrimisr/account/widgets/edit_adress_form.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,16 @@ class _AdressTileState extends State<AdressTile> {
               icon: const Icon(Icons.edit),
               onPressed: () {
                 //edit the adress
+                //Reset the form
+                addressController.newAdressForm(address: address);
+                //open add/edit adress form in bottom sheet
+                Get.bottomSheet(
+                  EditAdressForm(addressController: addressController),
+                  isScrollControlled: true,
+                  enableDrag: true,
+                  isDismissible: true,
+                  ignoreSafeArea: false,
+                );
               },
             ),
             IconButton(

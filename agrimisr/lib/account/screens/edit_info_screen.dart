@@ -2,8 +2,12 @@ import 'package:agrimisr/account/controllers/account_controller.dart';
 import 'package:agrimisr/account/screens/adresses_screen.dart';
 import 'package:agrimisr/account/widgets/edit_account_form.dart';
 import 'package:agrimisr/account/widgets/edit_password_form.dart';
+import 'package:agrimisr/core/app_http_client/api_helper.dart';
+import 'package:agrimisr/core/app_http_client/app_http_client_exceptions.dart';
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_size.dart';
+import 'package:agrimisr/widgets/button_controllers.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +32,6 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
         child: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
           child: SizedBox(
-            
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +49,48 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                         ? EditPasswordForm(accountController: accountController)
                         : arguments == AccountFormType.editAdress
                             ? const AdressesScreen()
-                            : Container(),
+                            : Container(
+                                child: Center(
+                                  child: ButtonControllers()
+                                      .customRoundedLoaderButton(
+                                    context,
+                                    text: "Press ME",
+                                    onPressed: () async {
+                                      DioClient dioClient = DioClient();
+                                      // await dioClient.request(
+                                      //     HttpMethod.get, 'google.com');
+                                      try {
+                                        final response = await dioClient.client
+                                            .get('google.com');
+                                        printInfo(info: response.data);
+                                      } on AppHttpClientException<
+                                          DioError> catch (e) {
+                                        print(e.exception);
+                                        Get.dialog(
+                                          AlertDialog(
+                                            title: Text(
+                                              e.exception.message,
+                                              style: TextStyle(
+                                                fontSize: MySize.width * 0.035,
+                                              ),
+                                            ),
+                                            actions: [
+                                              ElevatedButton(
+                                                child: const Text('Ok'),
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ),
               ],
             ),
           ),

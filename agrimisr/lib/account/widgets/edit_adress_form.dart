@@ -6,7 +6,7 @@ import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' show Obx;
+import 'package:get/get.dart' hide Trans;
 
 class EditAdressForm extends StatefulWidget {
   const EditAdressForm({
@@ -26,10 +26,6 @@ class _EditAdressFormState extends State<EditAdressForm> {
     final addressController = widget.addressController;
     //create 2 keys for the form
     final formKey = GlobalKey<FormState>();
-
-    String countryValue = "";
-    String stateValue = "";
-    String cityValue = "";
 
     return Scaffold(
       body: Obx(
@@ -124,26 +120,25 @@ class _EditAdressFormState extends State<EditAdressForm> {
                       child: CSCPicker(
                         showCities: false,
                         countryDropdownLabel: 'Settings.Address.Country'.tr(),
-                        onCityChanged: (_) {},
                         stateDropdownLabel: 'Settings.Address.Governorate'.tr(),
+                        currentCountry:
+                            addressController.countryController.value == ''
+                                ? null
+                                : addressController.countryController.value,
+                        currentState:
+                            addressController.governorateController.value == ''
+                                ? null
+                                : addressController.governorateController.value,
+
+                        defaultCountry: DefaultCountry.Egypt,
 
                         ///triggers once country selected in dropdown
-                        onCountryChanged: (value) {
-                          countryValue = value;
-                          setState(() {
-                            addressController.countryController.text = value;
-                          });
-                        },
+                        onCountryChanged: onCountryChanged,
+                        onCityChanged: onCityChanged,
+                        flagState: CountryFlag.DISABLE,
 
                         ///triggers once state selected in dropdown
-                        onStateChanged: (value) {
-                          if (value == null) return;
-                          stateValue = value;
-                          setState(() {
-                            addressController.governorateController.text =
-                                value;
-                          });
-                        },
+                        onStateChanged: onGovChanged,
                       ),
                     ),
                     SizedBox(height: MySize.height * 0.01),
@@ -165,11 +160,35 @@ class _EditAdressFormState extends State<EditAdressForm> {
     );
   }
 
+  //on gov changed and on country  changed
+  void onGovChanged(String? value) {
+    widget.addressController.governorateController.value = value ?? '';
+  }
+
+  void onCountryChanged(String value) {
+    widget.addressController.countryController.value = value;
+  }
+
+  void onCityChanged(String? value) {
+    return;
+  }
+
   //on pressed function for login button
   void editInfo(
     final formKey,
     final AddressController addressController,
-  ) {
+  ) async {
+    if (addressController.governorateController.value == '' ||
+        addressController.governorateController.value ==
+            'Settings.Address.Governorate'.tr()) {
+      Get.dialog(
+        AlertDialog(
+          title: Text('Settings.Address.Governorate'.tr()),
+          content: Text('Settings.Address.GovernorateError'.tr()),
+        ),
+      );
+      return;
+    }
     //validate all using form keys
     if (formKey.currentState!.validate()) {}
   }

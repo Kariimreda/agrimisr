@@ -91,6 +91,7 @@
             "Country": "Country",
             "PostalCode": "Postal Code",
             "Governorate": "Governorate",
+            "GovernorateError": "Governorate is required",
             "VirtualAddress": "Virtual Address"
           }
     }

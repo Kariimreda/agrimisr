@@ -1,4 +1,3 @@
-import 'package:agrimisr/account/controllers/account_controller.dart';
 import 'package:agrimisr/account/controllers/adress_controller.dart';
 import 'package:agrimisr/account/widgets/adress_tile.dart';
 import 'package:agrimisr/account/widgets/edit_adress_form.dart';
@@ -19,65 +18,55 @@ class AdressesScreen extends StatefulWidget {
 }
 
 class _AdressesScreenState extends State<AdressesScreen> {
+  final addressController = Get.put(AddressController());
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      addressController.getAdresses();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     //create 2 keys for the form
     final formKey = GlobalKey<FormState>();
-    final addressController = Get.put(AddressController());
 
-    return FutureBuilder(
-      future: addressController.getAdresses(),
-      builder: (context, snapshot) {
-        return Obx(
-          () => addressController.isLoading.value
-              ? const Center(
-                  child: CircularProgressIndicator(
-                  color: MyColors.primaryDark,
-                ))
-              : Column(
-                  children: [
-                    ButtonControllers().customRoundedLoaderButton(
-                      context,
-                      onPressed: () {
-                        //open add/edit adress form in bottom sheet
-                        Get.bottomSheet(
-                          EditAdressForm(addressController: addressController),
-                          isScrollControlled: true,
-                          enableDrag: true,
-                          isDismissible: true,
-                          ignoreSafeArea: false,
-                        );
-                      },
-                      text: 'Settings.AddAddress'.tr(),
-                    ),
-                    SizedBox(height: MySize.height * 0.02),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      clipBehavior: Clip.hardEdge,
-                      itemBuilder: (context, index) {
-                        return AdressTile(
-                          index: index,
-                          addressController: addressController,
-                        );
-                      },
-                      itemCount: addressController.adresses.length,
-                    ),
-                  ],
-                ),
-        );
-      },
-    );
-  }
-
-  //on pressed function for login button
-  void editPassword(
-    final formKey,
-    final AccountController accountController,
-  ) {
-    //validate all using form keys
-    if (formKey.currentState!.validate()) {
-      accountController.editPassword();
+    void buttonPressed() {
+      //Reset the form
+      addressController.newAdressForm();
+      //open add/edit adress form in bottom sheet
+      Get.to(() => EditAdressForm(addressController: addressController));
     }
+
+    return Obx(
+      () => addressController.isLoading.value
+          ? const Center(
+              child: CircularProgressIndicator(
+              color: MyColors.primaryDark,
+            ))
+          : Column(
+              children: [
+                ButtonControllers().customRoundedLoaderButton(
+                  context,
+                  onPressed: buttonPressed,
+                  text: 'Settings.AddAddress'.tr(),
+                ),
+                SizedBox(height: MySize.height * 0.02),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  clipBehavior: Clip.hardEdge,
+                  itemBuilder: (context, index) {
+                    return AdressTile(
+                      index: index,
+                      addressController: addressController,
+                    );
+                  },
+                  itemCount: addressController.adresses.length,
+                ),
+              ],
+            ),
+    );
   }
 }
