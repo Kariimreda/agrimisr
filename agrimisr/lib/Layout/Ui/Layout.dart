@@ -18,11 +18,6 @@ class _LayoutState extends State<Layout> {
   var darwertext = ButtonControllers().drawerTextButton;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Obx(() => SafeArea(
           child: Scaffold(

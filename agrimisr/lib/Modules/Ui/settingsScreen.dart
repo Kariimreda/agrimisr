@@ -239,19 +239,3 @@ class _SettingsState extends State<Settings> {
         ));
   }
 }
-// Get.dialog(
-// AlertDialog(
-// title: Text('No Internet Connection !'),
-// actions: [
-// Center(
-// child: TextButton(
-// child: Text('Reload',
-// style: const TextStyle(color: MyColors.error)),
-// onPressed: () {
-// RestartWidget.restartApp(context);
-// },
-// ),
-// ),
-// ],
-// ),
-// );
