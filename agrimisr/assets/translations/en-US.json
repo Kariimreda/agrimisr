@@ -1,7 +1,6 @@
-
 {
-    "Auth":{
-        "Login":{
+    "Auth": {
+        "Login": {
             "Email": "Phone Number or Email",
             "Password": "Password",
             "Login": "Login",
@@ -12,7 +11,7 @@
             "CheckEmail": "Check your email for a link to reset your password.",
             "ContinueAsGuest": "Continue As Guest"
         },
-        "Signup":{
+        "Signup": {
             "Email": "Email",
             "Phone": "Phone Number",
             "FirstName": "First Name",
@@ -22,14 +21,14 @@
             "Password": "Password",
             "ConfirmPassword": "Confirm Password",
             "Pin": "PIN",
-            "Policy1":"I agree to the ",
-            "Policy2":"Privacy Policy",
+            "Policy1": "I agree to the ",
+            "Policy2": "Privacy Policy",
             "Error": "Error",
             "AgreePolicy": "Must agree to Privacy Policy",
             "PasswordMismatch": "Password Mismatch"
         }
     },
-    "Cart" :{
+    "Cart": {
         "Cart": "Cart",
         "Checkout": "Checkout",
         "Empty": "Your cart is empty",
@@ -38,15 +37,13 @@
         "PricePerItem": "Price Per Item",
         "Total": "Total",
         "Quantity": "Quantity",
-        "Currency":"$",
-        "Remove" : "Remove",
-        "Validation":{
+        "Currency": "$",
+        "Remove": "Remove",
+        "Validation": {
             "Quantity": "Quantity not correct",
             "QuantMustBeEqualOrGreaterThan": "equal or greater than ",
             "QuantMustBeEqualOrLessThan": "equal or less than "
         }
-
-
     },
     "Home": {
         "Home": "Home",
@@ -70,21 +67,21 @@
         "My account": "My account",
         "Orders": "Orders",
         "Loc": "Smart Village,Km 28 Cairo/Alexandria Desert Road,Building No. A3-B82",
-        "Remove" : "Remove",
+        "Remove": "Remove",
         "AreYouSure": "Are you sure?",
         "Cancel": "Cancel",
         "AddAddress": "Add Address",
-        "Account":{
+        "Account": {
             "Welcome": "Welcome",
-            "EditAccountInfo":  "Edit Account Information",
-            "ChangePassword":   "Change Password",
-            "ChangeAdresses":   "Edit Addresses",           
-            "ChangeWishlist":   "Edit Wishlist"
-          },
-          "Address":{
+            "EditAccountInfo": "Edit Account Information",
+            "ChangePassword": "Change Password",
+            "ChangeAdresses": "Edit Addresses",
+            "ChangeWishlist": "Edit Wishlist"
+        },
+        "Address": {
             "FirstName": "First Name",
             "LastName": "Last Name",
-            "Company":"Company",
+            "Company": "Company",
             "FirstAddress": "First Address",
             "SecondAddress": "Second Address",
             "City": "City",
@@ -93,6 +90,18 @@
             "Governorate": "Governorate",
             "GovernorateError": "Governorate is required",
             "VirtualAddress": "Virtual Address"
-          }
+        }
+    },
+    "Product": {
+        "AddToCart": "Add to Cart",
+        "Seller": "Seller",
+        "PricePerItem": "Price Per Item",
+        "Weight": "Weight",
+        "QuantityAvailable": "Quantity Available",
+        "ProductMinQuantity": "Product Minimum Quantity",
+        "Ratings": "Ratings",
+        "Quantity": "Quantity",
+        "ItemAddedToCart": "Item added to cart",
+        "CartHasBeenUpdated": "Cart has been updated"
     }
 }

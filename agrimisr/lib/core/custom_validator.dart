@@ -78,6 +78,37 @@ class MyValidators {
     );
   }
 
+  //functions that return validators for the form fields
+  String? getQuantityValidators(String? value, int min, int max) {
+    if (value == null) {
+      return validationLocale?.required() ??
+          ValidationBuilder.globalLocale.required();
+    }
+
+    //make sure value is a number integer  and between min and max
+    if (int.tryParse(value) != null &&
+        int.parse(value) >= min &&
+        int.parse(value) <= max) {
+      return null;
+    }
+
+    //if not int
+    if (int.tryParse(value) == null) {
+      return 'Cart.Validation.Quantity'.tr();
+    }
+
+    if (int.parse(value) < min) {
+      return '${'Cart.Validation.QuantMustBeEqualOrGreaterThan'.tr()} $min';
+    }
+
+    if (int.parse(value) > max) {
+      return '${'Cart.Validation.QuantMustBeEqualOrLessThan'.tr()} $max';
+    }
+
+    //if not a valid int return error message
+    return 'Cart.Validation.Quantity'.tr();
+  }
+
   ValidationBuilder getPasswordValidator() {
     //if locale is arabic, use custom locale, else set locale to null
 

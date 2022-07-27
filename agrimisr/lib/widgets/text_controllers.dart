@@ -180,19 +180,17 @@ class TextControllers {
                   validator: validator,
                   onChanged: onChanged ?? (value) {},
                   decoration: InputDecoration(
-                    // labelText: titleText ?? '',
+                    labelText: titleText,
                     counterText: '',
                     isDense: true,
                     counterStyle: const TextStyle(fontSize: 0),
                     contentPadding: contentPadding ?? EdgeInsets.zero,
                     border: InputBorder.none,
                     hintText: hintText,
-
                     hintStyle: TextStyle(
                       color: hintTextColor,
                       fontSize: hintFontSize,
                     ),
-
                     errorStyle: TextStyle(
                         color: MyColors.error, fontSize: hintFontSize),
                   ),
@@ -209,37 +207,87 @@ class TextControllers {
   Widget customTwoTextRow({
     String? titleText,
     String? text,
+    double? fontSize,
+    int? maxLines,
+    Color? titleTextColor,
+    Color? textColor,
   }) =>
       Padding(
         padding: MyPadding.hPadding,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               '${titleText ?? ''}${titleText != null ? ': ' : ''}',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: fontSize ?? 14,
                 fontWeight: FontWeight.bold,
+                color: titleTextColor,
               ),
             ),
             Expanded(
               child: Text(
                 text ?? '',
-                maxLines: 1,
+                maxLines: maxLines ?? 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: fontSize ?? 14,
+                  color: textColor,
                 ),
               ),
             ),
           ],
         ),
       );
+
+  Widget customTwoTextRowFlexible({
+    String? titleText,
+    String? text,
+    double? fontSize,
+    int? maxLines,
+    Color? textColor,
+  }) =>
+      Padding(
+        padding: MyPadding.hPadding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          mainAxisSize: MainAxisSize.min,
+          textBaseline: TextBaseline.alphabetic,
+          children: [
+            Text(
+              '${titleText ?? ''}${titleText != null ? ': ' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: fontSize ?? 14,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
+            ),
+            Flexible(
+              fit: FlexFit.loose,
+              child: Text(
+                text ?? '',
+                maxLines: maxLines ?? 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: fontSize ?? 14,
+                  color: textColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
   Widget customThreeTextRow({
     String? titleText,
     String? text,
     String? suffixText,
+    double? fontSize,
+    Color? textColor,
   }) =>
       Padding(
         padding: MyPadding.hPadding,
@@ -250,7 +298,7 @@ class TextControllers {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: MySize.width * 0.03,
+                fontSize: fontSize ?? MySize.width * 0.03,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -260,7 +308,8 @@ class TextControllers {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: MySize.width * 0.03,
+                  fontSize: fontSize ?? MySize.width * 0.03,
+                  color: textColor,
                 ),
               ),
             ),
@@ -269,7 +318,8 @@ class TextControllers {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: MySize.width * 0.03,
+                fontSize: fontSize ?? MySize.width * 0.03,
+                color: textColor,
                 fontWeight: FontWeight.bold,
               ),
             ),

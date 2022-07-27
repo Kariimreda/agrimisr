@@ -1,10 +1,14 @@
+import 'package:agrimisr/core/custom_validator.dart';
+import 'package:agrimisr/product/controllers/product_controller.dart';
 import 'package:agrimisr/product/models/product.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/widgets/button_controllers.dart';
+import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:like_button/like_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -17,9 +21,13 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   //arguments from the previous screen
   final product = Get.arguments as Product;
+  final productController = Get.put(ProductController());
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final qunat = product.min.obs;
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: false,
@@ -49,12 +57,18 @@ class _ProductScreenState extends State<ProductScreen> {
             Padding(
               padding: MyPadding.hPadding,
               child: LikeButton(
+                circleColor: const CircleColor(
+                    start: MyColors.secondary, end: MyColors.primary),
+                bubblesColor: const BubblesColor(
+                  dotPrimaryColor: MyColors.secondary,
+                  dotSecondaryColor: MyColors.primaryDark,
+                ),
                 likeBuilder: (bool isLiked) {
                   return Icon(
                     isLiked
                         ? Icons.favorite_rounded
                         : Icons.favorite_border_rounded,
-                    color: isLiked ? MyColors.error : MyColors.grey,
+                    color: isLiked ? MyColors.primary : MyColors.grey,
                     size: MySize.height * 0.035,
                   );
                 },
@@ -62,103 +76,167 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
           ],
         ),
-        body: Column(
-          children: <Widget>[
-            SizedBox(
-              height: MySize.height * 0.4,
-              width: MySize.width,
-              child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: MyPadding.hPadding,
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: SizedBox(
+            height: MySize.height,
+            child: Form(
+              key: formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FittedBox(
-                    child: Text(
-                      product.seller,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MySize.height * 0.025,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start,
+                  SizedBox(
+                    height: MySize.height * 0.4,
+                    width: MySize.width,
+                    child: Image.network(
+                      product.imageUrl,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: MyColors.primary,
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
                     ),
                   ),
-                  SizedBox(height: MySize.height * 0.01),
-                  FittedBox(
-                    child: Text(
-                      product.weight,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MySize.height * 0.025,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start,
-                    ),
+                  SizedBox(height: MySize.height * 0.02),
+                  TextControllers().customTwoTextRow(
+                    titleText: 'Product.Seller'.tr(),
+                    text: product.seller,
+                    fontSize: MySize.height * 0.025,
+                    maxLines: 2,
+                    textColor: MyColors.secondary,
                   ),
                   SizedBox(height: MySize.height * 0.01),
-                  FittedBox(
-                    child: Text(
-                      product.quantity.toString(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MySize.height * 0.025,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start,
+                  SizedBox(
+                    width: MySize.width,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextControllers().customTwoTextRowFlexible(
+                          titleText: 'Product.Weight'.tr(),
+                          text: product.weight,
+                          textColor: MyColors.grey,
+                        ),
+                        TextControllers().customTwoTextRowFlexible(
+                          titleText: 'Product.QuantityAvailable'.tr(),
+                          text: product.quantity.toString(),
+                          textColor: MyColors.grey,
+                        ),
+                        const Spacer(),
+                      ],
                     ),
                   ),
                   SizedBox(height: MySize.height * 0.01),
                   const Divider(),
-                  FittedBox(
-                    child: Text(
-                      product.price.toString(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MySize.height * 0.025,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start,
-                    ),
+                  SizedBox(height: MySize.height * 0.01),
+                  TextControllers().customThreeTextRow(
+                    titleText: 'Product.PricePerItem'.tr(),
+                    text: product.price.toString(),
+                    suffixText: 'Cart.Currency'.tr(),
+                    fontSize: MySize.height * 0.025,
                   ),
                   SizedBox(height: MySize.height * 0.01),
-                  const Divider(),
-                  FittedBox(
-                    child: Text(
-                      product.min.toString(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MySize.height * 0.025,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start,
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(MySize.height * 0.02),
+                      color: MyColors.grey!.withOpacity(0.1),
+                    ),
+                    child: TextControllers().customTwoTextRowFlexible(
+                      titleText: 'Product.ProductMinQuantity'.tr(),
+                      text: product.min.toString(),
+                      textColor: MyColors.grey,
                     ),
                   ),
+                  SizedBox(height: MySize.height * 0.02),
+                  TextControllers().customTextFormField(
+                    context,
+                    hintText: 'Product.Quantity'.tr(),
+                    titleText: 'Product.Quantity'.tr(),
+                    keyboardType: const TextInputType.numberWithOptions(
+                        decimal: false, signed: false),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (v) =>
+                        MyValidators.instance.getQuantityValidators(
+                      v,
+                      product.min,
+                      product.quantity,
+                    ),
+                    contentPadding: MyPadding.hPadding,
+                    controller: productController.quantityController.value,
+                    maxLines: 1,
+                    onChanged: (v) {
+                      //if v is null return
+                      //if v is not int return
+                      //if v is int and less than min return
+                      //if v is int and greater than quantity return
+
+                      if (v == null ||
+                          int.tryParse(v) is! int ||
+                          int.parse(v) < product.min ||
+                          int.parse(v) > product.quantity) {
+                        return;
+                      }
+                      productController.isQuantChanged.value = true;
+                      qunat.value = int.parse(v);
+                    },
+                    onEditingComplete: () {
+                      //close the keyboard
+                      FocusScope.of(context).unfocus();
+                    },
+                  ),
                   SizedBox(height: MySize.height * 0.01),
-                  Center(
-                    child: ButtonControllers().customRoundedLoaderButton(
-                      context,
-                      text: 'Add to cart',
-                      onPressed: () {},
+                  Obx(
+                    () => TextControllers().customThreeTextRow(
+                      titleText: 'Cart.Total'.tr(),
+                      text: !productController.isQuantChanged.value
+                          ? ' - '
+                          : (product.price * qunat.value)
+                              .toPrecision(2)
+                              .toString(),
+                      textColor: MyColors.secondary,
+                      fontSize: MySize.height * 0.023,
+                      suffixText: !productController.isQuantChanged.value
+                          ? ''
+                          : ' ${'Cart.Currency'.tr()} ',
+                    ),
+                  ),
+                  SizedBox(height: MySize.height * 0.05),
+                  Padding(
+                    padding: MyPadding.shPadding,
+                    child: Center(
+                      child: Obx(
+                        () => ButtonControllers().customRoundedLoaderButton(
+                          context,
+                          text: 'Product.AddToCart'.tr(),
+                          isLoading: productController.isLoading,
+                          onPressed: addToCart,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: MySize.height * 0.05),
                 ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void addToCart() {
+    if (formKey.currentState!.validate()) {
+      productController.addToCart();
+    }
   }
 }

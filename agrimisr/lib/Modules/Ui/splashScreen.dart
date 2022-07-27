@@ -24,7 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Get.offAndToNamed(ProductScreen.routeName,
         arguments: Product(
           id: 1,
-          imageUrl: 'https://picsum.photos/500',
+          imageUrl:
+              'https://agrimisr.com/image/cache/folder_98/0.03551100%201656332878-443x545.jpg',
           min: 4,
           price: 1023,
           quantity: 1000,
