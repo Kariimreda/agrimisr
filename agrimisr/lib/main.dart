@@ -5,6 +5,7 @@ import 'package:agrimisr/account/screens/my_account_screen.dart';
 import 'package:agrimisr/auth/screens/forgot_password_screen.dart';
 import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/auth/screens/signup_screen.dart';
+import 'package:agrimisr/category/screens/category_screen.dart';
 import 'package:agrimisr/core/locales.dart';
 import 'package:agrimisr/product/screens/product_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
@@ -86,6 +87,10 @@ class MyApp extends StatelessWidget {
               name: ProductScreen.routeName,
               page: () => const ProductScreen(),
             ),
+            GetPage(
+              name: CategoryScreen.routeName,
+              page: () => const CategoryScreen(),
+            )
           ],
         ),
       ),
