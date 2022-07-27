@@ -5,6 +5,7 @@ import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/main.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
+import 'package:agrimisr/widgets/restartAppWidget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;

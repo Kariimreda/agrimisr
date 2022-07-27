@@ -1,5 +1,6 @@
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
 import 'package:agrimisr/Modules/Ui/cartScreen.dart';
+import 'package:agrimisr/core/my_strings.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,32 +18,38 @@ class _HomePageState extends State<HomePage> {
   final controller = HomeController();
   @override
   Widget build(BuildContext context) {
-    final List<String> imgList = [
-      'https://agrimisr.com/image/cache/catalog/new-ui/Banner_Gold_onion-860x527.jpg',
-      'https://agrimisr.com/image/cache/Events_Banners/Group_92-860x527-860x527.jpg',
-      'https://agrimisr.com/image/cache/Events_Banners/Shoura_Banner-860x527.jpg',
-    ];
-    final List<Widget> imageSliders = imgList
+    final List<Widget> imageSliders = MyStrings.imgList
         .map((item) => Container(
               margin: EdgeInsets.all(MyPadding.m2Padding),
               child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   child: Stack(
                     children: <Widget>[
-                      Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                      Image.network(
+                        item,
+                        fit: BoxFit.cover,
+                        width: 1000.0,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: MyColors.primary,
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   )),
             ))
         .toList();
     return SafeArea(
       child: Scaffold(
-        body: RefreshIndicator(
-          color: Colors.white,
-          backgroundColor: MyColors.primary,
-          onRefresh: () async {
-            await controller.refresh();
-          },
-          child: SingleChildScrollView(
+          body: RefreshIndicator(
+        color: Colors.white,
+        backgroundColor: MyColors.primary,
+        onRefresh: () async {
+          await controller.refresh();
+        },
+        child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
@@ -133,17 +140,26 @@ class _HomePageState extends State<HomePage> {
                             ),
                             const Text('15ج'),
                             Row(
+                              textDirection: TextDirection.rtl,
                               children: [
                                 Image.asset('assets/images/add-cat.png'),
                                 SizedBox(
                                   width: Get.width * 0.02,
                                 ),
                                 Expanded(
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Get.to(const Cart());
-                                    },
-                                    child: const Icon(Icons.add_shopping_cart),
+                                  child: Obx(
+                                    () => ElevatedButton(
+                                      onPressed: () {
+                                        Get.snackbar(
+                                            'Added to cart', 'Check your Cart',
+                                            snackPosition:
+                                                SnackPosition.BOTTOM);
+                                        controller.IsSelected();
+                                      },
+                                      child: controller.isSelected.value
+                                          ? Icon(Icons.check)
+                                          : Icon(Icons.add_shopping_cart),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -156,10 +172,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )
               ],
-            ),
-          ),
-        ),
-      ),
+            )),
+      )),
     );
   }
 }
