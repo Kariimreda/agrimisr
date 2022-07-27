@@ -19,6 +19,7 @@ class _LayoutState extends State<Layout> {
 
   @override
   void initState() {
+    controller.checkForInternet();
     super.initState();
   }
 

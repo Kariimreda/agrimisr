@@ -7,6 +7,7 @@ import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/auth/screens/signup_screen.dart';
 import 'package:agrimisr/core/locales.dart';
 import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/widgets/restartAppWidget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -90,37 +91,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class RestartWidget extends StatefulWidget {
-  const RestartWidget({required this.child});
-
-  final Widget child;
-
-  static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<RestartWidgetState>()?.restartApp();
-  }
-
-  @override
-  RestartWidgetState createState() => RestartWidgetState();
-}
-
-class RestartWidgetState extends State<RestartWidget> {
-  Key key = UniqueKey();
-
-  void restartApp() {
-    setState(() {
-      key = UniqueKey();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return KeyedSubtree(
-      key: key,
-      child: widget.child,
     );
   }
 }

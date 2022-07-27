@@ -12,10 +12,13 @@ class HomeController extends GetxController {
   var hasInternet = false.obs;
   void checkForInternet() async {
     hasInternet.value = await InternetConnectionChecker().hasConnection;
+    if (!hasInternet.value)
+      Get.snackbar('No Internet connection', 'Try Again Later');
   }
 
-  void HasInternet() {
-    hasInternet.value != hasInternet.value;
+  RxBool isSelected = false.obs;
+  void IsSelected() {
+    isSelected.value = !isSelected.value;
   }
 
   List<BottomNavigationBarItem> bottomItems = [
@@ -31,6 +34,7 @@ class HomeController extends GetxController {
   List<Widget> screens = [const HomePage(), const Cart(), const Settings()];
 
   void changeBottomNav(int index) {
+    checkForInternet();
     currentIndex.value = index;
   }
 
