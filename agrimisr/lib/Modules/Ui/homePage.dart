@@ -1,6 +1,7 @@
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
-import 'package:agrimisr/Modules/Ui/cartScreen.dart';
 import 'package:agrimisr/core/my_strings.dart';
+import 'package:agrimisr/product/models/product.dart';
+import 'package:agrimisr/product/screens/product_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -129,10 +130,31 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Expanded(
-                              child: (Image.asset(
-                                'assets/images/0.20824100 1656946916-242x297.jpg',
-                                fit: BoxFit.cover,
-                              )),
+                              child: InkWell(
+                                onTap: () => {
+                                  Get.toNamed(
+                                    ProductScreen.routeName,
+                                    arguments: Product(
+                                      id: 1,
+                                      imageUrl:
+                                          'https://agrimisr.com/image/cache/folder_98/0.03551100%201656332878-443x545.jpg',
+                                      min: 4,
+                                      price: 1023,
+                                      quantity: 1000,
+                                      rating: 4.5,
+                                      seller:
+                                          ' شركة كفر الزيات للمبيدات و الكيماويات ',
+                                      title: 'مبيدات هيومازد ',
+                                      weight: '500g',
+                                      wishlisted: false,
+                                    ),
+                                  ),
+                                },
+                                child: (Image.asset(
+                                  'assets/images/0.20824100 1656946916-242x297.jpg',
+                                  fit: BoxFit.cover,
+                                )),
+                              ),
                             ),
                             const Text(
                               'معلج ملوحة نانو سال- 5 لتر',
@@ -157,8 +179,8 @@ class _HomePageState extends State<HomePage> {
                                         controller.IsSelected();
                                       },
                                       child: controller.isSelected.value
-                                          ? Icon(Icons.check)
-                                          : Icon(Icons.add_shopping_cart),
+                                          ? const Icon(Icons.check)
+                                          : const Icon(Icons.add_shopping_cart),
                                     ),
                                   ),
                                 ),
