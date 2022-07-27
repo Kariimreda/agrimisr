@@ -12,6 +12,8 @@ class ProductController extends GetxController {
 
   final isLoading = false.obs;
 
+  final isAddedToCart = false.obs;
+
   void addToCart() async {
     isLoading.value = true;
     await Future.delayed(const Duration(seconds: 2), () {
@@ -30,6 +32,7 @@ class ProductController extends GetxController {
         backgroundColor: MyColors.white.withOpacity(0.4),
       );
       isLoading.value = false;
+      isAddedToCart.value = true;
     });
   }
 }

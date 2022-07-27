@@ -37,7 +37,7 @@
         "PricePerItem": "Price Per Item",
         "Total": "Total",
         "Quantity": "Quantity",
-        "Currency": "$",
+        "Currency": "EGP",
         "Remove": "Remove",
         "Validation": {
             "Quantity": "Quantity not correct",

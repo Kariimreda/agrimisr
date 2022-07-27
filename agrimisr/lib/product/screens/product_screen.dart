@@ -1,3 +1,5 @@
+import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
+import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/core/custom_validator.dart';
 import 'package:agrimisr/product/controllers/product_controller.dart';
 import 'package:agrimisr/product/models/product.dart';
@@ -24,6 +26,8 @@ class _ProductScreenState extends State<ProductScreen> {
   final productController = Get.put(ProductController());
 
   final formKey = GlobalKey<FormState>();
+
+  final layoutController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +221,9 @@ class _ProductScreenState extends State<ProductScreen> {
                       child: Obx(
                         () => ButtonControllers().customRoundedLoaderButton(
                           context,
-                          text: 'Product.AddToCart'.tr(),
+                          text: productController.isAddedToCart.value
+                              ? 'Home.Cart'.tr()
+                              : 'Product.AddToCart'.tr(),
                           isLoading: productController.isLoading,
                           onPressed: addToCart,
                         ),
@@ -235,6 +241,11 @@ class _ProductScreenState extends State<ProductScreen> {
   }
 
   void addToCart() {
+    if (productController.isAddedToCart.value) {
+      Get.offAndToNamed(Layout.routeName);
+      layoutController.changeBottomNav(1);
+      return;
+    }
     if (formKey.currentState!.validate()) {
       productController.addToCart();
     }
