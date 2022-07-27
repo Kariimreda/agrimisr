@@ -4,9 +4,19 @@ import 'package:agrimisr/Modules/Ui/settingsScreen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeController extends GetxController {
   RxInt currentIndex = 0.obs;
+
+  var hasInternet = false.obs;
+  void checkForInternet() async {
+    hasInternet.value = await InternetConnectionChecker().hasConnection;
+  }
+
+  void HasInternet() {
+    hasInternet.value != hasInternet.value;
+  }
 
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(

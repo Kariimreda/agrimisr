@@ -1,12 +1,13 @@
+import 'dart:ui' as ui;
+
 import 'package:agrimisr/Modules/Controllers/cart_controller.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/widgets/text_controllers.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'dart:ui' as ui;
+import 'package:get/get.dart' hide Trans hide StringExtension;
 
 class CartTile extends StatefulWidget {
   const CartTile({Key? key, required this.index, required this.cartController})
@@ -126,7 +127,7 @@ class _CartTileState extends State<CartTile>
                                 ? child
                                 : const Center(
                                     child: CircularProgressIndicator(
-                                      color: MyColors.primaryDark,
+                                      color: MyColors.primary,
                                     ),
                                   );
                           },

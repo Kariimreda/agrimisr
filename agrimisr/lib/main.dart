@@ -12,12 +12,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await EasyLocalization.ensureInitialized();
-  // whenever your initialization is completed, remove the splash screen:
+  // hasInternet ? hasInternet = true : hasInternet = false;
+
   runApp(
     EasyLocalization(
       supportedLocales: MyLocales.supportedLocales,
@@ -26,7 +27,7 @@ void main() async {
       fallbackLocale: MyLocales.supportedLocales[0],
       startLocale: MyLocales.supportedLocales[0],
       child: Phoenix(
-        child: const MyApp(),
+        child: MyApp(),
       ),
     ),
   );
@@ -41,51 +42,53 @@ class MyApp extends StatelessWidget {
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: RestartWidget(
-        child: GetMaterialApp(
-          theme: ThemeData(
-            primarySwatch: MyColors.primaryMaterialColor.mdColor,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
+      child: OverlaySupport.global(
+        child: RestartWidget(
+          child: GetMaterialApp(
+            theme: ThemeData(
+              primarySwatch: MyColors.primaryMaterialColor.mdColor,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            initialRoute: SplashScreen.routeName,
+            getPages: [
+              GetPage(
+                name: LoginScreen.routeName,
+                page: () => const LoginScreen(),
+              ),
+              GetPage(
+                name: SignupScreen.routeName,
+                page: () => const SignupScreen(),
+              ),
+              GetPage(
+                name: ForgotPasswordScreen.routeName,
+                page: () => const ForgotPasswordScreen(),
+              ),
+              GetPage(
+                name: Layout.routeName,
+                page: () => const Layout(),
+              ),
+              GetPage(
+                name: SplashScreen.routeName,
+                page: () => const SplashScreen(),
+              ),
+              GetPage(
+                name: AccountScreen.routeName,
+                page: () => const AccountScreen(),
+              ),
+              GetPage(
+                name: EditInfoScreen.routeName,
+                page: () => const EditInfoScreen(),
+              ),
+              // GetPage(
+              //   name: InternetError.routeName,
+              //   page: () => InternetError(),
+              // ),
+            ],
           ),
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          debugShowCheckedModeBanner: false,
-          initialRoute: SplashScreen.routeName,
-          getPages: [
-            GetPage(
-              name: LoginScreen.routeName,
-              page: () => const LoginScreen(),
-            ),
-            GetPage(
-              name: SignupScreen.routeName,
-              page: () => const SignupScreen(),
-            ),
-            GetPage(
-              name: ForgotPasswordScreen.routeName,
-              page: () => const ForgotPasswordScreen(),
-            ),
-            GetPage(
-              name: Layout.routeName,
-              page: () => const Layout(),
-            ),
-            GetPage(
-              name: SplashScreen.routeName,
-              page: () => const SplashScreen(),
-            ),
-            GetPage(
-              name: AccountScreen.routeName,
-              page: () => const AccountScreen(),
-            ),
-            GetPage(
-              name: EditInfoScreen.routeName,
-              page: () => const EditInfoScreen(),
-            ),
-            GetPage(
-              name: ProductScreen.routeName,
-              page: () => const ProductScreen(),
-            ),
-          ],
         ),
       ),
     );
