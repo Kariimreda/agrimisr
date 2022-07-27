@@ -156,8 +156,9 @@ class _HomePageState extends State<HomePage> {
                                 )),
                               ),
                             ),
-                            const Text(
-                              'معلج ملوحة نانو سال- 5 لتر',
+                            Text(
+                              'معلج ملوحة نانو سال- 5 لتر' * 5,
+                              overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
                             const Text('15ج'),

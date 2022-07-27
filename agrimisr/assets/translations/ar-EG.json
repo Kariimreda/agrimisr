@@ -37,7 +37,7 @@
     "PricePerItem": "سعر الوحدة",
     "Total": "المجموع",
     "Quantity": "الكمية",
-    "Currency": "جم",
+    "Currency": "ج.م",
     "Remove": "إزالة",
     "Validation": {
       "Quantity": "الكمية غير صحيحة",

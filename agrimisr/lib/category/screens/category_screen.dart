@@ -2,7 +2,9 @@ import 'package:agrimisr/category/controllers/category_controller.dart';
 import 'package:agrimisr/category/models/category.dart';
 import 'package:agrimisr/category/screens/category_empty_screen.dart';
 import 'package:agrimisr/category/screens/category_error_screen.dart';
+import 'package:agrimisr/category/widgets/category_grid.dart';
 import 'package:agrimisr/style/my_colors.dart';
+import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,18 +30,37 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return SafeArea(
         child: Obx(
       () => Scaffold(
-        body: categoryController.categoryState.value == CategoryState.loading
-            ? const Center(child: CircularProgressIndicator())
-            : categoryController.categoryState.value == CategoryState.empty
-                ? const EmptyCategory()
-                : categoryController.categoryState.value == CategoryState.error
-                    ? const ErrorCategory()
-                    : Container(
-                        width: 100,
-                        height: 100,
-                        color: MyColors.primary,
-                      ),
-      ),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: Padding(
+              padding: MyPadding.hPadding,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () => Get.back(),
+                color: MyColors.primary,
+                iconSize: MySize.height * 0.03,
+              ),
+            ),
+            title: Text(
+              category.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: MyColors.primary,
+                fontSize: MySize.height * 0.025,
+              ),
+            ),
+            centerTitle: true,
+          ),
+          body: categoryController.categoryState.value == CategoryState.loading
+              ? const Center(child: CircularProgressIndicator())
+              : categoryController.categoryState.value == CategoryState.empty
+                  ? const EmptyCategory()
+                  : categoryController.categoryState.value ==
+                          CategoryState.error
+                      ? const ErrorCategory()
+                      : const CategoryGrid()),
     ));
   }
 }
