@@ -22,6 +22,7 @@ class _LayoutState extends State<Layout> {
   @override
   void initState() {
     controller.checkForInternet();
+    controller.getCategories();
     super.initState();
   }
 
@@ -58,6 +59,28 @@ class _LayoutState extends State<Layout> {
                                             path: 'path'),
                                       )),
                                   child: const Text('أضافات الأعلاف')),
+                              Divider(
+                                color: MyColors.background,
+                              ),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(CategoryScreen.routeName,
+                                            arguments:
+                                                controller.categories[index]);
+                                      },
+                                      child: Text(
+                                          controller.categories[index].title),
+                                    ),
+                                  );
+                                },
+                                itemCount: controller.categories.length,
+                              ),
                               Divider(
                                 color: MyColors.background,
                               ),

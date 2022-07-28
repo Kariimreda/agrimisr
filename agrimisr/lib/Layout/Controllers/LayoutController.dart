@@ -1,6 +1,7 @@
 import 'package:agrimisr/Modules/Ui/cartScreen.dart';
 import 'package:agrimisr/Modules/Ui/homePage.dart';
 import 'package:agrimisr/Modules/Ui/settingsScreen.dart';
+import 'package:agrimisr/category/models/category.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
@@ -9,11 +10,43 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 class HomeController extends GetxController {
   RxInt currentIndex = 0.obs;
 
+  final categories = <Category>[].obs;
+  final isLoading = false.obs;
+
   var hasInternet = false.obs;
   void checkForInternet() async {
     hasInternet.value = await InternetConnectionChecker().hasConnection;
-    if (!hasInternet.value)
+    if (!hasInternet.value) {
       Get.snackbar('No Internet connection', 'Try Again Later');
+    }
+  }
+
+  void getCategories() async {
+    isLoading.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    categories.value = [
+      Category(
+        id: 1,
+        title: 'المقاسات',
+        path: 'size',
+      ),
+      Category(
+        id: 2,
+        title: 'الألوان',
+        path: 'color',
+      ),
+      Category(
+        id: 3,
+        title: 'الأنواع',
+        path: 'type',
+      ),
+      Category(
+        id: 4,
+        title: 'الأصناف',
+        path: 'product',
+      ),
+    ];
+    isLoading.value = false;
   }
 
   RxBool isSelected = false.obs;
