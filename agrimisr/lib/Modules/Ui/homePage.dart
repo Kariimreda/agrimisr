@@ -172,11 +172,18 @@ class _HomePageState extends State<HomePage> {
                                   child: Obx(
                                     () => ElevatedButton(
                                       onPressed: () {
-                                        Get.snackbar(
-                                            'Added to cart', 'Check your Cart',
-                                            snackPosition:
-                                                SnackPosition.BOTTOM);
+                                        //InternetChecker().checkForInternet();
                                         controller.IsSelected();
+
+                                        controller.isSelected.value
+                                            ? Get.snackbar('Added to cart',
+                                                'Check your Cart',
+                                                snackPosition:
+                                                    SnackPosition.BOTTOM)
+                                            : Get.snackbar(
+                                                'Removed from cart', '',
+                                                snackPosition:
+                                                    SnackPosition.BOTTOM);
                                       },
                                       child: controller.isSelected.value
                                           ? const Icon(Icons.check)

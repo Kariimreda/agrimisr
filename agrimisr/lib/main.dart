@@ -1,3 +1,4 @@
+import 'package:agrimisr/InternetChecker/Screen.dart';
 import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/Modules/Ui/splashScreen.dart';
 import 'package:agrimisr/account/screens/edit_info_screen.dart';
@@ -90,7 +91,11 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: CategoryScreen.routeName,
               page: () => const CategoryScreen(),
-            )
+            ),
+            GetPage(
+                name: NoInternetConnection.routeName,
+                page: () => const NoInternetConnection(),
+                transition: Transition.downToUp),
           ],
         ),
       ),
