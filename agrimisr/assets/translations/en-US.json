@@ -103,5 +103,9 @@
         "Quantity": "Quantity",
         "ItemAddedToCart": "Item added to cart",
         "CartHasBeenUpdated": "Cart has been updated"
-    }
+    },
+    "Connection": {
+        "NoConnection": "No Internet Connection",
+        "TryAgain": "Try Again"
+      }
 }

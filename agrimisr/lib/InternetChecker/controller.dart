@@ -7,10 +7,10 @@ class InternetChecker extends GetxController {
   void checkForInternet() async {
     hasInternet.value = await InternetConnectionChecker().hasConnection;
     if (!hasInternet.value) {
-      Get.snackbar(
-        'No Internet Connection',
-        'Check your connectivity and try again',
-      );
+      // Get.snackbar(
+      //   'No Internet Connection',
+      //   'Check your connectivity and try again',
+      // );
       Get.offAllNamed(NoInternetConnection.routeName);
     }
   }

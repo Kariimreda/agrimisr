@@ -13,6 +13,7 @@ import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/widgets/restartAppWidget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +21,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   // whenever your initialization is completed, remove the splash screen:
   runApp(
     EasyLocalization(

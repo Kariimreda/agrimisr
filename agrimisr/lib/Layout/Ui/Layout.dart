@@ -23,8 +23,8 @@ class _LayoutState extends State<Layout> {
 
   @override
   void initState() {
-    controller.getCategories();
     internetController.checkForInternet();
+    controller.getCategories();
     super.initState();
   }
 

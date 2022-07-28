@@ -1,8 +1,9 @@
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:agrimisr/widgets/restartAppWidget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 
 class NoInternetConnection extends StatefulWidget {
   const NoInternetConnection({Key? key}) : super(key: key);
@@ -33,10 +34,10 @@ class _NoInternetConnectionState extends State<NoInternetConnection> {
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               child: Text(
-                'No Internet Connection',
-                style: TextStyle(
+                'Connection.NoConnection'.tr(),
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -44,9 +45,10 @@ class _NoInternetConnectionState extends State<NoInternetConnection> {
             ),
             Expanded(
                 child: TextButton(
-              child: const Text(
-                'Try Again',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              child: Text(
+                'Connection.TryAgain'.tr(),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 RestartWidget.restartApp(Get.context!);
