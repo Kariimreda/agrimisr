@@ -80,7 +80,7 @@ class CategoryController extends GetxController {
         wishlisted: false,
       ),
       Product(
-        id: 5,
+        id: 6,
         imageUrl: 'https://picsum.photos/1000?random=5',
         min: 4,
         price: 1,
@@ -92,7 +92,7 @@ class CategoryController extends GetxController {
         wishlisted: false,
       ),
       Product(
-        id: 5,
+        id: 7,
         imageUrl: 'https://picsum.photos/1000?random=6',
         min: 4,
         price: 1,

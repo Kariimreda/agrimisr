@@ -62,34 +62,42 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: SignupScreen.routeName,
               page: () => const SignupScreen(),
+              transition: Transition.leftToRightWithFade,
             ),
             GetPage(
               name: ForgotPasswordScreen.routeName,
               page: () => const ForgotPasswordScreen(),
+              transition: Transition.leftToRightWithFade,
             ),
             GetPage(
               name: Layout.routeName,
               page: () => const Layout(),
+              transition: Transition.downToUp,
             ),
             GetPage(
               name: SplashScreen.routeName,
               page: () => const SplashScreen(),
+              transition: Transition.fade,
             ),
             GetPage(
               name: AccountScreen.routeName,
               page: () => const AccountScreen(),
+              transition: Transition.downToUp,
             ),
             GetPage(
               name: EditInfoScreen.routeName,
               page: () => const EditInfoScreen(),
+              transition: Transition.downToUp,
             ),
             GetPage(
               name: ProductScreen.routeName,
               page: () => const ProductScreen(),
+              transition: Transition.zoom,
             ),
             GetPage(
               name: CategoryScreen.routeName,
               page: () => const CategoryScreen(),
+              transition: Transition.downToUp,
             )
           ],
         ),

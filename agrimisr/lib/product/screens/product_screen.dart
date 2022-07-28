@@ -91,24 +91,27 @@ class _ProductScreenState extends State<ProductScreen> {
                   SizedBox(
                     height: MySize.height * 0.4,
                     width: MySize.width,
-                    child: Image.network(
-                      product.imageUrl,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: MyColors.primary,
-                          ),
-                        );
-                      },
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
+                    child: Hero(
+                      tag: product.id,
+                      child: Image.network(
+                        product.imageUrl,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: MyColors.primary,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(height: MySize.height * 0.02),

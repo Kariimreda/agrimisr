@@ -1,5 +1,4 @@
 import 'package:agrimisr/category/controllers/category_controller.dart';
-import 'package:agrimisr/product/models/product.dart';
 import 'package:agrimisr/product/screens/product_screen.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -32,30 +31,21 @@ class _CategoryTileState extends State<CategoryTile> {
               onTap: () => {
                 Get.toNamed(
                   ProductScreen.routeName,
-                  arguments: Product(
-                    id: 1,
-                    imageUrl:
-                        'https://agrimisr.com/image/cache/folder_98/0.03551100%201656332878-443x545.jpg',
-                    min: 4,
-                    price: 1023,
-                    quantity: 1000,
-                    rating: 4.5,
-                    seller: ' شركة كفر الزيات للمبيدات و الكيماويات ',
-                    title: 'مبيدات هيومازد ',
-                    weight: '500g',
-                    wishlisted: false,
-                  ),
+                  arguments: categoryController.products[index],
                 ),
               },
               child: Center(
                 child: ClipRect(
                   clipBehavior: Clip.hardEdge,
-                  child: (Image.network(
-                    categoryController.products[index].imageUrl,
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                  )),
+                  child: Hero(
+                    tag: categoryController.products[index].id,
+                    child: (Image.network(
+                      categoryController.products[index].imageUrl,
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    )),
+                  ),
                 ),
               ),
             ),
