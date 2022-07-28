@@ -1,3 +1,4 @@
+import 'package:agrimisr/InternetChecker/controller.dart';
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
 import 'package:agrimisr/Modules/Ui/searchScreen.dart';
 import 'package:agrimisr/category/models/category.dart';
@@ -17,12 +18,13 @@ class Layout extends StatefulWidget {
 
 class _LayoutState extends State<Layout> {
   final controller = Get.put(HomeController());
+  final internetController = Get.put(InternetChecker());
   var darwertext = ButtonControllers().drawerTextButton;
 
   @override
   void initState() {
-    controller.checkForInternet();
     controller.getCategories();
+    internetController.checkForInternet();
     super.initState();
   }
 

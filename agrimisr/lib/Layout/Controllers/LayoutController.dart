@@ -1,3 +1,4 @@
+import 'package:agrimisr/InternetChecker/controller.dart';
 import 'package:agrimisr/Modules/Ui/cartScreen.dart';
 import 'package:agrimisr/Modules/Ui/homePage.dart';
 import 'package:agrimisr/Modules/Ui/settingsScreen.dart';
@@ -67,8 +68,8 @@ class HomeController extends GetxController {
   List<Widget> screens = [const HomePage(), const Cart(), const Settings()];
 
   void changeBottomNav(int index) {
-    checkForInternet();
     currentIndex.value = index;
+    InternetChecker().checkForInternet();
   }
 
   @override
