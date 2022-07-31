@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = MyStrings.imgList
@@ -26,17 +27,20 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   child: Stack(
                     children: <Widget>[
-                      Image.network(
-                        item,
-                        fit: BoxFit.cover,
-                        width: 1000.0,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: MyColors.primary,
-                            ),
-                          );
-                        },
+                      GestureDetector(
+                        onTap: () => Scaffold.of(context).openDrawer(),
+                        child: Image.network(
+                          item,
+                          fit: BoxFit.cover,
+                          width: 1000.0,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: MyColors.primary,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   )),
