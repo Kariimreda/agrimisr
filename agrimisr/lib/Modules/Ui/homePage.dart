@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       Image.asset(
                         'assets/images/Cms-1.jpg',
                         fit: BoxFit.cover,
-                        width: Get.width * 0.3,
+                        width: Get.width * 0.28,
                       ),
                       const SizedBox(
                         width: 10,
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                       Image.asset(
                         'assets/images/Cms-2.jpg',
                         fit: BoxFit.cover,
-                        width: Get.width * 0.3,
+                        width: Get.width * 0.28,
                       ),
                       const SizedBox(
                         width: 10,
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                       Image.asset(
                         'assets/images/Cms-3.jpg',
                         fit: BoxFit.cover,
-                        width: Get.width * 0.3,
+                        width: Get.width * 0.28,
                       ),
                       const SizedBox(
                         width: 10,
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                       Image.asset(
                         'assets/images/Cms-4.jpg',
                         fit: BoxFit.cover,
-                        width: Get.width * 0.3,
+                        width: Get.width * 0.28,
                       ),
                       const SizedBox(
                         width: 10,
