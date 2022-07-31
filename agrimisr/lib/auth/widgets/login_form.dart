@@ -1,3 +1,4 @@
+import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/auth/controllers/login_controller.dart';
 import 'package:agrimisr/auth/widgets/signup_text.dart';
 import 'package:agrimisr/core/custom_validator.dart';
@@ -7,7 +8,7 @@ import 'package:agrimisr/widgets/button_controllers.dart';
 import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' show Obx;
+import 'package:get/get.dart' hide Trans;
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -99,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
                     InkWell(
                       borderRadius: MyRadius.mCircularRadius,
                       onTap: () {
-                        print('Guest');
+                        Get.offAllNamed(Layout.routeName);
                       },
                       child: Padding(
                         padding: MyPadding.hPadding,

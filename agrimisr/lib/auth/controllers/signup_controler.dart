@@ -1,3 +1,4 @@
+import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
@@ -66,5 +67,6 @@ class SignupController extends GetxController {
     await Future.delayed(const Duration(seconds: 2));
     isLoading.value = false;
     print('Signup Success');
+    Get.offAllNamed(LoginScreen.routeName);
   }
 }
