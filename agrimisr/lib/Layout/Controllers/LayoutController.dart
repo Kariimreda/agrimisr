@@ -28,22 +28,42 @@ class HomeController extends GetxController {
     categories.value = [
       Category(
         id: 1,
-        title: 'المقاسات',
+        title: 'أضافات الأعلاف',
         path: 'size',
       ),
       Category(
         id: 2,
-        title: 'الألوان',
+        title: 'الأسمدة و المخصبات',
         path: 'color',
       ),
       Category(
         id: 3,
-        title: 'الأنواع',
+        title: 'مطهرات و كيماويات',
         path: 'type',
       ),
       Category(
         id: 4,
-        title: 'الأصناف',
+        title: 'المبيدات الزراعية',
+        path: 'product',
+      ),
+      Category(
+        id: 5,
+        title: 'البذور و الشتلات',
+        path: 'product',
+      ),
+      Category(
+        id: 6,
+        title: 'المعدات و الميكنة الزراعية',
+        path: 'product',
+      ),
+      Category(
+        id: 7,
+        title: 'أعلاف جاهزه مصنعه',
+        path: 'product',
+      ),
+      Category(
+        id: 7,
+        title: 'أدوية بيطريه',
         path: 'product',
       ),
     ];

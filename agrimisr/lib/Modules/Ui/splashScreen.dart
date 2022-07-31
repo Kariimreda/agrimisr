@@ -1,4 +1,4 @@
-import 'package:agrimisr/auth/screens/login_screen.dart';
+import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigaTo() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.offAndToNamed(LoginScreen.routeName);
+    Get.offAndToNamed(Layout.routeName);
   }
 
   @override

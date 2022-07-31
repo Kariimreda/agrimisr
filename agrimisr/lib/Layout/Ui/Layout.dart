@@ -1,7 +1,6 @@
 import 'package:agrimisr/InternetChecker/controller.dart';
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
 import 'package:agrimisr/Modules/Ui/searchScreen.dart';
-import 'package:agrimisr/category/models/category.dart';
 import 'package:agrimisr/category/screens/category_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/widgets/button_controllers.dart';
@@ -52,18 +51,6 @@ class _LayoutState extends State<Layout> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              InkWell(
-                                  onTap: (() => Get.toNamed(
-                                        CategoryScreen.routeName,
-                                        arguments: Category(
-                                            id: 1,
-                                            title: 'title',
-                                            path: 'path'),
-                                      )),
-                                  child: const Text('أضافات الأعلاف')),
-                              Divider(
-                                color: MyColors.background,
-                              ),
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),

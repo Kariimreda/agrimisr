@@ -33,7 +33,8 @@ class CategoryController extends GetxController {
       ),
       Product(
         id: 2,
-        imageUrl: 'https://picsum.photos/1000?random=1',
+        imageUrl:
+            'https://agrimisr.com/image/cache/mshtl-alkhlyj/Untitled-1-242x297.jpg',
         min: 4,
         price: 50,
         quantity: 1000,
@@ -45,7 +46,7 @@ class CategoryController extends GetxController {
       ),
       Product(
         id: 23,
-        imageUrl: 'https://picsum.photos/1000?random=2',
+        imageUrl: 'https://agrimisr.com/image/cache/keymanda/13-252x309.jpg',
         min: 4,
         price: 600,
         quantity: 1000,
@@ -57,7 +58,8 @@ class CategoryController extends GetxController {
       ),
       Product(
         id: 4,
-        imageUrl: 'https://picsum.photos/1000?random=3',
+        imageUrl:
+            'https://agrimisr.com/image/cache/folder_98/0.30453800%201656332856-252x309.jpg',
         min: 4,
         price: 5120,
         quantity: 1000,
@@ -69,7 +71,7 @@ class CategoryController extends GetxController {
       ),
       Product(
         id: 5,
-        imageUrl: 'https://picsum.photos/1000?random=4',
+        imageUrl: 'https://agrimisr.com/image/cache//1573735590-252x309.jpg',
         min: 4,
         price: 1,
         quantity: 1000,
@@ -81,7 +83,8 @@ class CategoryController extends GetxController {
       ),
       Product(
         id: 6,
-        imageUrl: 'https://picsum.photos/1000?random=5',
+        imageUrl:
+            'https://agrimisr.com/image/cache/catalog/product/_0004_Layer%203-252x309.jpg',
         min: 4,
         price: 1,
         quantity: 1000,
@@ -93,7 +96,8 @@ class CategoryController extends GetxController {
       ),
       Product(
         id: 7,
-        imageUrl: 'https://picsum.photos/1000?random=6',
+        imageUrl:
+            'https://agrimisr.com/image/cache/almktb-alfny-alzray-alhdyth/0.84881900%201646052843-252x309.jpg',
         min: 4,
         price: 1,
         quantity: 1000,
