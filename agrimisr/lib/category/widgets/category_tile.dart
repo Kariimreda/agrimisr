@@ -1,10 +1,11 @@
+import 'dart:ui' as ui;
+
 import 'package:agrimisr/category/controllers/category_controller.dart';
 import 'package:agrimisr/product/screens/product_screen.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
-import 'dart:ui' as ui;
 
 class CategoryTile extends StatefulWidget {
   const CategoryTile({Key? key, required this.index}) : super(key: key);
@@ -72,12 +73,22 @@ class _CategoryTileState extends State<CategoryTile> {
                 width: Get.width * 0.02,
               ),
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.snackbar('Added to cart', 'Check your Cart',
-                        snackPosition: SnackPosition.BOTTOM);
-                  },
-                  child: const Icon(Icons.add_shopping_cart),
+                child: Obx(
+                  () => ElevatedButton(
+                    onPressed: () {
+                      //InternetChecker().checkForInternet();
+                      categoryController.IsSelected();
+
+                      categoryController.isSelected.value
+                          ? Get.snackbar('Added to cart', 'Check your Cart',
+                              snackPosition: SnackPosition.BOTTOM)
+                          : Get.snackbar('Removed from cart', '',
+                              snackPosition: SnackPosition.BOTTOM);
+                    },
+                    child: categoryController.isSelected.value
+                        ? const Icon(Icons.check)
+                        : const Icon(Icons.add_shopping_cart),
+                  ),
                 ),
               ),
             ],

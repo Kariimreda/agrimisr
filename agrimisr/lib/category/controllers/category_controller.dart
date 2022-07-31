@@ -40,7 +40,7 @@ class CategoryController extends GetxController {
         quantity: 1000,
         rating: 4.5,
         seller: ' شركة كفر الزيات للمبيدات و الكيماويات ',
-        title: 'نخل برحى متر خشب', 
+        title: 'نخل برحى متر خشب',
         weight: '500g',
         wishlisted: false,
       ),
@@ -110,5 +110,10 @@ class CategoryController extends GetxController {
     ];
     categoryState.value = CategoryState.containsItems;
     isLoading.value = false;
+  }
+
+  RxBool isSelected = false.obs;
+  void IsSelected() {
+    isSelected.value = !isSelected.value;
   }
 }
