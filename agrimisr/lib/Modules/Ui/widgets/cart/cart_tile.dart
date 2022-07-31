@@ -122,13 +122,14 @@ class _CartTileState extends State<CartTile>
                         child: Image.network(
                           cartController.cartItems[index].imageUrl,
                           loadingBuilder: (context, child, loadingProgress) {
-                            return loadingProgress == null
-                                ? child
-                                : const Center(
-                                    child: CircularProgressIndicator(
-                                      color: MyColors.primaryDark,
-                                    ),
-                                  );
+                            if (loadingProgress == null) {
+                              return child;
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: MyColors.primary,
+                              ),
+                            );
                           },
                           fit: BoxFit.cover,
                         ),

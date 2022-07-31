@@ -20,10 +20,10 @@ class _CategoryGridState extends State<CategoryGrid> {
       child: Center(
         child: GridView.builder(
             physics: const BouncingScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.75,
-              crossAxisSpacing: 10,
+              crossAxisSpacing: MySize.width * 0.05,
               mainAxisSpacing: 10,
             ),
             itemCount: categoryController.products.length,

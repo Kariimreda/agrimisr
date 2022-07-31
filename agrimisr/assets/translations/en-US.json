@@ -1,5 +1,6 @@
 {
     "Auth": {
+        "Logout": "Logout",
         "Login": {
             "Email": "Phone Number or Email",
             "Password": "Password",

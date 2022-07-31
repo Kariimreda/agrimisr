@@ -1,11 +1,13 @@
 import 'package:agrimisr/InternetChecker/controller.dart';
 import 'package:agrimisr/Layout/Controllers/LayoutController.dart';
 import 'package:agrimisr/Modules/Ui/searchScreen.dart';
+import 'package:agrimisr/auth/screens/login_screen.dart';
 import 'package:agrimisr/category/screens/category_screen.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/widgets/button_controllers.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 
 class Layout extends StatefulWidget {
   const Layout({Key? key}) : super(key: key);
@@ -133,7 +135,13 @@ class _LayoutState extends State<Layout> {
                   const Divider(),
                   darwertext(context, text: 'خدمات الجماعيات الاهليه'),
                   const Divider(),
-                  darwertext(context, text: 'الارشاد')
+                  darwertext(context, text: 'الارشاد'),
+                  const Divider(),
+                  InkWell(
+                      onTap: () {
+                        Get.offAllNamed(LoginScreen.routeName);
+                      },
+                      child: darwertext(context, text: 'Auth.Logout'.tr()))
                 ],
               ),
             ),

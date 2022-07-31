@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                    itemCount: 100,
+                    itemCount: 7,
                   ),
                 )
               ],
