@@ -17,6 +17,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 
+/// The main app widget. The starting point of the app.
+///
+/// It contains the [GetMaterialApp] widget, which is a part of the
+/// [Get] State management Framework (GetX).
+///
+/// Before the app starts:
+///   * [SplashScreen] is displayed.
+///   * locale is initialized through the [EasyLocalization] plugin.
+///   * prefered orientation is set to [DeviceOrientation.portraitUp].
+///   * default [Locale] is 'ar'.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -40,6 +50,11 @@ void main() async {
   );
 }
 
+/// The main app widget. The starting point of the app.
+///
+/// * [ThemeData] is set with the app's primary swatch.
+/// * The app pages are set along with their transition animations.
+///
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 

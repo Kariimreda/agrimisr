@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' show Obx;
 
+/// A widget that shows a form to reset password.
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({
     Key? key,
     required this.loginController,
   }) : super(key: key);
 
+  /// a [LoginController] that manages login requests.
   final LoginController loginController;
 
   @override
@@ -23,7 +25,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
   @override
   Widget build(BuildContext context) {
     final loginController = widget.loginController;
-    //create 2 keys for the form
+    //form key used to validate the form.
     final formKey = GlobalKey<FormState>();
 
     return Obx(
@@ -69,13 +71,14 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     );
   }
 
-  //on pressed function for login button
+  /// resets the user password if the form is valid.
   void reset(
     final formKey,
     final loginController,
   ) {
     //validate all using form keys
     if (formKey.currentState!.validate()) {
+      //reset password.
       loginController.resetPassword();
     }
   }

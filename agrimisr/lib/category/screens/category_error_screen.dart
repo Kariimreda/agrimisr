@@ -5,6 +5,7 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+/// a widget that notifies the user that this category was not loaded successfully
 class ErrorCategory extends StatefulWidget {
   const ErrorCategory({Key? key}) : super(key: key);
 

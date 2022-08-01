@@ -7,12 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
 
+/// A Tile widget that represents an [Address].
 class AdressTile extends StatefulWidget {
   const AdressTile(
       {Key? key, required this.index, required this.addressController})
       : super(key: key);
 
+  /// index of the [Address] in [AddressController.adresses].
   final int index;
+
+  /// an [AddressController] that handles all [Address] related requests.
   final AddressController addressController;
   @override
   State<AdressTile> createState() => _AdressTileState();
@@ -22,6 +26,7 @@ class _AdressTileState extends State<AdressTile> {
   @override
   Widget build(BuildContext context) {
     final addressController = widget.addressController;
+    // the [Address] to be displayed.
     final Address address = addressController.adresses[widget.index];
     //return a tile with the adress information and a button to edit/remove it
     return Padding(
@@ -56,17 +61,7 @@ class _AdressTileState extends State<AdressTile> {
             IconButton(
               icon: const Icon(Icons.edit),
               onPressed: () {
-                //edit the adress
-                //Reset the form
                 addressController.newAdressForm(address: address);
-                //open add/edit adress form in bottom sheet
-                // Get.bottomSheet(
-                //   EditAdressForm(addressController: addressController),
-                //   isScrollControlled: true,
-                //   enableDrag: true,
-                //   isDismissible: true,
-                //   ignoreSafeArea: false,
-                // );
                 Get.to(
                     () => EditAdressForm(addressController: addressController),
                     transition: Transition.rightToLeft);
@@ -77,8 +72,8 @@ class _AdressTileState extends State<AdressTile> {
                 Icons.delete,
                 color: MyColors.error.withOpacity(0.75),
               ),
+              //delete the adress
               onPressed: () {
-                //delete the adress
                 //ask the user if he wants to delete the adress
                 Get.dialog(
                   AlertDialog(

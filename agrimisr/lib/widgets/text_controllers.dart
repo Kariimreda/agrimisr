@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 // import 'package:visit_egypt/Resources/sizes.dart';
 // import 'package:visit_egypt/utility/SizeConfig.dart';
 
+/// A Collection of Text Input Widgets.
 class TextControllers {
   TextControllers._internal();
 
@@ -16,7 +17,9 @@ class TextControllers {
 
   factory TextControllers() => _instance;
 
-  //Row with + and - buttons, and a text field to enter the number of items in between
+  /// Row with + and - buttons, and a text to show the number of items in between.
+  ///
+  /// **Should only be used in [Cart] Screen as it depends on [CartController].**
   Widget customPlusMinusFormField(
       final CartController cartController, final int index, final quantity) {
     final quant = cartController.cartItems[index].quantity.obs;
@@ -105,6 +108,7 @@ class TextControllers {
     );
   }
 
+  /// A Text Form Field with a thin box decoration.
   Widget customTextFormField(BuildContext context,
           {TextEditingController? controller,
           AutovalidateMode? autovalidateMode,
@@ -204,6 +208,10 @@ class TextControllers {
         ),
       );
 
+  /// A Text widget that displayes two texts, a tag and a body. It takes this form:
+  ///
+  /// [titleText] (tag) : [text] (body),
+  /// the body [text] expands to fill the [Row].
   Widget customTwoTextRow({
     String? titleText,
     String? text,
@@ -242,6 +250,11 @@ class TextControllers {
         ),
       );
 
+  /// A Text widget that displayes two texts, a tag and a body. It takes this form:
+  ///
+  /// [titleText] (tag) : [text] (body),
+  /// the body [text] Does not expand to fill the [Row], instead it is wrapped
+  /// in a [Flexible] widget. the tag is **Bold**.
   Widget customTwoTextRowFlexible({
     String? titleText,
     String? text,
@@ -282,6 +295,10 @@ class TextControllers {
         ),
       );
 
+  /// A Text widget that displayes three texts, a tag and a body and a suffix. It takes this form:
+  ///
+  /// [titleText] (tag) : [text] (body) [suffixText] (suffix),
+  /// the body [text] expands to fill the [Row], both the tag and the suffix are **Bold**.
   Widget customThreeTextRow({
     String? titleText,
     String? text,

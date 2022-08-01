@@ -7,8 +7,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 
+/// Represents a [Product].
 class CategoryTile extends StatefulWidget {
   const CategoryTile({Key? key, required this.index}) : super(key: key);
+
+  /// index of the [Product] in [CategoryController.products].
   final int index;
   @override
   State<CategoryTile> createState() => _CategoryTileState();

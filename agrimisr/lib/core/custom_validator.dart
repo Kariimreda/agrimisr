@@ -4,6 +4,7 @@ import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
 
+/// an extension to [ValidationBuilder] that implements password validation
 extension CustomValidationBuilder on ValidationBuilder {
   password({String? message, MyValidationLocale? validationLocale}) =>
       add((value) {
@@ -44,6 +45,16 @@ extension CustomValidationBuilder on ValidationBuilder {
       });
 }
 
+/// a class that returns needed validations.
+///
+/// it's used to get the validations for the current locale.
+/// to get a validator for a specific text field use:
+/// ```dart
+/// MyValidators.getEmailOrPhoneValidator(); //returns email or phone validator
+/// MyValidators.getEmailValidator(); //returns email validator
+/// MyValidators.getPhoneValidator(); //returns phone validator
+/// ```
+/// and so on...
 class MyValidators {
   MyValidators._privateConstructor() {
     localeController = Get.put(MyLocales());
@@ -65,6 +76,8 @@ class MyValidators {
   late String? validationLocaleName;
 
   //functions that return validators for the form fields
+
+  /// make sure that the value is a valid email address or phone number
   ValidationBuilder getEmailOrPhoneValidator() {
     return ValidationBuilder(
             localeName: validationLocaleName, locale: validationLocale)
@@ -78,7 +91,7 @@ class MyValidators {
     );
   }
 
-  //functions that return validators for the form fields
+  /// make sure that the [value] is a valid integer between [min] and [max] inclusive.
   String? getQuantityValidators(String? value, int min, int max) {
     if (value == null) {
       return validationLocale?.required() ??
@@ -109,6 +122,7 @@ class MyValidators {
     return 'Cart.Validation.Quantity'.tr();
   }
 
+  /// make sure that the value is a valid password
   ValidationBuilder getPasswordValidator() {
     //if locale is arabic, use custom locale, else set locale to null
 
@@ -117,7 +131,7 @@ class MyValidators {
         .password(validationLocale: validationLocale);
   }
 
-  //functions that return validators for the form fields
+  /// make sure that the value is a valid email address
   ValidationBuilder getEmailValidator() {
     return ValidationBuilder(
       localeName: validationLocaleName,
@@ -126,6 +140,7 @@ class MyValidators {
     ).email();
   }
 
+  /// make sure that the value is a valid phone number
   ValidationBuilder getPhoneValidator() {
     return ValidationBuilder(
             localeName: validationLocaleName, locale: validationLocale)
@@ -133,13 +148,14 @@ class MyValidators {
         .required();
   }
 
-  //Name validator
+  /// make sure that the value is not null, not empty and not whitespace
   ValidationBuilder getNameValidator() {
     return ValidationBuilder(
             localeName: validationLocaleName, locale: validationLocale)
         .required();
   }
 
+  /// make sure that the [value] is not null, and is equal to [SignupController.passwordController]
   String? getConfirmPasswordValidator(String? value, final signupController) {
     if (value == null) {
       return '';

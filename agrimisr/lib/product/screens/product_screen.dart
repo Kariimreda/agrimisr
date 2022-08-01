@@ -12,21 +12,29 @@ import 'package:get/get.dart' hide Trans;
 import 'package:like_button/like_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+/// A screen that displays product information and lets user add it to their cart
+/// with a certain quantity and wishlist the item.
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
 
+  /// a route Name used for navigation and transition animation.
   static const routeName = '/product';
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  //arguments from the previous screen
+  /// The [Product] that is displayed. it is retrieved from the previous screen as
+  /// route arguments.
   final product = Get.arguments as Product;
+
+  /// The [ProductController] that manages all [Product] requests.
   final productController = Get.put(ProductController());
 
+  /// a form key used to validate the form.
   final formKey = GlobalKey<FormState>();
 
+  /// The [HomeController], used to navigate to cart screen,
   final layoutController = Get.put(HomeController());
 
   @override
@@ -243,13 +251,16 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
+  /// Adds a [Product] to the user cart if values are valid.
   void addToCart() {
     if (productController.isAddedToCart.value) {
       Get.offAndToNamed(Layout.routeName);
       layoutController.changeBottomNav(1);
       return;
     }
+    //validate the form
     if (formKey.currentState!.validate()) {
+      // add product to cart
       productController.addToCart();
     }
   }

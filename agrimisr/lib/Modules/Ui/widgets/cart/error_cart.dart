@@ -5,6 +5,7 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+/// A widget that notifies the user that his cart was not loaded correctly.
 class ErrorCart extends StatefulWidget {
   const ErrorCart({Key? key}) : super(key: key);
 
@@ -14,6 +15,7 @@ class ErrorCart extends StatefulWidget {
 
 class _ErrorCartState extends State<ErrorCart>
     with SingleTickerProviderStateMixin {
+  /// animation used to show an error icon  goin up and down
   late final AnimationController controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,

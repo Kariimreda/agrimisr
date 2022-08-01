@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' hide Trans;
 
+/// a form to edit the [Address] of the user, or create a new one.
 class EditAdressForm extends StatefulWidget {
   const EditAdressForm({
     Key? key,
     required this.addressController,
   }) : super(key: key);
 
+  /// an [AddressController] that handles all [Address] related requests.
   final AddressController addressController;
 
   @override
@@ -24,7 +26,7 @@ class _EditAdressFormState extends State<EditAdressForm> {
   @override
   Widget build(BuildContext context) {
     final addressController = widget.addressController;
-    //create 2 keys for the form
+    //form key used to validate the form.
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
@@ -130,10 +132,12 @@ class _EditAdressFormState extends State<EditAdressForm> {
                                 ? null
                                 : addressController.governorateController.value,
                         defaultCountry: DefaultCountry.Egypt,
+
                         ///triggers once country selected in dropdown
                         onCountryChanged: onCountryChanged,
                         onCityChanged: onCityChanged,
                         flagState: CountryFlag.DISABLE,
+
                         ///triggers once state selected in dropdown
                         onStateChanged: onGovChanged,
                       ),
@@ -157,24 +161,29 @@ class _EditAdressFormState extends State<EditAdressForm> {
     );
   }
 
-  //on gov changed and on country  changed
+  /// [CSCPicker.onStateChanged] callback, sets [AddressController.governorateController] to the selected state.
   void onGovChanged(String? value) {
     widget.addressController.governorateController.value = value ?? '';
   }
 
+  /// [CSCPicker.onCountryChanged] callback, sets [AddressController.countryController] to the selected country.
   void onCountryChanged(String value) {
     widget.addressController.countryController.value = value;
   }
 
+  /// [CSCPicker.onCityChanged] callback, has no effect, however it is used
+  /// to avoid null exceptions in the [CSCPicker] widget.
   void onCityChanged(String? value) {
     return;
   }
 
-  //on pressed function for login button
+  /// Saves the user's [Address] information to the server if the form is valid.
+  /// If the form is invalid, it displays error text under form fields.
   void editInfo(
     final formKey,
     final AddressController addressController,
   ) async {
+    // if no governorate was selected, alert the user then return.
     if (addressController.governorateController.value == '' ||
         addressController.governorateController.value ==
             'Settings.Address.Governorate'.tr()) {
@@ -187,6 +196,8 @@ class _EditAdressFormState extends State<EditAdressForm> {
       return;
     }
     //validate all using form keys
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      // edit address.
+    }
   }
 }

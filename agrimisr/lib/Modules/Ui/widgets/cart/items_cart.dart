@@ -3,8 +3,11 @@ import 'package:agrimisr/Modules/Ui/widgets/cart/cart_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// A Screen that displays the [CartItem]s as cart tiles in a list view builder.
 class CartItems extends StatefulWidget {
   const CartItems({Key? key, required this.cartController}) : super(key: key);
+
+  /// The [CartController] that manages the cart.
   final CartController cartController;
   @override
   State<CartItems> createState() => _CartItemsState();

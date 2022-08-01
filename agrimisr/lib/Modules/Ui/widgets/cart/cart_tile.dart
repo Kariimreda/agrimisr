@@ -8,10 +8,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'dart:ui' as ui;
 
+/// A tile that represents a [CartItem].
 class CartTile extends StatefulWidget {
   const CartTile({Key? key, required this.index, required this.cartController})
       : super(key: key);
+
+  /// index of the [CartItem] in [CartController.cartItems].
   final int index;
+
+  /// The [CartController] that manages the cart.
   final CartController cartController;
 
   @override
@@ -20,6 +25,7 @@ class CartTile extends StatefulWidget {
 
 class _CartTileState extends State<CartTile>
     with SingleTickerProviderStateMixin {
+  /// Animation that shows a delete slide action.
   late final AnimationController controller = AnimationController(
     duration: const Duration(seconds: 3),
     vsync: this,
@@ -41,6 +47,7 @@ class _CartTileState extends State<CartTile>
     super.dispose();
   }
 
+  //show animation on the first cart item
   @override
   void initState() {
     super.initState();

@@ -2,6 +2,11 @@ import 'package:agrimisr/category/models/category.dart';
 import 'package:agrimisr/product/models/product.dart';
 import 'package:get/get.dart' hide Trans;
 
+/// Defines the State of the [Category]
+///   * [loading]: indicates that loading is in progress.
+///   * [empty]: idicates that there are no [Product]s in this [Category].
+///   * [error]: indicates that loading failed.
+///   * [containsItems]: indicates loading of [Product]s success.
 enum CategoryState {
   loading,
   empty,
@@ -9,14 +14,31 @@ enum CategoryState {
   containsItems,
 }
 
+/// A controller class that manages the [Category]s. extends [GetxController] class.
+///
+/// To get an instance of this class, use:
+/// ```dart
+/// final categoryController = Get.put(CategoryController()); //creates a new controller
+/// or
+/// final categoryController = Get.find<CategoryController>(); // finds an existing controller
+/// ```
 class CategoryController extends GetxController {
+  /// List of [Product] objects in this [Category].
   final products = <Product>[].obs;
+
+  /// indicates whether category is loading or not. used to show the loading indicator.
   final isLoading = false.obs;
+
+  /// The current [Category] state.
   final categoryState = CategoryState.loading.obs;
+
+  /// Get [Product]s from this [Category] from API.
   void getProducts(Category category) async {
+    //set the category state to loading to show the loading indicator
     categoryState.value = CategoryState.loading;
+    //dummy delay to simulate loading
     await Future.delayed(const Duration(seconds: 2));
-    // final path = category.path;
+    //  return some dummy products
     products.value = [
       Product(
         id: 1,
@@ -108,7 +130,9 @@ class CategoryController extends GetxController {
         wishlisted: false,
       ),
     ];
+    //set the category state to contains items to hide the loading indicator
     categoryState.value = CategoryState.containsItems;
+    // set loading to false to hide the loading indicator
     isLoading.value = false;
   }
 

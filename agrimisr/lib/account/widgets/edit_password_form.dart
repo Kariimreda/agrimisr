@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' show Obx;
 
+/// A form to edit an [Account] password.
 class EditPasswordForm extends StatefulWidget {
   const EditPasswordForm({
     Key? key,
     required this.accountController,
   }) : super(key: key);
 
+  /// an [AccountController] that handles all [Account] related requests.
   final AccountController accountController;
 
   @override
@@ -23,7 +25,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
   @override
   Widget build(BuildContext context) {
     final accountController = widget.accountController;
-    //create 2 keys for the form
+    // form key used to validate the form.
     final formKey = GlobalKey<FormState>();
 
     return Obx(
@@ -83,13 +85,15 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
     );
   }
 
-  //on pressed function for login button
+  /// Edits the [Account] password if the form is valid.
+  /// otherwise, show error text under form fields.
   void editPassword(
     final formKey,
     final AccountController accountController,
   ) {
     //validate all using form keys
     if (formKey.currentState!.validate()) {
+      //edit password.
       accountController.editPassword();
     }
   }

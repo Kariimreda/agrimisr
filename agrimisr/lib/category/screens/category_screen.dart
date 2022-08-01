@@ -8,19 +8,26 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// A Screen that displays a list of [Product]s in a [Category].
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({Key? key}) : super(key: key);
+
+  /// a  route Name used for navigation and transitions animations.
   static const String routeName = '/category';
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  //accepts the category passed ass a parameter from the previous screen
+  /// The [Category] of which its [Product]s are displayed. it is retrieved from
+  /// the previous screen as a route arguments.
   final Category category = Get.arguments;
+
+  /// The [CategoryController] that manages the category.
   final categoryController = Get.put(CategoryController());
   @override
   void initState() {
+    //get the products in this category
     categoryController.getProducts(category);
     super.initState();
   }

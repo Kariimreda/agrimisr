@@ -5,9 +5,12 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// a screen that allows the user to reset his password.
+/// It shows a [ForgotPasswordForm] widget.
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
+  /// a route Name used for navigating and transtion animations.
   static const String routeName = '/forgot_password';
 
   @override
@@ -15,6 +18,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  /// a [LoginController] that manages login requests.
   final loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {

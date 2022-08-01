@@ -10,12 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' hide Trans;
 
+/// a widget that shows a login form.
 class LoginForm extends StatefulWidget {
   const LoginForm({
     Key? key,
     required this.loginController,
   }) : super(key: key);
 
+  /// a [LoginController] that manages login requests.
   final LoginController loginController;
 
   @override
@@ -26,7 +28,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final loginController = widget.loginController;
-    //create 2 keys for the form
+    //form key used to validate the form.
     final formKey = GlobalKey<FormState>();
 
     return Obx(
@@ -125,13 +127,14 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  //on pressed function for login button
+  // logs in the user if the form is valid.
   void login(
     final formKey,
     final loginController,
   ) {
     //validate all using form keys
     if (formKey.currentState!.validate()) {
+      // log in user.
       loginController.login();
     }
   }

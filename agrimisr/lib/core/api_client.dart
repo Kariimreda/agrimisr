@@ -1,9 +1,14 @@
 import 'package:agrimisr/core/my_strings.dart';
 import 'package:dio/dio.dart';
 
+/// An API client singleton that handles all requests to the server.
+/// It uses the [Dio] library to handle all requests.
+/// It also handles most the error responses.
 class Api {
+  /// The [Dio] instance used to handle all requests.
   final dio = createDio();
-  final tokenDio = Dio(BaseOptions(baseUrl: MyStrings.baseUrl));
+
+  // final tokenDio = Dio(BaseOptions(baseUrl: MyStrings.baseUrl));
 
   Api._internal();
 
@@ -11,6 +16,9 @@ class Api {
 
   factory Api() => _singleton;
 
+  /// Creates a [Dio] instance with the [BaseOptions] that includes the baseUrl and timeouts.
+  ///
+  /// It also adds the [AppInterceptors] that handles the error responses.
   static Dio createDio() {
     var dio = Dio(
       BaseOptions(
@@ -28,7 +36,9 @@ class Api {
   }
 }
 
+/// An interceptor that handles the error responses from a [Dio] request.
 class AppInterceptors extends Interceptor {
+  /// The [Dio] instance used to handle all requests.
   final Dio dio;
 
   AppInterceptors(this.dio);

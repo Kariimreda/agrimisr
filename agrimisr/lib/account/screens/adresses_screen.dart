@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
 
+/// A Screen that shows a list of user addresses, allowning them to edit or create new ones.
+///
+/// Each [Address] is displayed as an [AdressTile] inside a list view builder.
 class AdressesScreen extends StatefulWidget {
   const AdressesScreen({
     Key? key,
@@ -18,9 +21,12 @@ class AdressesScreen extends StatefulWidget {
 }
 
 class _AdressesScreenState extends State<AdressesScreen> {
+  /// an [AddressController] that handles all [Address] related requests.
   final addressController = Get.put(AddressController());
+
   @override
   void initState() {
+    // once the screen is initialized, load the addresses from the server.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       addressController.getAdresses();
     });
@@ -29,13 +35,15 @@ class _AdressesScreenState extends State<AdressesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //create 2 keys for the form
+    // form key used for validating the form.
     final formKey = GlobalKey<FormState>();
 
+    // opens an address form meant for creating a new address.
+    // no address to edit was passed, thus the form is meant for creating a new address.
     void buttonPressed() {
-      //Reset the form
+      //clear any data in the form
       addressController.newAdressForm();
-      //open add/edit adress form in bottom sheet
+      //open the form
       Get.to(() => EditAdressForm(addressController: addressController));
     }
 

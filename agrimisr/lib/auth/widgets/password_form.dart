@@ -9,12 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' show Obx;
 
+/// a widget that shows a password reset form.
 class PasswordForm extends StatefulWidget {
   const PasswordForm({
     Key? key,
     required this.signupController,
   }) : super(key: key);
 
+  /// a [SignupController] that manages signup requests.
   final SignupController signupController;
 
   @override
@@ -26,7 +28,7 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     final signupController = widget.signupController;
 
-    //create 3 form keys, one for each form field except pin as it is optional
+    //form key used to validate the form.
     final registerFormKey = GlobalKey<FormState>();
 
     return Obx(
@@ -88,9 +90,12 @@ class _PasswordFormState extends State<PasswordForm> {
     );
   }
 
+  /// signup the user if the form is valid.
   void signUp(
       GlobalKey<FormState> registerFormKey, SignupController signupController) {
+    //validate all using form keys
     if (registerFormKey.currentState!.validate()) {
+      // sign up the user.
       signupController.signUp();
     }
   }

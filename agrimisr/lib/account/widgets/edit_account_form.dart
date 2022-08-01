@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' show Obx;
 
+/// A form to edit an [Account] info.
 class EditAccountForm extends StatefulWidget {
   const EditAccountForm({
     Key? key,
     required this.accountController,
   }) : super(key: key);
 
+  /// an [AccountController] that handles all [Account] related requests.
   final AccountController accountController;
 
   @override
@@ -23,7 +25,7 @@ class _EditAccountFormState extends State<EditAccountForm> {
   @override
   Widget build(BuildContext context) {
     final accountController = widget.accountController;
-    //create 2 keys for the form
+    //form key used to validate the form
     final formKey = GlobalKey<FormState>();
 
     return Obx(
@@ -43,8 +45,7 @@ class _EditAccountFormState extends State<EditAccountForm> {
                     keyboardType: TextInputType.name,
                     controller: accountController.firstNameController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator:
-                        MyValidators.instance.getNameValidator().build(),
+                    validator: MyValidators.instance.getNameValidator().build(),
                     hintText: 'Auth.Signup.FirstName'.tr(),
                     contentPadding: const EdgeInsets.only(bottom: 5),
                   ),
@@ -55,8 +56,7 @@ class _EditAccountFormState extends State<EditAccountForm> {
                     keyboardType: TextInputType.name,
                     controller: accountController.lastNameController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator:
-                        MyValidators.instance.getNameValidator().build(),
+                    validator: MyValidators.instance.getNameValidator().build(),
                     hintText: 'Auth.Signup.LastName'.tr(),
                     contentPadding: const EdgeInsets.only(bottom: 5),
                   ),
@@ -102,7 +102,8 @@ class _EditAccountFormState extends State<EditAccountForm> {
     );
   }
 
-  //on pressed function for login button
+  /// if the form is valid, it will call the [AccountController] to edit the [Account] info.
+  /// if the form is invalid, it will show a error text under Text Forms.
   void editInfo(
     final formKey,
     final AccountController accountController,

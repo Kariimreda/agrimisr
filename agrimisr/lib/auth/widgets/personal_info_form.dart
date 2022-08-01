@@ -7,12 +7,14 @@ import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+/// a widget that shows a personal info form.
 class PersonalInfoForm extends StatefulWidget {
   const PersonalInfoForm({
     Key? key,
     required this.signupController,
   }) : super(key: key);
 
+  /// a [SignupController] that manages signup requests.
   final SignupController signupController;
 
   @override
@@ -24,7 +26,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
   Widget build(BuildContext context) {
     final signupController = widget.signupController;
 
-    //create 3 form keys, one for each form field except email as it is optional
+    //form key used to validate the form.
     final registerFormKey = GlobalKey<FormState>();
 
     return ListView(
@@ -92,11 +94,13 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
     );
   }
 
-  //next button pressed
+  /// Moves the user to the next form if the form is valid.
   void nextStep(
       GlobalKey<FormState> formKey, SignupController signupController) {
+    //validate the form.
     if (formKey.currentState!.validate()) {
-      signupController.setLoginState(LoginState.password);
+      //move to next step.
+      signupController.setLoginState(SignUpState.password);
     }
   }
 }

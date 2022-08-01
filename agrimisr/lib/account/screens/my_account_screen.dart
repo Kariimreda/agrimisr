@@ -7,16 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 
+/// A screen that helps the user edit his account info or addresses,
+/// it presents the user with 4 buttons, one for each [AccountFormType] value.
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
 
+  /// a route Name used to navigate to this screen and for transition animations.
   static const String routeName = '/account';
   @override
   State<AccountScreen> createState() => _AccountScreenState();
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  //account controlelr
+  /// an [AccountController] used to get the user's account information.
   final accountController = Get.put(AccountController());
   @override
   Widget build(BuildContext context) {
@@ -136,8 +139,10 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  //method to go to the next screen
+  /// Navigates to the [EditInfoScreen], and depending on
+  /// the [AccountFormType] value, its shows different forms.
   void goToNextScreen(AccountFormType type) {
+    Get.back();
     Get.toNamed(EditInfoScreen.routeName, arguments: type);
   }
 }

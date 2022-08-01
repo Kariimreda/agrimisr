@@ -6,9 +6,12 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// a screen that allows the user to signup.
+/// It shows a [PersonalInfoForm] widget and a [PasswordForm] widget.
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
+  /// a route Name used for navigating and transtion animations.
   static const String routeName = '/signup';
 
   @override
@@ -16,6 +19,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  /// a [SignupController] that manages signup requests.
   final signupController = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
@@ -51,8 +55,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     },
                     //switch case on signupController.state to show the appropriate widget
-                    child: signupController.loginState ==
-                            LoginState.personalInfo
+                    child: signupController.signupState ==
+                            SignUpState.personalInfo
                         ? PersonalInfoForm(signupController: signupController)
                         : PasswordForm(signupController: signupController),
                   ),

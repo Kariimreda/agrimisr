@@ -1,6 +1,11 @@
 import 'package:agrimisr/Modules/Models/cart_item.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 
+/// Defines the current Cart State
+///   * [loading]: indicates that cart items are being loaded
+///   * [empty]: indicates that the cart has no items
+///   * [error]: idicates that an error occured while loading the cart
+///   * [containsItems]: indicates that the cart has items
 enum CartState {
   loading,
   empty,
@@ -8,17 +13,28 @@ enum CartState {
   containsItems,
 }
 
+/// A controller class that manages the cart. extends [GetxController] class.
+///
+/// To get an instance of this class, use:
+/// ```dart
+///final cartController = Get.put(CartController()); //creates a new controller
+/// or
+///final cartController = Get.find<CartController>(); // finds an existing controller
+///```
 class CartController extends GetxController {
+  /// The current cart state.
   final cartState = CartState.loading.obs;
 
+  /// a list of [CartItem] objects.
   final cartItems = <CartItem>[].obs;
 
-  //request to get the cart items
+  /// Get Cart Items and fill the [cartItems] list.
   Future<void> getCartItems() async {
+    //set the cart state to loading to show the loading indicator
     cartState.value = CartState.loading;
+    //dummy delay to simulate loading
     await Future.delayed(const Duration(seconds: 2));
     //return some dummy cart items
-
     cartItems.value = [
       CartItem(
         id: 1,
@@ -64,18 +80,20 @@ class CartController extends GetxController {
         maxQuant: 10,
       ),
     ];
+    //set the cart state to contains items to show the cart items
     cartState.value = CartState.containsItems;
   }
 
-  //request to get the cart items
+  /// Refreshs Cart Items.
   Future<void> refreshCartItems() async {
     await getCartItems();
   }
 
-  //remove item of index from cart
+  /// Removes the [CartItem] at [index] from the [cartItems] list.
   void removeItem(int index) {
     cartItems.removeAt(index);
     if (cartItems.isEmpty) {
+      // if the cart is empty, set the cart state to empty
       cartState.value = CartState.empty;
     }
   }

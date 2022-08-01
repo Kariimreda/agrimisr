@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
 
+/// a widget that notifies the user that this category has no items
 class EmptyCategory extends StatefulWidget {
   const EmptyCategory({Key? key}) : super(key: key);
 

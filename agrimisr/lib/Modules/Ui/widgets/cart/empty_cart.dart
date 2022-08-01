@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
 import 'package:easy_localization/easy_localization.dart';
 
+/// A widget that notifies the user that his cart is empty
 class EmptyCart extends StatefulWidget {
   const EmptyCart({Key? key}) : super(key: key);
 
@@ -17,6 +18,7 @@ class EmptyCart extends StatefulWidget {
 
 class _EmptyCartState extends State<EmptyCart>
     with SingleTickerProviderStateMixin {
+  /// animation used to show an empty cart goin up and down
   late final AnimationController controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,

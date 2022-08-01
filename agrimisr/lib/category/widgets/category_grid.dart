@@ -4,6 +4,7 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+/// A grid view that displays a list of [Product]s as [CategoryTile]s.
 class CategoryGrid extends StatefulWidget {
   const CategoryGrid({Key? key}) : super(key: key);
 
