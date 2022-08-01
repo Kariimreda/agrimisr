@@ -1,5 +1,6 @@
 import 'package:form_validator/form_validator.dart';
 
+/// A custom [FormValidatorLocale] that returns custom arabic error messages.
 class MyValidationLocale extends FormValidatorLocale {
   @override
   String name() => "ar";

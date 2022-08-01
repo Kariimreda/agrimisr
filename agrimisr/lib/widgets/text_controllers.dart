@@ -1,12 +1,15 @@
+import 'package:agrimisr/Modules/Controllers/cart_controller.dart';
 import 'package:agrimisr/style/my_colors.dart';
 import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:visit_egypt/CommonWidgets/CustomTextWidget.dart';
 // import 'package:visit_egypt/Resources/Colors.dart';
 // import 'package:visit_egypt/Resources/AppRepoSizes.dart';
 // import 'package:visit_egypt/Resources/sizes.dart';
 // import 'package:visit_egypt/utility/SizeConfig.dart';
 
+/// A Collection of Text Input Widgets.
 class TextControllers {
   TextControllers._internal();
 
@@ -14,6 +17,98 @@ class TextControllers {
 
   factory TextControllers() => _instance;
 
+  /// Row with + and - buttons, and a text to show the number of items in between.
+  ///
+  /// **Should only be used in [Cart] Screen as it depends on [CartController].**
+  Widget customPlusMinusFormField(
+      final CartController cartController, final int index, final quantity) {
+    final quant = cartController.cartItems[index].quantity.obs;
+    //keys for controlling Raw material buttons
+    final addGlobalKey = GlobalKey();
+    final removeGlobalKey = GlobalKey();
+
+    return Padding(
+      padding: MyPadding.xsvPadding,
+      child: SizedBox(
+        height: MySize.height * 0.035,
+        child: Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RawMaterialButton(
+                key: removeGlobalKey,
+                onPressed: quant.value ==
+                        cartController.cartItems[index].minQuant
+                    ? null
+                    : () {
+                        quant.value--;
+                        if (quant.value <=
+                            cartController.cartItems[index].minQuant) {
+                          quant.value =
+                              cartController.cartItems[index].minQuant;
+                        }
+                        cartController.cartItems[index].quantity = quant.value;
+                        quantity.value = quant.value;
+                      },
+                padding: MyPadding.shPadding,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                constraints: const BoxConstraints(minWidth: 0),
+                fillColor:
+                    quant.value == cartController.cartItems[index].minQuant
+                        ? MyColors.grey!.withOpacity(0.15)
+                        : MyColors.white,
+                shape: const CircleBorder(),
+                elevation: 0,
+                child: const Icon(
+                  Icons.remove,
+                  color: MyColors.error,
+                ),
+              ),
+              Expanded(
+                child: Obx(
+                  () => Text(
+                    quant.value.toString(),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              RawMaterialButton(
+                key: addGlobalKey,
+                onPressed: quant.value ==
+                        cartController.cartItems[index].maxQuant
+                    ? null
+                    : () {
+                        quant.value++;
+                        if (quant.value >=
+                            cartController.cartItems[index].maxQuant) {
+                          quant.value =
+                              cartController.cartItems[index].maxQuant;
+                        }
+                        cartController.cartItems[index].quantity = quant.value;
+                        quantity.value = quant.value;
+                      },
+                fillColor:
+                    quant.value == cartController.cartItems[index].maxQuant
+                        ? MyColors.grey!.withOpacity(0.15)
+                        : MyColors.white,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: MyPadding.shPadding,
+                constraints: const BoxConstraints(minWidth: 0),
+                shape: const CircleBorder(),
+                elevation: 0,
+                child: const Icon(
+                  Icons.add,
+                  color: MyColors.primary,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// A Text Form Field with a thin box decoration.
   Widget customTextFormField(BuildContext context,
           {TextEditingController? controller,
           AutovalidateMode? autovalidateMode,
@@ -36,6 +131,7 @@ class TextControllers {
           Widget? prefixWidget,
           Widget? endPrefixWidget,
           Widget? titlePrefixWidget,
+          Function(String?)? onChanged,
           int? maxLines,
           FocusNode? focusNode,
           VoidCallback? onTap,
@@ -50,9 +146,7 @@ class TextControllers {
           GlobalKey<FormFieldState>? formKey}) =>
       Container(
         padding: padding ?? EdgeInsets.zero,
-        height: fixedHeight!
-            ? fieldHeight ??  MySize.height * 0.02
-            : null,
+        height: fixedHeight! ? fieldHeight ?? MySize.height * 0.02 : null,
         width: fieldWidth ?? MySize.width * 0.9,
         decoration: BoxDecoration(
           color: fillColor ?? MyColors.transparent,
@@ -88,20 +182,19 @@ class TextControllers {
                   onTap: onTap ?? () {},
                   onEditingComplete: onEditingComplete ?? () {},
                   validator: validator,
+                  onChanged: onChanged ?? (value) {},
                   decoration: InputDecoration(
-                    // labelText: titleText ?? '',
+                    labelText: titleText,
                     counterText: '',
                     isDense: true,
                     counterStyle: const TextStyle(fontSize: 0),
                     contentPadding: contentPadding ?? EdgeInsets.zero,
                     border: InputBorder.none,
                     hintText: hintText,
-
                     hintStyle: TextStyle(
                       color: hintTextColor,
                       fontSize: hintFontSize,
                     ),
-
                     errorStyle: TextStyle(
                         color: MyColors.error, fontSize: hintFontSize),
                   ),
@@ -112,6 +205,142 @@ class TextControllers {
               endPrefixWidget ?? Container(),
             ],
           ),
+        ),
+      );
+
+  /// A Text widget that displayes two texts, a tag and a body. It takes this form:
+  ///
+  /// [titleText] (tag) : [text] (body),
+  /// the body [text] expands to fill the [Row].
+  Widget customTwoTextRow({
+    String? titleText,
+    String? text,
+    double? fontSize,
+    int? maxLines,
+    Color? titleTextColor,
+    Color? textColor,
+  }) =>
+      Padding(
+        padding: MyPadding.hPadding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${titleText ?? ''}${titleText != null ? ': ' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: fontSize ?? 14,
+                fontWeight: FontWeight.bold,
+                color: titleTextColor,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                text ?? '',
+                maxLines: maxLines ?? 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: fontSize ?? 14,
+                  color: textColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  /// A Text widget that displayes two texts, a tag and a body. It takes this form:
+  ///
+  /// [titleText] (tag) : [text] (body),
+  /// the body [text] Does not expand to fill the [Row], instead it is wrapped
+  /// in a [Flexible] widget. the tag is **Bold**.
+  Widget customTwoTextRowFlexible({
+    String? titleText,
+    String? text,
+    double? fontSize,
+    int? maxLines,
+    Color? textColor,
+  }) =>
+      Padding(
+        padding: MyPadding.hPadding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          mainAxisSize: MainAxisSize.min,
+          textBaseline: TextBaseline.alphabetic,
+          children: [
+            Text(
+              '${titleText ?? ''}${titleText != null ? ': ' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: fontSize ?? 14,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
+            ),
+            Flexible(
+              fit: FlexFit.loose,
+              child: Text(
+                text ?? '',
+                maxLines: maxLines ?? 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: fontSize ?? 14,
+                  color: textColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  /// A Text widget that displayes three texts, a tag and a body and a suffix. It takes this form:
+  ///
+  /// [titleText] (tag) : [text] (body) [suffixText] (suffix),
+  /// the body [text] expands to fill the [Row], both the tag and the suffix are **Bold**.
+  Widget customThreeTextRow({
+    String? titleText,
+    String? text,
+    String? suffixText,
+    double? fontSize,
+    Color? textColor,
+  }) =>
+      Padding(
+        padding: MyPadding.hPadding,
+        child: Row(
+          children: [
+            Text(
+              '${titleText ?? ''}${titleText != null ? ': ' : ''}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: fontSize ?? MySize.width * 0.03,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Flexible(
+              child: Text(
+                text ?? '',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: fontSize ?? MySize.width * 0.03,
+                  color: textColor,
+                ),
+              ),
+            ),
+            Text(
+              suffixText ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: fontSize ?? MySize.width * 0.03,
+                color: textColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       );
 

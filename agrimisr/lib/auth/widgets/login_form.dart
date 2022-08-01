@@ -1,3 +1,4 @@
+import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/auth/controllers/login_controller.dart';
 import 'package:agrimisr/auth/widgets/signup_text.dart';
 import 'package:agrimisr/core/custom_validator.dart';
@@ -7,14 +8,16 @@ import 'package:agrimisr/widgets/button_controllers.dart';
 import 'package:agrimisr/widgets/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart' show Obx;
+import 'package:get/get.dart' hide Trans;
 
+/// a widget that shows a login form.
 class LoginForm extends StatefulWidget {
   const LoginForm({
     Key? key,
     required this.loginController,
   }) : super(key: key);
 
+  /// a [LoginController] that manages login requests.
   final LoginController loginController;
 
   @override
@@ -25,7 +28,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final loginController = widget.loginController;
-    //create 2 keys for the form
+    //form key used to validate the form.
     final formKey = GlobalKey<FormState>();
 
     return Obx(
@@ -33,13 +36,13 @@ class _LoginFormState extends State<LoginForm> {
         return Expanded(
           child: ListView(
             physics: const ClampingScrollPhysics(),
-            reverse: true,
             children: [
               Form(
                 key: formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    SizedBox(height: MySize.height * 0.02),
                     const SignUpText(),
                     SizedBox(height: MySize.height * 0.02),
                     TextControllers().customTextFormField(
@@ -55,7 +58,7 @@ class _LoginFormState extends State<LoginForm> {
                       hintText: 'Auth.Login.Email'.tr(),
                       contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
-                    SizedBox(height: MySize.height * 0.01),
+                    SizedBox(height: MySize.height * 0.025),
                     TextControllers().customTextFormField(
                       context,
                       padding: MyPadding.hPadding,
@@ -69,6 +72,7 @@ class _LoginFormState extends State<LoginForm> {
                       hintText: 'Auth.Login.Password'.tr(),
                       contentPadding: const EdgeInsets.only(bottom: 5),
                     ),
+                    SizedBox(height: MySize.height * 0.02),
                     InkWell(
                       borderRadius: MyRadius.mCircularRadius,
                       onTap: () {
@@ -94,11 +98,11 @@ class _LoginFormState extends State<LoginForm> {
                       onPressed: () => login(formKey, loginController),
                       isLoading: loginController.isLoading,
                     ),
-                    SizedBox(height: MySize.height * 0.01),
+                    SizedBox(height: MySize.height * 0.03),
                     InkWell(
                       borderRadius: MyRadius.mCircularRadius,
                       onTap: () {
-                        print('Guest');
+                        Get.offAllNamed(Layout.routeName);
                       },
                       child: Padding(
                         padding: MyPadding.hPadding,
@@ -123,13 +127,14 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  //on pressed function for login button
+  // logs in the user if the form is valid.
   void login(
     final formKey,
     final loginController,
   ) {
     //validate all using form keys
     if (formKey.currentState!.validate()) {
+      // log in user.
       loginController.login();
     }
   }

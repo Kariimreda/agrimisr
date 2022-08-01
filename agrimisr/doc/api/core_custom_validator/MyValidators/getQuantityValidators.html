@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the getQuantityValidators method from the MyValidators class, for the Dart programming language.">
+  <title>getQuantityValidators method - MyValidators class - custom_validator library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">agrimisr</a></li>
+    <li><a href="../../core_custom_validator/core_custom_validator-library.html">custom_validator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators-class.html">MyValidators</a></li>
+    <li class="self-crumb">getQuantityValidators method</li>
+  </ol>
+  <div class="self-name">getQuantityValidators</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">getQuantityValidators</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+<span class="name ">getQuantityValidators</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="getQuantityValidators-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">value</span>, </span></li>
+<li><span class="parameter" id="getQuantityValidators-param-min"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">min</span>, </span></li>
+<li><span class="parameter" id="getQuantityValidators-param-max"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">max</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>make sure that the <code>value</code> is a valid integer between <code>min</code> and <code>max</code> inclusive.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">String? getQuantityValidators(String? value, int min, int max) {
+  if (value == null) {
+    return validationLocale?.required() ??
+        ValidationBuilder.globalLocale.required();
+  }
+
+  &#47;&#47;make sure value is a number integer  and between min and max
+  if (int.tryParse(value) != null &amp;&amp;
+      int.parse(value) &gt;= min &amp;&amp;
+      int.parse(value) &lt;= max) {
+    return null;
+  }
+
+  &#47;&#47;if not int
+  if (int.tryParse(value) == null) {
+    return &#39;Cart.Validation.Quantity&#39;.tr();
+  }
+
+  if (int.parse(value) &lt; min) {
+    return &#39;${&#39;Cart.Validation.QuantMustBeEqualOrGreaterThan&#39;.tr()} $min&#39;;
+  }
+
+  if (int.parse(value) &gt; max) {
+    return &#39;${&#39;Cart.Validation.QuantMustBeEqualOrLessThan&#39;.tr()} $max&#39;;
+  }
+
+  &#47;&#47;if not a valid int return error message
+  return &#39;Cart.Validation.Quantity&#39;.tr();
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">agrimisr</a></li>
+  <li><a href="../../core_custom_validator/core_custom_validator-library.html">custom_validator</a></li>
+  <li><a href="../../core_custom_validator/MyValidators-class.html">MyValidators</a></li>
+  <li class="self-crumb">getQuantityValidators method</li>
+</ol>
+
+
+    <h5>MyValidators class</h5>
+    <ol>
+
+
+
+    <li class="section-title">
+      <a href="../../core_custom_validator/MyValidators-class.html#instance-properties">Properties</a>
+    </li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/localeController.html">localeController</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/validationLocale.html">validationLocale</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/validationLocaleName.html">validationLocaleName</a></li>
+
+    <li class="section-title"><a href="../../core_custom_validator/MyValidators-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getConfirmPasswordValidator.html">getConfirmPasswordValidator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getEmailOrPhoneValidator.html">getEmailOrPhoneValidator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getEmailValidator.html">getEmailValidator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getNameValidator.html">getNameValidator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getPasswordValidator.html">getPasswordValidator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getPhoneValidator.html">getPhoneValidator</a></li>
+    <li><a href="../../core_custom_validator/MyValidators/getQuantityValidators.html">getQuantityValidators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+
+    <li class="section-title inherited"><a href="../../core_custom_validator/MyValidators-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+        <li class="section-title"><a href="../../core_custom_validator/MyValidators-class.html#static-properties">Static properties</a></li>
+          <li><a href="../../core_custom_validator/MyValidators/instance.html">instance</a></li>
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    agrimisr
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

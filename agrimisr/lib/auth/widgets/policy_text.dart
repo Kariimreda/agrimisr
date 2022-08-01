@@ -7,12 +7,14 @@ import 'package:get/get.dart' show Obx;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+/// A row that shows the accept policy checkbox and a link to the policy.
 class PolicyText extends StatelessWidget {
   const PolicyText({
     Key? key,
     required this.signupController,
   }) : super(key: key);
 
+  /// a [SignupController] that manages signup requests.
   final SignupController signupController;
 
   @override

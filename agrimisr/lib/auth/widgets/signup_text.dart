@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
+/// A row that asks the user if he wants to sign up, with an inkwell that opens
+/// a [SignupScreen].
 class SignUpText extends StatelessWidget {
   const SignUpText({
     Key? key,

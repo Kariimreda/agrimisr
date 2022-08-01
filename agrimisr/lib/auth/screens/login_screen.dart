@@ -5,9 +5,12 @@ import 'package:agrimisr/style/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// a screen that allows the user to login.
+/// It shows a [LoginForm] widget.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  /// a route Name used for navigating and transtion animations.
   static const String routeName = '/login';
 
   @override
@@ -15,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  /// a [LoginController] that manages login requests.
   final loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {

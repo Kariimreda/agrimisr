@@ -6,41 +6,45 @@ import 'package:get/get.dart';
 
 ///Defualt locale is index 0
 ///
-///Use [SupportedLocales] of [0] for defualt locale, or [1] for second locale ...
+///   * Use [supportedLocales] of [0] for defualt locale, or [1] for second locale ...
+///   * Get the number of locales by using [supportedLocales.length].
+///   * Get Current locale by using [currentLocale].
 ///
-/// Get the number of locales by using [supportedLocales.length]
-///
-/// Get Current locale by using [currentLocale]
+///  Example:
+/// ```dart
+/// final myLocalesController = Get.put(MyLocales());
+/// myLocalesController.setLocale(supportedLocales[supportedLocales.length - 1]);
+/// print(myLocalesController.currentLocale.value.languageCode); //prints 'en'
+/// ```
 class MyLocales extends GetxController {
   //current Locale
 
-  //list of supported locales
+  /// list of supported locales
   static const supportedLocales = [
     Locale('ar', 'EG'),
     Locale('en', 'US'),
   ];
 
-  //list of supported locales names
+  /// list of supported locales names
   static const supportedLocalesNames = [
     'العربية',
     'English',
   ];
 
-  //list of supported locales codes
+  /// list of supported locales codes
   static const supportedLocalesCodes = [
     'ar',
     'en',
   ];
 
-  //TODO: set it on the app start up with the data from shared preferences
+  /// current app locale
   final currentLocale = supportedLocales[0].obs;
 
-  ///set device locale, takes [context] and [index] of supported locales as parameters
+  /// updates device locale, takes [context] and [index] of supported locales as parameters
   ///
-  ///[index] is the index of supported locales in [supportedLocales]
+  /// * [index] is the index of supported locales in [supportedLocales]
   ///
-  ///[context] is the context of the widget
-  ///
+  /// * [context] is the current [BuildContext].
 
   void setDeviceLocale(BuildContext context, int index) {
     //make sure the index is in range

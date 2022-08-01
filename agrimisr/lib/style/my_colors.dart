@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-/*
- * To use just simple provide the RGB value and call the mdColor straight up
- * e.g. CustomMaterialColor(88, 207, 194).mdColor
- */
+///
+/// * To use just simply provide the RGB value and call the mdColor straight up
+/// * e.g.
+/// ```dart
+/// CustomMaterialColor(88, 207, 194).mdColor
+/// ```
+///
 class CustomMaterialColor {
   final int r;
   final int g;
@@ -28,17 +31,36 @@ class CustomMaterialColor {
   }
 }
 
-//my colors class for the app
+/// Global Colors for this app.
 class MyColors {
+  /// Primary Color for this app.
   static const Color primary = Color.fromARGB(255, 93, 158, 55);
+
+  /// a Darker version of [primary].
   static const Color primaryDark = Color.fromARGB(255, 66, 87, 72);
+
+  /// Secondary Color for this app.
   static const Color secondary = Color.fromARGB(255, 182, 138, 34);
-  static Color background = Color.fromARGB(255, 231, 245, 230);
+
+  /// Background color used in this app.
+  static Color background = const Color.fromARGB(255, 231, 245, 230);
+
+  /// constant default white.
   static const Color white = Color.fromARGB(255, 255, 255, 255);
+
+  /// constant default black.
+  static const Color black = Color.fromARGB(255, 0, 0, 0);
+
+  /// constant default transparent.
   static const Color transparent = Colors.transparent;
+
+  /// Color used for errors, it is currently set to [Colors.red].
   static const Color error = Colors.red;
+
+  /// default [Colors.grey] weight [600].
   static final Color? grey = Colors.grey[600];
 
+  /// Primary Swatch Color for this app.
   static final CustomMaterialColor primaryMaterialColor =
       CustomMaterialColor(93, 158, 55);
 }
