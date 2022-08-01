@@ -50,6 +50,15 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>A controller class that manages the <a href="../Layout_Ui_Layout/Layout-class.html">Layout</a>s.
+It extends <a href="https://pub.dev/documentation/get/4.6.5/get_state_manager/GetxController-class.html">GetxController</a> class.
+To get an instance of this class, use:</p>
+<pre class="language-dart"><code class="language-dart">final HomeController = Get.put(HomeController()); //creates a new controller
+or
+final HomeController = Get.find&lt;HomeController&gt;(); // finds an existing controller
+</code></pre>
+</section>
 
 
     <section>
@@ -99,7 +108,7 @@
 
 </dt>
 <dd>
-  
+  List of <code>BottomNavigationBarItem</code>s
   <div class="features">read / write</div>
 
 </dd>
@@ -110,7 +119,7 @@
 
 </dt>
 <dd>
-  
+  List of <a href="../Layout_Controllers_LayoutController/HomeController/categories.html">categories</a>
   <div class="features">final</div>
 
 </dd>
@@ -121,7 +130,7 @@
 
 </dt>
 <dd>
-  
+  initialize <a href="../Layout_Controllers_LayoutController/HomeController/currentIndex.html">currentIndex</a> with default value 0 using as <code>index</code> in <a href="../Layout_Controllers_LayoutController/HomeController/changeBottomNav.html">changeBottomNav()</a>
   <div class="features">read / write</div>
 
 </dd>
@@ -134,17 +143,6 @@
 <dd class="inherited">
   The hash code for this object.
   <div class="features">read-only, inherited</div>
-
-</dd>
-
-        <dt id="hasInternet" class="property">
-  <span class="name"><a href="../Layout_Controllers_LayoutController/HomeController/hasInternet.html">hasInternet</a></span>
-  <span class="signature">&#8596; <a href="https://pub.dev/documentation/get/4.6.5/rx_types/RxBool-class.html">RxBool</a></span> 
-
-</dt>
-<dd>
-  
-  <div class="features">read / write</div>
 
 </dd>
 
@@ -187,7 +185,7 @@
 
 </dt>
 <dd>
-  
+  initialize <a href="../Layout_Controllers_LayoutController/HomeController/isLoading.html">isLoading</a> with default value false using in <a href="../Layout_Controllers_LayoutController/HomeController/getCategories.html">getCategories()</a> to check loading state
   <div class="features">final</div>
 
 </dd>
@@ -198,7 +196,7 @@
 
 </dt>
 <dd>
-  
+  initialize <a href="../Layout_Controllers_LayoutController/HomeController/isSelected.html">isSelected</a> with default value false using in <a href="../Layout_Controllers_LayoutController/HomeController/IsSelected.html">IsSelected()</a>
   <div class="features">read / write</div>
 
 </dd>
@@ -256,7 +254,7 @@ lifetime cycle of the subclass.
 
 </dt>
 <dd>
-  
+  List of <a href="../Layout_Controllers_LayoutController/HomeController/screens.html">screens</a>
   <div class="features">read / write</div>
 
 </dd>
@@ -317,20 +315,7 @@ lifetime cycle of the subclass.
 
 </dt>
 <dd>
-  
-  
-
-</dd>
-
-        <dt id="checkForInternet" class="callable">
-  <span class="name"><a href="../Layout_Controllers_LayoutController/HomeController/checkForInternet.html">checkForInternet</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  
+  Method to toggle between <a href="../Layout_Controllers_LayoutController/HomeController/screens.html">screens</a> using <code>index</code>
   
 
 </dd>
@@ -371,7 +356,7 @@ the Widget from the Controller.
 
 </dt>
 <dd>
-  
+  getCategories return dummy categories
   
 
 </dd>
@@ -384,7 +369,7 @@ the Widget from the Controller.
 
 </dt>
 <dd>
-  
+  Method to toggle between to cases
   
 
 </dd>
@@ -470,7 +455,7 @@ async request.
 
 </dt>
 <dd>
-  
+  Method to refresh page
   <div class="features">override</div>
 
 </dd>
@@ -619,7 +604,6 @@ The update will only notify the Widgets, if <code>condition</code> is true.
     <li><a href="../Layout_Controllers_LayoutController/HomeController/categories.html">categories</a></li>
     <li><a href="../Layout_Controllers_LayoutController/HomeController/currentIndex.html">currentIndex</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
-    <li><a href="../Layout_Controllers_LayoutController/HomeController/hasInternet.html">hasInternet</a></li>
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_state_manager_src_simple_list_notifier/ListNotifierMixin/hasListeners.html">hasListeners</a></li>
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_instance_src_lifecycle/GetLifeCycleBase/initialized.html">initialized</a></li>
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_instance_src_lifecycle/GetLifeCycleBase/isClosed.html">isClosed</a></li>
@@ -636,7 +620,6 @@ The update will only notify the Widgets, if <code>condition</code> is true.
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_state_manager_src_simple_list_notifier/ListNotifierMixin/addListener.html">addListener</a></li>
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_state_manager_src_simple_list_notifier/ListNotifierMixin/addListenerId.html">addListenerId</a></li>
     <li><a href="../Layout_Controllers_LayoutController/HomeController/changeBottomNav.html">changeBottomNav</a></li>
-    <li><a href="../Layout_Controllers_LayoutController/HomeController/checkForInternet.html">checkForInternet</a></li>
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_state_manager_src_simple_list_notifier/ListNotifierMixin/dispose.html">dispose</a></li>
     <li class="inherited"><a href="https://pub.dev/documentation/get/4.6.5/get_state_manager_src_simple_list_notifier/ListNotifierMixin/disposeId.html">disposeId</a></li>
     <li><a href="../Layout_Controllers_LayoutController/HomeController/getCategories.html">getCategories</a></li>

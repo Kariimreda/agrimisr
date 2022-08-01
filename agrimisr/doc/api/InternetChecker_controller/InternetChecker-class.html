@@ -50,6 +50,15 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>InternetChecker is a class that check the connectivity state.
+It extends <a href="https://pub.dev/documentation/get/4.6.5/get_state_manager/GetxController-class.html">GetxController</a> class.
+To get an instance of this class, use:</p>
+<pre class="language-dart"><code class="language-dart">final InternetChecker = Get.put(InternetChecker()); //creates a new controller
+or
+final InternetChecker = Get.find&lt;InternetChecker&gt;(); // finds an existing controller
+</code></pre>
+</section>
 
 
     <section>
@@ -110,7 +119,7 @@
 
 </dt>
 <dd>
-  
+  initialize <a href="../InternetChecker_controller/InternetChecker/hasInternet.html">hasInternet</a> with default value false using in <a href="../InternetChecker_controller/InternetChecker/checkForInternet.html">checkForInternet()</a>
   <div class="features">read / write</div>
 
 </dd>
@@ -251,7 +260,8 @@ lifetime cycle of the subclass.
 
 </dt>
 <dd>
-  
+  Method to check connectivity state.
+If <a href="../InternetChecker_controller/InternetChecker/hasInternet.html">hasInternet</a> is true so there is internet else if it is false  navigate to <a href="../InternetChecker_Screen/NoInternetConnection-class.html">NoInternetConnection</a>
   
 
 </dd>

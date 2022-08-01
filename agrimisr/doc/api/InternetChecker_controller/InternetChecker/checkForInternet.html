@@ -59,6 +59,10 @@
 
     </section>
     
+<section class="desc markdown">
+  <p>Method to check connectivity state.
+If <a href="../../InternetChecker_controller/InternetChecker/hasInternet.html">hasInternet</a> is true so there is internet else if it is false  navigate to <a href="../../InternetChecker_Screen/NoInternetConnection-class.html">NoInternetConnection</a></p>
+</section>
 
 
     
@@ -67,10 +71,6 @@
   <pre class="language-dart"><code class="language-dart">void checkForInternet() async {
   hasInternet.value = await InternetConnectionChecker().hasConnection;
   if (!hasInternet.value) {
-    &#47;&#47; Get.snackbar(
-    &#47;&#47;   &#39;No Internet Connection&#39;,
-    &#47;&#47;   &#39;Check your connectivity and try again&#39;,
-    &#47;&#47; );
     Get.offAllNamed(NoInternetConnection.routeName);
   }
 }</code></pre>
