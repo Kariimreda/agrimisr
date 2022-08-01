@@ -1,4 +1,5 @@
 import 'package:agrimisr/InternetChecker/controller.dart';
+import 'package:agrimisr/Layout/Ui/Layout.dart';
 import 'package:agrimisr/Modules/Ui/cartScreen.dart';
 import 'package:agrimisr/Modules/Ui/homePage.dart';
 import 'package:agrimisr/Modules/Ui/settingsScreen.dart';
@@ -6,22 +7,29 @@ import 'package:agrimisr/category/models/category.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans hide StringExtension;
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+/// A controller class that manages the [Layout]s.
+/// It extends [GetxController] class.
+/// To get an instance of this class, use:
+/// ```dart
+/// final HomeController = Get.put(HomeController()); //creates a new controller
+/// or
+/// final HomeController = Get.find<HomeController>(); // finds an existing controller
+/// ```
 class HomeController extends GetxController {
+  ///initialize [currentIndex] with default value 0 using as [index] in [changeBottomNav()]
   RxInt currentIndex = 0.obs;
 
+  /// List of [categories]
   final categories = <Category>[].obs;
+
+  ///initialize [isLoading] with default value false using in [getCategories()] to check loading state
   final isLoading = false.obs;
 
-  var hasInternet = false.obs;
-  void checkForInternet() async {
-    hasInternet.value = await InternetConnectionChecker().hasConnection;
-    if (!hasInternet.value) {
-      Get.snackbar('No Internet connection', 'Try Again Later');
-    }
-  }
+  ///initialize [isSelected] with default value false using in [IsSelected()]
+  RxBool isSelected = false.obs;
 
+  /// getCategories return dummy categories
   void getCategories() async {
     isLoading.value = true;
     await Future.delayed(const Duration(seconds: 2));
@@ -70,11 +78,12 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  RxBool isSelected = false.obs;
+  ///Method to toggle between to cases
   void IsSelected() {
     isSelected.value = !isSelected.value;
   }
 
+  /// List of [BottomNavigationBarItem]s
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(
         icon: const Icon(Icons.home_outlined), label: 'Home.Home'.tr()),
@@ -85,13 +94,16 @@ class HomeController extends GetxController {
         icon: const Icon(Icons.settings), label: 'Home.Settings'.tr()),
   ];
 
+  /// List of [screens]
   List<Widget> screens = [const HomePage(), const Cart(), const Settings()];
 
+  /// Method to toggle between [screens] using [index]
   void changeBottomNav(int index) {
     currentIndex.value = index;
     InternetChecker().checkForInternet();
   }
 
+  /// Method to refresh page
   @override
   Future<void> refresh() {
     return Future.delayed(const Duration(seconds: 8));

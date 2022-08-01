@@ -4,7 +4,7 @@ import 'package:get/get.dart' hide Trans hide StringExtension;
 /// Defines the current Cart State
 ///   * [loading]: indicates that cart items are being loaded
 ///   * [empty]: indicates that the cart has no items
-///   * [error]: idicates that an error occured while loading the cart
+///   * [error]: indicates that an error occurred while loading the cart
 ///   * [containsItems]: indicates that the cart has items
 enum CartState {
   loading,
